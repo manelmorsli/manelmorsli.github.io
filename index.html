@@ -570,7 +570,7 @@
                     <i class="fas fa-envelope"></i>
                     <span data-en="Get In Touch" data-fr="Me Contacter">Get In Touch</span>
                 </a>
-                <a href="https://github.com/manelmorsli/manelmorsli.github.io/raw/main/Manel_MORSLI_En.pdf" target="_blank" class="btn btn-secondary" rel="noopener">
+                <a id="cv-download-btn" href="https://github.com/manelmorsli/manelmorsli.github.io/raw/main/Manel_MORSLI_En.pdf" target="_blank" class="btn btn-secondary" rel="noopener">
                     <i class="fas fa-download"></i>
                     <span data-en="Download CV" data-fr="Télécharger CV">Download CV</span>
                 </a>
@@ -907,7 +907,7 @@
             });
         
             // --- AJOUT POUR CHANGER LE LIEN DU CV ---
-            const cvBtn = document.getElementById('cv-download-btn');
+            const cvBtn = document.getElementById('cv-download-btn'); 
             if (cvBtn) {
                 if (currentLang === 'en') {
                     cvBtn.href = "https://github.com/manelmorsli/manelmorsli.github.io/raw/main/Manel_MORSLI_En.pdf";
