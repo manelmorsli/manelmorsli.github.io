@@ -570,7 +570,7 @@
                     <i class="fas fa-envelope"></i>
                     <span data-en="Get In Touch" data-fr="Me Contacter">Get In Touch</span>
                 </a>
-                <a href="https://github.com/manelmorsli/manelmorsli.github.io/raw/main/Manel%20MORSLI%20-%20Fr.pdf" target="_blank" class="btn btn-secondary" rel="noopener">
+                <a href="https://github.com/manelmorsli/manelmorsli.github.io/raw/main/Manel%20MORSLI%20-%20En.pdf" target="_blank" class="btn btn-secondary" rel="noopener">
                     <i class="fas fa-download"></i>
                     <span data-en="Download CV" data-fr="Télécharger CV">Download CV</span>
                 </a>
@@ -903,6 +903,15 @@
                     } else {
                         el.innerHTML = text;
                     }
+                }
+
+            // --- AJOUT POUR CHANGER LE LIEN DU CV ---
+            const cvBtn = document.getElementById('cv-download-btn');
+            if (cvBtn) {
+                if (currentLang === 'en') {
+                    cvBtn.href = "https://github.com/manelmorsli/manelmorsli.github.io/raw/main/Manel%20MORSLI%20-%20En.pdf";
+                } else {
+                    cvBtn.href = "https://github.com/manelmorsli/manelmorsli.github.io/raw/main/Manel%20MORSLI%20-%20Fr.pdf";
                 }
             });
         }
