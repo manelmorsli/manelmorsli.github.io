@@ -533,12 +533,20 @@ footer .socials { justify-content: center; margin-top: 1.1rem; }
     .traits { grid-template-columns: 1fr 1fr; }
 
     .nav-links {
-        display: none; flex-direction: column; gap: 1.25rem;
-        align-items: flex-start; position: fixed;
-        inset: 62px 0 0 0; background: rgba(8, 8, 16, .97);
-        padding: 2rem 1.5rem; z-index: 800;
+        display: none; flex-direction: column; gap: 0;
+        align-items: stretch; position: fixed;
+        top: 62px; left: 0; right: 0; bottom: 0;
+        background: var(--bg);
+        border-top: 1px solid var(--border);
+        padding: 1rem 0; z-index: 800;
+        overflow-y: auto;
     }
     .nav-links.open { display: flex; }
+    .nav-links a {
+        padding: 1rem 1.75rem;
+        font-size: 1rem; border-bottom: 1px solid var(--border);
+    }
+    .nav-links li:last-child { padding: 1.25rem 1.75rem; border-bottom: none; }
     .hamburger { display: flex; }
 }
 
