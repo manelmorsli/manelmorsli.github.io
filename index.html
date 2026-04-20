@@ -3,1073 +3,651 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manel MORSLI - AI Engineer Portfolio</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <style>
-        /* Variables CSS pour les couleurs et animations */
-        :root {
-            --primary-color: #6366f1;
-            --secondary-color: #8b5cf6;
-            --accent-color: #ec4899;
-            --dark-bg: #210E36;
-            --card-bg: #1e293b;
-            --text-primary: #f1f5f9;
-            --text-secondary: #cbd5e1;
-            --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--accent-color));
-        }
-
-        /* Reset et styles de base */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--dark-bg);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Particules d'arrière-plan animées */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.3;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--primary-color);
-            border-radius: 50%;
-            animation: float 20s infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 2rem;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(99, 102, 241, 0.2);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.3s;
-            font-weight: 500;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-
-        /* Bouton de changement de langue */
-        .lang-switch {
-            background: var(--gradient);
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            color: white;
-            cursor: pointer;
-            font-weight: bold;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .lang-switch:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
-        }
-
-        /* Section Hero */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 6rem 2rem 2rem;
-            position: relative;
-        }
-
-        .hero-content {
-            max-width: 1200px;
-            text-align: center;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero h2 {
-            font-size: 2rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-        }
-
-        .hero-description {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            max-width: 700px;
-            margin: 0 auto 2rem;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 1rem 2rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-primary {
-            background: var(--gradient);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
-        }
-
-        .btn-secondary {
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
-        }
-
-        .btn-secondary:hover {
-            background: var(--primary-color);
-            color: white;
-        }
-
-        .social-links {
-            margin-top: 2rem;
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-        }
-
-        .social-links a {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--card-bg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary-color);
-            transition: all 0.3s;
-            font-size: 1.5rem;
-        }
-
-        .social-links a:hover {
-            background: var(--gradient);
-            color: white;
-            transform: translateY(-5px);
-        }
-
-        /* Sections communes */
-        section {
-            padding: 5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            text-align: center;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Section À propos */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-text p {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
-
-        .strengths-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-        }
-
-        .strength-item {
-            background: var(--card-bg);
-            padding: 1rem;
-            border-radius: 10px;
-            border-left: 3px solid var(--primary-color);
-            transition: all 0.3s;
-        }
-
-        .strength-item:hover {
-            transform: translateX(10px);
-            border-left-color: var(--accent-color);
-        }
-
-        /* Section Compétences */
-        .skills-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .skill-category {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 15px;
-            transition: all 0.3s;
-        }
-
-        .skill-category:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
-        }
-
-        .skill-category h3 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .skill-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .skill-tag {
-            background: rgba(99, 102, 241, 0.2);
-            padding: 0.4rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-
-        /* Section Projets */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            background: var(--card-bg);
-            border-radius: 15px;
-            padding: 2rem;
-            transition: all 0.3s;
-            border: 1px solid rgba(99, 102, 241, 0.2);
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.3);
-            border-color: var(--primary-color);
-        }
-
-        .project-card h3 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .project-card p {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-        }
-
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        .project-tag {
-            background: var(--gradient);
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            color: white;
-        }
-
-        /* Section Expérience */
-        .timeline {
-            position: relative;
-            padding-left: 2rem;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 2px;
-            background: var(--gradient);
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 2rem;
-            padding-left: 2rem;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -2.5rem;
-            top: 0;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--primary-color);
-            border: 3px solid var(--dark-bg);
-        }
-
-        .timeline-item h3 {
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-item p {
-            color: var(--text-secondary);
-        }
-
-        /* Section Contact */
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-        }
-
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem;
-            background: var(--card-bg);
-            border-radius: 10px;
-            transition: all 0.3s;
-        }
-
-        .contact-item:hover {
-            transform: translateX(10px);
-            background: rgba(99, 102, 241, 0.2);
-        }
-
-        .contact-item i {
-            font-size: 1.5rem;
-            color: var(--primary-color);
-        }
-
-        .contact-item a {
-            color: var(--text-secondary);
-            text-decoration: none;
-        }
-
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .form-group label {
-            color: var(--text-secondary);
-        }
-
-        .form-group input,
-        .form-group textarea {
-            padding: 1rem;
-            border-radius: 10px;
-            border: 1px solid rgba(99, 102, 241, 0.3);
-            background: var(--card-bg);
-            color: var(--text-primary);
-            font-family: inherit;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--card-bg);
-            padding: 2rem;
-            text-align: center;
-            color: var(--text-secondary);
-            border-top: 1px solid rgba(99, 102, 241, 0.2);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero h2 {
-                font-size: 1.5rem;
-            }
-
-            .about-content,
-            .contact-content {
-                grid-template-columns: 1fr;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .strengths-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Animation de scroll */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s, transform 0.6s;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+    <title>Manel MORSLI — Full Stack AI Engineer &amp; Product Owner</title>
+    <meta name="description" content="Manel MORSLI — Full Stack AI Engineer and Product Owner. RAG pipelines, computer vision, NLP, FastAPI, React, Docker, and AI product delivery.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-    <!-- Particules d'arrière-plan -->
-    <div class="particles" id="particles"></div>
 
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <div class="logo">MM</div>
-            <div class="nav-links">
-                <a href="#home" data-en="Home" data-fr="Accueil">Home</a>
-                <a href="#about" data-en="About" data-fr="À propos">About</a>
-                <a href="#skills" data-en="Skills" data-fr="Compétences">Skills</a>
-                <a href="#projects" data-en="Projects" data-fr="Projets">Projects</a>
-                <a href="#experience" data-en="Experience" data-fr="Expérience">Experience</a>
-                <a href="#contact" data-en="Contact" data-fr="Contact">Contact</a>
-                <button class="lang-switch" onclick="toggleLanguage()">FR</button>
+<canvas id="bg-canvas"></canvas>
+
+<!-- ══ NAVIGATION ══ -->
+<nav>
+    <div class="nav-inner">
+        <div class="logo">Manel MORSLI</div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about"      data-en="About"      data-fr="À propos">About</a></li>
+            <li><a href="#skills"     data-en="Skills"     data-fr="Compétences">Skills</a></li>
+            <li><a href="#projects"   data-en="Projects"   data-fr="Projets">Projects</a></li>
+            <li><a href="#experience" data-en="Experience" data-fr="Expérience">Experience</a></li>
+            <li><a href="#contact"    data-en="Contact"    data-fr="Contact">Contact</a></li>
+            <li>
+                <button class="lang-btn" id="langBtn" onclick="toggleLang()">FR</button>
+            </li>
+        </ul>
+        <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero" id="home">
+    <div class="hero-body">
+
+        <!-- Left column: text -->
+        <div>
+            <div class="badge">
+                <span class="badge-dot"></span>
+                <span data-en="Available for opportunities" data-fr="Disponible pour opportunités">Available for opportunities</span>
             </div>
-        </div>
-    </nav>
 
-    <!-- Section Hero -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h1>Manel MORSLI</h1>
-            <h2 data-en="AI Engineer | Intelligent Systems" data-fr="Ingénieure IA | Systèmes Intelligents">AI Engineer | Intelligent Systems</h2>
-            <p class="hero-description" data-en="Passionate about artificial intelligence, machine learning, and innovative solutions. Driven by curiosity and a commitment to creating technology that makes a difference." data-fr="Passionnée par l'intelligence artificielle, l'apprentissage automatique et les solutions innovantes. Animée par la curiosité et l'engagement à créer une technologie qui fait la différence.">
-                Passionate about artificial intelligence, machine learning, and innovative solutions. Driven by curiosity and a commitment to creating technology that makes a difference.
+            <h1>Manel <span class="grad-name">MORSLI</span></h1>
+
+            <p class="hero-role"
+               data-en="Full Stack AI Engineer &amp; Product Owner"
+               data-fr="Ingénieure IA Full Stack &amp; Product Owner">
+                Full Stack AI Engineer &amp; Product Owner
             </p>
-            <div class="cta-buttons">
+
+            <p class="hero-desc"
+               data-en="End-to-end AI product delivery — from functional specs and system architecture to production RAG pipelines, computer vision, and admin dashboards. Turning ideas into working intelligent systems."
+               data-fr="Livraison de produits IA de bout en bout — des spécifications fonctionnelles et l'architecture système jusqu'aux pipelines RAG en production, vision par ordinateur et tableaux de bord admin.">
+                End-to-end AI product delivery — from functional specs and system architecture to production RAG pipelines, computer vision, and admin dashboards. Turning ideas into working intelligent systems.
+            </p>
+
+            <div class="hero-ctas">
                 <a href="#contact" class="btn btn-primary">
-                    <i class="fas fa-envelope"></i>
+                    <i class="fas fa-paper-plane"></i>
                     <span data-en="Get In Touch" data-fr="Me Contacter">Get In Touch</span>
                 </a>
-                <a id="cv-download-btn" href="https://github.com/manelmorsli/manelmorsli.github.io/raw/main/CV_Manel_MORSLI_En.pdf" target="_blank" class="btn btn-secondary" rel="noopener">
-                    <i class="fas fa-download"></i>
-                    <span data-en="Download CV" data-fr="Télécharger CV">Download CV</span>
+                <a href="Manel_MORSLI_CV_en.pdf" download class="btn btn-outline">
+                    <i class="fas fa-download"></i> CV <span class="cv-lang-badge">EN</span>
+                </a>
+                <a href="Manel_MORSLI_CV_fr.pdf" download class="btn btn-outline">
+                    <i class="fas fa-download"></i> CV <span class="cv-lang-badge">FR</span>
                 </a>
             </div>
-            <div class="social-links">
-                <a href="https://www.linkedin.com/in/manel-morsli" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/manelmorsli" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-                <a href="mailto:manelmorsli@hotmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-                <a href="https://www.instagram.com/manelmorsli2025/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.facebook.com/profile.php?id=61581943311243" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
-                <a href="https://x.com/ManelMorsli" target="_blank" title="X (Twitter)"><i class="fab fa-twitter"></i></a>
-                <a href="https://discord.com/users/manel_03018" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
+
+            <div class="socials">
+                <a href="https://www.linkedin.com/in/manel-morsli"              target="_blank" rel="noopener" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/manelmorsli"                         target="_blank" rel="noopener" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="mailto:manelmorsli@hotmail.com"                         title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.instagram.com/manelmorsli2025/"             target="_blank" rel="noopener" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=61581943311243" target="_blank" rel="noopener" title="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="https://x.com/ManelMorsli"                             target="_blank" rel="noopener" title="X"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://discord.com/users/manel_03018"                 target="_blank" rel="noopener" title="Discord"><i class="fab fa-discord"></i></a>
             </div>
         </div>
-    </section>
 
-    <!-- Section À propos -->
-    <section id="about" class="fade-in">
-        <h2 class="section-title" data-en="About Me" data-fr="À Propos">About Me</h2>
-        <div class="about-content">
-            <div class="about-text">
-                <p data-en="Motivated AI engineer with a Master's degree in Intelligent Computer Systems from UMMTO. I specialize in machine learning, deep learning, and computer vision, with hands-on experience in developing innovative solutions for real-world problems." data-fr="Ingénieure IA motivée avec un Master en Systèmes Informatiques Intelligents de l'UMMTO. Je me spécialise dans l'apprentissage automatique, l'apprentissage profond et la vision par ordinateur, avec une expérience pratique dans le développement de solutions innovantes pour des problèmes réels.">
-                    Motivated AI engineer with a Master's degree in Intelligent Computer Systems from UMMTO. I specialize in machine learning, deep learning, and computer vision, with hands-on experience in developing innovative solutions for real-world problems.
-                </p>
-                <p data-en="My approach combines strong analytical skills with creative problem-solving, always seeking to push the boundaries of what's possible with AI technology." data-fr="Mon approche combine de solides compétences analytiques avec une résolution créative de problèmes, cherchant toujours à repousser les limites du possible avec la technologie IA.">
-                    My approach combines strong analytical skills with creative problem-solving, always seeking to push the boundaries of what's possible with AI technology.
-                </p>
-            </div>
-            <div class="strengths-grid">
-                <div class="strength-item">
-                    <i class="fas fa-brain"></i>
-                    <span data-en="Analytical Thinker" data-fr="Pensée Analytique">Analytical Thinker</span>
-                </div>
-                <div class="strength-item">
-                    <i class="fas fa-users"></i>
-                    <span data-en="Team Player" data-fr="Esprit d'Équipe">Team Player</span>
-                </div>
-                <div class="strength-item">
-                    <i class="fas fa-lightbulb"></i>
-                    <span data-en="Creative Problem Solver" data-fr="Résolution Créative">Creative Problem Solver</span>
-                </div>
-                <div class="strength-item">
-                    <i class="fas fa-tasks"></i>
-                    <span data-en="Organized & Responsible" data-fr="Organisée & Responsable">Organized & Responsible</span>
+        <!-- Right column: avatar -->
+        <div class="avatar-wrap">
+            <div class="avatar-ring">
+                <div class="avatar-inner">
+                    <i class="fas fa-user-astronaut"></i>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Section Compétences -->
-    <section id="skills" class="fade-in">
-        <h2 class="section-title" data-en="Technical Skills" data-fr="Compétences Techniques">Technical Skills</h2>
-        <div class="skills-container">
-            <div class="skill-category">
-                <h3><i class="fas fa-code"></i> <span data-en="Programming" data-fr="Programmation">Programming</span></h3>
-                <div class="skill-list">
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">C/C++</span>
-                    <span class="skill-tag">MATLAB</span>
-                    <span class="skill-tag">YAML</span>
-                    <span class="skill-tag">LaTeX</span>
-                    <span class="skill-tag">Linux</span>
+    <!-- Stats bar — full-width row below the two-column hero -->
+    <div class="stats-bar">
+        <div class="stat-item">
+            <span class="stat-num">6+</span>
+            <span class="stat-lbl" data-en="Major Projects" data-fr="Projets Majeurs">Major Projects</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-num">3+</span>
+            <span class="stat-lbl" data-en="Years in AI/ML" data-fr="Ans en IA/ML">Years in AI/ML</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-num">4</span>
+            <span class="stat-lbl" data-en="Languages Spoken" data-fr="Langues Parlées">Languages Spoken</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-num">30+</span>
+            <span class="stat-lbl" data-en="Technologies" data-fr="Technologies">Technologies</span>
+        </div>
+    </div>
+</section>
+
+<!-- ══ ABOUT ══ -->
+<section class="section alt" id="about">
+    <div class="section-inner">
+        <span class="s-eyebrow reveal" data-en="Who I Am" data-fr="Qui Suis-Je">Who I Am</span>
+        <h2 class="s-title reveal"><span data-en="About Me" data-fr="À Propos">About Me</span></h2>
+        <div class="s-rule reveal"></div>
+
+        <div class="about-grid">
+            <!-- Bio + traits -->
+            <div class="reveal">
+                <div class="about-text">
+                    <p data-en="Full Stack AI Engineer and Product Owner with end-to-end experience delivering intelligent platforms — from writing functional specifications and designing system architecture, to building production backends, admin dashboards, and public-facing AI widgets."
+                       data-fr="Ingénieure IA Full Stack et Product Owner avec une expérience de bout en bout dans la livraison de plateformes intelligentes — de la rédaction des spécifications fonctionnelles et la conception de l'architecture système, jusqu'au développement des backends de production, tableaux de bord admin et widgets IA.">
+                        Full Stack AI Engineer and Product Owner with end-to-end experience delivering intelligent platforms — from writing functional specifications and designing system architecture, to building production backends, admin dashboards, and public-facing AI widgets.
+                    </p>
+                    <p data-en="Skilled at bridging the gap between technical development and product strategy: planning roadmaps, producing release notes, and driving features from concept to deployment. Passionate about RAG pipelines, knowledge-based systems, object detection, and scalable AI platforms."
+                       data-fr="Spécialisée dans le lien entre développement technique et stratégie produit : planification des roadmaps, rédaction des notes de version, et pilotage des fonctionnalités du concept au déploiement. Passionnée par les pipelines RAG, systèmes à base de connaissances, détection d'objets et plateformes IA évolutives.">
+                        Skilled at bridging the gap between technical development and product strategy: planning roadmaps, producing release notes, and driving features from concept to deployment. Passionate about RAG pipelines, knowledge-based systems, object detection, and scalable AI platforms.
+                    </p>
+                    <p data-en="Currently seeking a mentorship relationship with an experienced AI project manager or technical lead — with the goal of contributing to high-impact, research-driven AI initiatives at an international level."
+                       data-fr="Actuellement à la recherche d'un mentorat avec un chef de projet IA expérimenté ou un lead technique — avec l'objectif de contribuer à des initiatives IA à fort impact au niveau international.">
+                        Currently seeking a mentorship relationship with an experienced AI project manager or technical lead — with the goal of contributing to high-impact, research-driven AI initiatives at an international level.
+                    </p>
+                </div>
+                <div class="traits">
+                    <div class="trait"><i class="fas fa-brain"></i>    <span data-en="Analytical Thinker" data-fr="Pensée Analytique">Analytical Thinker</span></div>
+                    <div class="trait"><i class="fas fa-box"></i>       <span data-en="Product Owner"      data-fr="Product Owner">Product Owner</span></div>
+                    <div class="trait"><i class="fas fa-lightbulb"></i> <span data-en="Creative Solver"    data-fr="Résolution Créative">Creative Solver</span></div>
+                    <div class="trait"><i class="fas fa-users"></i>     <span data-en="Team Leader"        data-fr="Leader d'Équipe">Team Leader</span></div>
                 </div>
             </div>
-            <div class="skill-category">
-                <h3><i class="fas fa-robot"></i> <span data-en="AI & ML" data-fr="IA & ML">AI & ML</span></h3>
-                <div class="skill-list">
-                    <span class="skill-tag">TensorFlow</span>
-                    <span class="skill-tag">PyTorch</span>
-                    <span class="skill-tag">Scikit-learn</span>
-                    <span class="skill-tag">YOLO</span>
-                    <span class="skill-tag">SAM</span>
-                    <span class="skill-tag">Transformers</span>
-                </div>
-            </div>
-            <div class="skill-category">
-                <h3><i class="fas fa-eye"></i> <span data-en="Computer Vision" data-fr="Vision par Ordinateur">Computer Vision</span></h3>
-                <div class="skill-list">
-                    <span class="skill-tag">Object Detection</span>
-                    <span class="skill-tag">Image Segmentation</span>
-                    <span class="skill-tag">Roboflow</span>
-                    <span class="skill-tag">Data Annotation</span>
-                </div>
-            </div>
-            <div class="skill-category">
-                <h3><i class="fas fa-globe"></i> <span data-en="Web & Data" data-fr="Web & Données">Web & Data</span></h3>
-                <div class="skill-list">
-                    <span class="skill-tag">HTML/CSS</span>
-                    <span class="skill-tag">JavaScript</span>
-                    <span class="skill-tag">PHP</span>
-                    <span class="skill-tag">MySQL</span>
-                    <span class="skill-tag">Pandas</span>
-                    <span class="skill-tag">NumPy</span>
+
+            <!-- Info card -->
+            <div class="reveal">
+                <div class="info-card">
+                    <div class="info-card-title" data-en="Quick Info" data-fr="Infos Rapides">Quick Info</div>
+
+                    <div class="info-row">
+                        <i class="fas fa-envelope"></i>
+                        <div class="info-row-content">
+                            <label data-en="Email" data-fr="Email">Email</label>
+                            <a href="mailto:manelmorsli@hotmail.com">manelmorsli@hotmail.com</a>
+                        </div>
+                    </div>
+                    <div class="info-row">
+                        <i class="fas fa-phone"></i>
+                        <div class="info-row-content">
+                            <label data-en="Phone" data-fr="Téléphone">Phone</label>
+                            <a href="tel:+213659727123">+213 659 727 123</a>
+                        </div>
+                    </div>
+                    <div class="info-row">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="info-row-content">
+                            <label data-en="Location" data-fr="Localisation">Location</label>
+                            <span>Algiers, Algeria</span>
+                        </div>
+                    </div>
+                    <div class="info-row">
+                        <i class="fas fa-graduation-cap"></i>
+                        <div class="info-row-content">
+                            <label data-en="Education" data-fr="Formation">Education</label>
+                            <span data-en="Master's — Intelligent Computer Systems, UMMTO"
+                                  data-fr="Master — Systèmes Informatiques Intelligents, UMMTO">
+                                Master's — Intelligent Computer Systems, UMMTO
+                            </span>
+                        </div>
+                    </div>
+                    <div class="info-row">
+                        <i class="fas fa-car"></i>
+                        <div class="info-row-content">
+                            <label data-en="Driving License" data-fr="Permis de Conduire">Driving License</label>
+                            <span data-en="Category B" data-fr="Catégorie B">Category B</span>
+                        </div>
+                    </div>
+                    <div class="info-row">
+                        <i class="fas fa-language"></i>
+                        <div class="info-row-content">
+                            <label data-en="Languages" data-fr="Langues">Languages</label>
+                            <div class="lang-pills">
+                                <span class="lang-pill" data-en="Tamazight (Native)" data-fr="Tamazight (Natif)">Tamazight (Native)</span>
+                                <span class="lang-pill" data-en="Arabic (Fluent)"    data-fr="Arabe (Courant)">Arabic (Fluent)</span>
+                                <span class="lang-pill" data-en="French (Pro)"       data-fr="Français (Pro)">French (Pro)</span>
+                                <span class="lang-pill" data-en="English (Pro)"      data-fr="Anglais (Pro)">English (Pro)</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Section Projets -->
-    <section id="projects" class="fade-in">
-        <h2 class="section-title" data-en="Featured Projects" data-fr="Projets Principaux">Featured Projects</h2>
+<!-- ══ SKILLS ══ -->
+<section class="section" id="skills">
+    <div class="section-inner">
+        <span class="s-eyebrow reveal" data-en="Expertise" data-fr="Expertise">Expertise</span>
+        <h2 class="s-title reveal"><span data-en="Technical Skills" data-fr="Compétences Techniques">Technical Skills</span></h2>
+        <div class="s-rule reveal"></div>
+
+        <div class="skills-grid">
+            <div class="skill-card reveal">
+                <div class="skill-head">
+                    <div class="skill-icon"><i class="fas fa-code"></i></div>
+                    <h3 data-en="Programming Languages" data-fr="Langages de Programmation">Programming Languages</h3>
+                </div>
+                <div class="tags">
+                    <span class="tag">Python</span><span class="tag">C / C++</span>
+                    <span class="tag">JavaScript</span><span class="tag">TypeScript</span>
+                    <span class="tag">MATLAB</span><span class="tag">PHP</span>
+                    <span class="tag">SQL</span><span class="tag">YAML</span>
+                    <span class="tag">HTML / CSS</span><span class="tag">LaTeX</span>
+                </div>
+            </div>
+
+            <div class="skill-card reveal">
+                <div class="skill-head">
+                    <div class="skill-icon" style="background:linear-gradient(135deg,#f59e0b,#ef4444)"><i class="fas fa-robot"></i></div>
+                    <h3 data-en="AI / ML / NLP" data-fr="IA / ML / NLP">AI / ML / NLP</h3>
+                </div>
+                <div class="tags">
+                    <span class="tag">PyTorch</span><span class="tag">TensorFlow</span>
+                    <span class="tag">Scikit-learn</span><span class="tag">HuggingFace</span>
+                    <span class="tag">LangChain</span><span class="tag">LlamaIndex</span>
+                    <span class="tag">YOLO v8/v11</span><span class="tag">SAM</span>
+                    <span class="tag">Generative AI</span><span class="tag">Prompt Engineering</span>
+                </div>
+            </div>
+
+            <div class="skill-card reveal">
+                <div class="skill-head">
+                    <div class="skill-icon" style="background:linear-gradient(135deg,#06b6d4,#0ea5e9)"><i class="fas fa-server"></i></div>
+                    <h3 data-en="Backend &amp; APIs" data-fr="Backend &amp; APIs">Backend &amp; APIs</h3>
+                </div>
+                <div class="tags">
+                    <span class="tag">FastAPI</span><span class="tag">SQLAlchemy</span>
+                    <span class="tag">Alembic</span><span class="tag">Pydantic</span>
+                    <span class="tag">JWT / OAuth2</span><span class="tag">Taskiq</span>
+                    <span class="tag">asyncpg</span><span class="tag">REST APIs</span>
+                </div>
+            </div>
+
+            <div class="skill-card reveal">
+                <div class="skill-head">
+                    <div class="skill-icon" style="background:linear-gradient(135deg,#8b5cf6,#ec4899)"><i class="fas fa-database"></i></div>
+                    <h3 data-en="Databases &amp; Storage" data-fr="Bases de Données &amp; Stockage">Databases &amp; Storage</h3>
+                </div>
+                <div class="tags">
+                    <span class="tag">PostgreSQL</span><span class="tag">pgvector</span>
+                    <span class="tag">Redis</span><span class="tag">SeaweedFS</span>
+                    <span class="tag">InfluxDB</span><span class="tag">MySQL</span>
+                    <span class="tag">Vector DBs</span>
+                </div>
+            </div>
+
+            <div class="skill-card reveal">
+                <div class="skill-head">
+                    <div class="skill-icon" style="background:linear-gradient(135deg,#10b981,#06b6d4)"><i class="fab fa-react"></i></div>
+                    <h3 data-en="Frontend" data-fr="Frontend">Frontend</h3>
+                </div>
+                <div class="tags">
+                    <span class="tag">React</span><span class="tag">Next.js</span>
+                    <span class="tag">Vite</span><span class="tag">Tailwind CSS</span>
+                    <span class="tag">HTML5 / CSS3</span>
+                </div>
+            </div>
+
+            <div class="skill-card reveal">
+                <div class="skill-head">
+                    <div class="skill-icon" style="background:linear-gradient(135deg,#3b82f6,#6366f1)"><i class="fab fa-docker"></i></div>
+                    <h3 data-en="DevOps &amp; Cloud" data-fr="DevOps &amp; Cloud">DevOps &amp; Cloud</h3>
+                </div>
+                <div class="tags">
+                    <span class="tag">Docker</span><span class="tag">Docker Compose</span>
+                    <span class="tag">Git / GitHub</span><span class="tag">CI/CD</span>
+                    <span class="tag">Linux</span><span class="tag">Datacenter Ops</span>
+                </div>
+            </div>
+
+            <div class="skill-card reveal">
+                <div class="skill-head">
+                    <div class="skill-icon" style="background:linear-gradient(135deg,#f59e0b,#84cc16)"><i class="fas fa-eye"></i></div>
+                    <h3 data-en="Computer Vision" data-fr="Vision par Ordinateur">Computer Vision</h3>
+                </div>
+                <div class="tags">
+                    <span class="tag">Object Detection</span><span class="tag">Segmentation</span>
+                    <span class="tag">Roboflow</span><span class="tag">OpenCV</span>
+                    <span class="tag">Data Annotation</span>
+                </div>
+            </div>
+
+            <div class="skill-card reveal">
+                <div class="skill-head">
+                    <div class="skill-icon" style="background:linear-gradient(135deg,#ec4899,#f59e0b)"><i class="fas fa-chart-line"></i></div>
+                    <h3 data-en="Product &amp; Project Mgmt" data-fr="Gestion Produit &amp; Projet">Product &amp; Project Mgmt</h3>
+                </div>
+                <div class="tags">
+                    <span class="tag">Product Ownership</span><span class="tag">Agile / Scrum</span>
+                    <span class="tag">Roadmap Planning</span><span class="tag">Functional Specs</span>
+                    <span class="tag">Release Notes</span><span class="tag">User Stories</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══ PROJECTS ══ -->
+<section class="section alt" id="projects">
+    <div class="section-inner">
+        <span class="s-eyebrow reveal" data-en="Work" data-fr="Travaux">Work</span>
+        <h2 class="s-title reveal"><span data-en="Featured Projects" data-fr="Projets Phares">Featured Projects</span></h2>
+        <div class="s-rule reveal"></div>
+
         <div class="projects-grid">
-            <div class="project-card">
-                <h3 data-en="Breast Cancer Early Diagnosis System" data-fr="Système de Diagnostic Précoce du Cancer du Sein">Breast Cancer Early Diagnosis System</h3>
-                <p data-en="Master's thesis project: Intelligent system combining Traditional Chinese Medicine with modern AI techniques for early breast cancer detection." data-fr="Projet de thèse de Master : Système intelligent combinant la médecine traditionnelle chinoise avec des techniques d'IA modernes pour la détection précoce du cancer du sein.">
-                    Master's thesis project: Intelligent system combining Traditional Chinese Medicine with modern AI techniques for early breast cancer detection.
-                </p>
-                <div class="project-tags">
-                    <span class="project-tag">YOLO</span>
-                    <span class="project-tag">SAM</span>
-                    <span class="project-tag">Computer Vision</span>
-                    <span class="project-tag">ML</span>
-                    <span class="project-tag">Generative AI</span>
-                </div>
-            </div>
-            <div class="project-card">
-                <h3 data-en="University Chatbot" data-fr="Chatbot Universitaire">University Chatbot</h3>
-                <p data-en="NLP-powered chatbot for UMMTO students, providing instant answers to frequently asked questions using advanced transformer models." data-fr="Chatbot alimenté par NLP pour les étudiants UMMTO, fournissant des réponses instantanées aux questions fréquentes en utilisant des modèles transformer avancés.">
-                    NLP-powered chatbot for UMMTO students, providing instant answers to frequently asked questions using advanced transformer models.
-                </p>
-                <div class="project-tags">
-                    <span class="project-tag">NLP</span>
-                    <span class="project-tag">GPT</span>
-                    <span class="project-tag">T5</span>
-                    <span class="project-tag">Transformers</span>
-                </div>
-            </div>
-            <div class="project-card">
-                <h3 data-en="Smart Greenhouse IoT System" data-fr="Système IoT de Serre Intelligente">Smart Greenhouse IoT System</h3>
-                <p data-en="Real-time monitoring system for greenhouse environments using Arduino sensors, with cloud integration and advanced visualization." data-fr="Système de surveillance en temps réel pour les environnements de serre utilisant des capteurs Arduino, avec intégration cloud et visualisation avancée.">
-                    Real-time monitoring system for greenhouse environments using Arduino sensors, with cloud integration and advanced visualization.
-                </p>
-                <div class="project-tags">
-                    <span class="project-tag">IoT</span>
-                    <span class="project-tag">Arduino</span>
-                    <span class="project-tag">Node-RED</span>
-                    <span class="project-tag">InfluxDB</span>
-                    <span class="project-tag">Grafana</span>
-                </div>
-            </div>
-            <div class="project-card">
-                <h3 data-en="Fashion Industry Ontology" data-fr="Ontologie de l'Industrie de la Mode">Fashion Industry Ontology</h3>
-                <p data-en="Interactive semantic web ontology for the fashion industry, enabling intelligent data relationships and queries." data-fr="Ontologie web sémantique interactive pour l'industrie de la mode, permettant des relations et requêtes de données intelligentes.">
-                    Interactive semantic web ontology for the fashion industry, enabling intelligent data relationships and queries.
-                </p>
-                <div class="project-tags">
-                    <span class="project-tag">Protégé</span>
-                    <span class="project-tag">OWL</span>
-                    <span class="project-tag">RDF</span>
-                    <span class="project-tag">RDFS</span>
-                </div>
-            </div>
-            <div class="project-card">
-                <h3 data-en="DentalPlan Web Application" data-fr="Application Web DentalPlan">DentalPlan Web Application</h3>
-                <p data-en="Team leader for a comprehensive dental appointment booking platform with patient management features." data-fr="Chef d'équipe pour une plateforme complète de réservation de rendez-vous dentaires avec fonctionnalités de gestion des patients.">
-                    Team leader for a comprehensive dental appointment booking platform with patient management features.
-                </p>
-                <div class="project-tags">
-                    <span class="project-tag">HTML/CSS</span>
-                    <span class="project-tag">JavaScript</span>
-                    <span class="project-tag">PHP</span>
-                    <span class="project-tag">MySQL</span>
-                </div>
-            </div>
-            <div class="project-card">
-                <h3 data-en="Data Mining Projects" data-fr="Projets de Data Mining">Data Mining Projects</h3>
-                <p data-en="Comprehensive analysis comparing regression, clustering, and classification algorithms for various datasets." data-fr="Analyse complète comparant les algorithmes de régression, clustering et classification pour divers ensembles de données.">
-                    Comprehensive analysis comparing regression, clustering, and classification algorithms for various datasets.
-                </p>
-                <div class="project-tags">
-                    <span class="project-tag">Scikit-learn</span>
-                    <span class="project-tag">Pandas</span>
-                    <span class="project-tag">NumPy</span>
-                    <span class="project-tag">Matplotlib</span>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Section Expérience -->
-    <section id="experience" class="fade-in">
-        <h2 class="section-title" data-en="Experience & Education" data-fr="Expérience & Formation">Experience & Education</h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <h3 data-en="Master's Degree - Intelligent Computer Systems" data-fr="Master - Systèmes Informatiques Intelligents">Master's Degree - Intelligent Computer Systems</h3>
-                <p>UMMTO, Tizi-Ouzou, Algeria</p>
-                <p data-en="Advanced training in AI, Machine Learning, Deep Learning, and Computer Vision" data-fr="Formation avancée en IA, Machine Learning, Deep Learning et Vision par Ordinateur">Advanced training in AI, Machine Learning, Deep Learning, and Computer Vision</p>
+            <div class="project-card reveal">
+                <div class="project-meta">
+                    <span class="project-icon">🧠</span>
+                    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:.3rem">
+                        <span class="current-badge">
+                            <i class="fas fa-circle" style="font-size:.5rem;color:#22c55e"></i>
+                            <span data-en="Current" data-fr="En cours">Current</span>
+                        </span>
+                        <span class="project-year">2025 →</span>
+                    </div>
+                </div>
+                <h3 data-en="AI-Powered Multi-Tenant RAG Platform"
+                    data-fr="Plateforme RAG Multi-Tenant propulsée par l'IA">
+                    AI-Powered Multi-Tenant RAG Platform
+                </h3>
+                <p data-en="Production-grade RAG platform with multi-tenant data isolation, conversational AI, semantic search, and embeddable chat widget. Next.js admin dashboard, FastAPI backend, Ollama local LLMs, pgvector, Redis workers, SeaweedFS storage — one-command Docker Compose deployment."
+                   data-fr="Plateforme RAG de niveau production avec isolation des données multi-tenant, IA conversationnelle, recherche sémantique et widget de chat embarquable. Tableau de bord admin Next.js, backend FastAPI, LLMs locaux Ollama, pgvector, workers Redis, stockage SeaweedFS.">
+                    Production-grade RAG platform with multi-tenant data isolation, conversational AI, semantic search, and embeddable chat widget. Next.js admin dashboard, FastAPI backend, Ollama local LLMs, pgvector, Redis workers, SeaweedFS storage.
+                </p>
+                <div class="ptags">
+                    <span class="ptag">FastAPI</span><span class="ptag">RAG</span><span class="ptag">pgvector</span>
+                    <span class="ptag">React</span><span class="ptag">Next.js</span><span class="ptag">Docker</span>
+                    <span class="ptag">LangChain</span><span class="ptag">Ollama</span>
+                </div>
             </div>
-            <div class="timeline-item">
-                <h3 data-en="Computer Science Teacher" data-fr="Professeure d'Informatique">Computer Science Teacher</h3>
-                <p data-en="Middle School" data-fr="Collège">Middle School</p>
-                <p data-en="Developed communication, classroom management, and curriculum design skills" data-fr="Développement des compétences en communication, gestion de classe et conception de programmes">Developed communication, classroom management, and curriculum design skills</p>
-            </div>
-            <div class="timeline-item">
-                <h3 data-en="Internship - Sonatrach" data-fr="Stage - Sonatrach">Internship - Sonatrach</h3>
-                <p data-en="Regional Directorate Hassi Messaoud DP" data-fr="Direction Régionale Hassi Messaoud DP">Regional Directorate Hassi Messaoud DP</p>
-                <p data-en="IT departments, industrial development, database management, networking & security" data-fr="Départements IT, développement industriel, gestion de bases de données, réseaux et sécurité">IT departments, industrial development, database management, networking & security</p>
-            </div>
-            <div class="timeline-item">
-                <h3 data-en="Internship - BEA Bank" data-fr="Stage - Banque BEA">Internship - BEA Bank</h3>
-                <p data-en="Banque d'Extérieure d'Algérie" data-fr="Banque d'Extérieure d'Algérie">Banque d'Extérieure d'Algérie</p>
-                <p data-en="Explored IT division for project management and telecom division for datacenter operations" data-fr="Exploration de la division IT pour la gestion de projets et de la division télécom pour les opérations datacenter">Explored IT division for project management and telecom division for datacenter operations</p>
-            </div>
-            <div class="timeline-item">
-                <h3 data-en="Bachelor's Degree - Computer Systems" data-fr="Licence - Systèmes Informatiques">Bachelor's Degree - Computer Systems</h3>
-                <p>UMMTO, Tizi-Ouzou, Algeria</p>
-                <p data-en="Strong foundation in computer systems, programming, and software development" data-fr="Solide formation en systèmes informatiques, programmation et développement logiciel">Strong foundation in computer systems, programming, and software development</p>
-            </div>
-        </div>
-    </section>
 
-    <!-- Section Contact -->
-    <section id="contact" class="fade-in">
-        <h2 class="section-title" data-en="Get In Touch" data-fr="Contactez-Moi">Get In Touch</h2>
-        <div class="contact-content">
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <div>
-                        <h4 data-en="Email" data-fr="Email">Email</h4>
-                        <a href="mailto:manelmorsli@hotmail.com">manelmorsli@hotmail.com</a>
-                    </div>
+            <div class="project-card reveal">
+                <div class="project-meta">
+                    <span class="project-icon">🎗️</span>
+                    <span class="project-year">2024–2025</span>
                 </div>
-                <div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <div>
-                        <h4 data-en="Phone" data-fr="Téléphone">Phone</h4>
-                        <a href="tel:+213659727123">+213 659 727 123</a>
-                    </div>
+                <h3 data-en="Breast Cancer Early Diagnosis System"
+                    data-fr="Système de Diagnostic Précoce du Cancer du Sein">
+                    Breast Cancer Early Diagnosis System
+                </h3>
+                <p data-en="Master's thesis: AI diagnostic pipeline combining Traditional Chinese Medicine tongue analysis with computer vision for early breast cancer detection. Full pipeline from annotation to inference API."
+                   data-fr="Thèse de Master : pipeline IA combinant l'analyse de la langue TCM avec la vision par ordinateur pour la détection précoce du cancer du sein. Pipeline complet de l'annotation à l'API d'inférence.">
+                    Master's thesis: AI diagnostic pipeline combining Traditional Chinese Medicine tongue analysis with computer vision for early breast cancer detection. Full pipeline from annotation to inference API.
+                </p>
+                <div class="ptags">
+                    <span class="ptag">YOLO v8</span><span class="ptag">SAM</span>
+                    <span class="ptag">Roboflow</span><span class="ptag">Generative AI</span>
+                    <span class="ptag">Computer Vision</span>
                 </div>
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <div>
-                        <h4 data-en="Location" data-fr="Localisation">Location</h4>
-                        <p>Azeffoun, Tizi-Ouzou, Algeria</p>
-                    </div>
+            </div>
+
+            <div class="project-card reveal">
+                <div class="project-meta">
+                    <span class="project-icon">🤖</span>
+                    <span class="project-year">2023</span>
                 </div>
-                <div class="contact-item">
-                    <i class="fab fa-linkedin"></i>
-                    <div>
-                        <h4>LinkedIn</h4>
-                        <a href="https://www.linkedin.com/in/manel-morsli" target="_blank">linkedin.com/in/manel-morsli</a>
-                    </div>
+                <h3 data-en="University Chatbot — Student FAQ System"
+                    data-fr="Chatbot Universitaire — FAQ Étudiants">
+                    University Chatbot — Student FAQ System
+                </h3>
+                <p data-en="NLP chatbot for UMMTO student FAQ automation using fine-tuned GPT and T5 models. Intent classification, retrieval-based answering, and fallback generation."
+                   data-fr="Chatbot NLP pour l'automatisation des FAQ étudiants de l'UMMTO avec des modèles GPT et T5 fine-tunés. Classification d'intention, réponses par récupération et génération de secours.">
+                    NLP chatbot for UMMTO student FAQ automation using fine-tuned GPT and T5 models. Intent classification, retrieval-based answering, and fallback generation.
+                </p>
+                <div class="ptags">
+                    <span class="ptag">NLP</span><span class="ptag">GPT</span><span class="ptag">T5</span>
+                    <span class="ptag">Transformers</span><span class="ptag">HuggingFace</span>
                 </div>
-                <div class="contact-item">
-                    <i class="fas fa-car"></i>
-                    <div>
-                        <h4 data-en="Driving License" data-fr="Permis de Conduire">Driving License</h4>
-                        <p data-en="Category B" data-fr="Catégorie B">Category B</p>
+            </div>
+
+            <div class="project-card reveal">
+                <div class="project-meta">
+                    <span class="project-icon">🌿</span>
+                    <span class="project-year">2022</span>
+                </div>
+                <h3 data-en="Smart Greenhouse IoT System"
+                    data-fr="Système IoT Serre Intelligente">
+                    Smart Greenhouse IoT System
+                </h3>
+                <p data-en="Sensor-driven greenhouse monitoring with Arduino, Node-RED, InfluxDB, OpenWeatherMap API, and Grafana dashboards for real-time alerts and visualization."
+                   data-fr="Surveillance de serre pilotée par capteurs avec Arduino, Node-RED, InfluxDB, API OpenWeatherMap et tableaux de bord Grafana pour alertes en temps réel.">
+                    Sensor-driven greenhouse monitoring with Arduino, Node-RED, InfluxDB, OpenWeatherMap API, and Grafana dashboards for real-time alerts and visualization.
+                </p>
+                <div class="ptags">
+                    <span class="ptag">IoT</span><span class="ptag">Arduino</span>
+                    <span class="ptag">Node-RED</span><span class="ptag">InfluxDB</span>
+                    <span class="ptag">Grafana</span>
+                </div>
+            </div>
+
+            <div class="project-card reveal">
+                <div class="project-meta">
+                    <span class="project-icon">👗</span>
+                    <span class="project-year">2023</span>
+                </div>
+                <h3 data-en="Fashion Industry Ontology"
+                    data-fr="Ontologie Industrie de la Mode">
+                    Fashion Industry Ontology
+                </h3>
+                <p data-en="Interactive semantic-web ontology for the fashion industry using Protégé, OWL, RDF/RDFS with class hierarchies and SPARQL query interfaces."
+                   data-fr="Ontologie web sémantique interactive pour l'industrie de la mode avec Protégé, OWL, RDF/RDFS, hiérarchies de classes et interfaces SPARQL.">
+                    Interactive semantic-web ontology for the fashion industry using Protégé, OWL, RDF/RDFS with class hierarchies and SPARQL query interfaces.
+                </p>
+                <div class="ptags">
+                    <span class="ptag">Protégé</span><span class="ptag">OWL</span>
+                    <span class="ptag">RDF</span><span class="ptag">SPARQL</span>
+                </div>
+            </div>
+
+            <div class="project-card reveal">
+                <div class="project-meta">
+                    <span class="project-icon">🦷</span>
+                    <span class="project-year">2021–2022</span>
+                </div>
+                <h3 data-en="DentalPlan Web Application"
+                    data-fr="Application Web DentalPlan">
+                    DentalPlan Web Application
+                </h3>
+                <p data-en="Team lead — full dental appointment booking platform with patient management, database design, and full-stack delivery."
+                   data-fr="Chef d'équipe — plateforme complète de prise de rendez-vous dentaires avec gestion des patients, conception de base de données et livraison full-stack.">
+                    Team lead — full dental appointment booking platform with patient management, database design, and full-stack delivery.
+                </p>
+                <div class="ptags">
+                    <span class="ptag">PHP</span><span class="ptag">MySQL</span>
+                    <span class="ptag">HTML/CSS</span><span class="ptag">JavaScript</span>
+                    <span class="ptag">Team Lead</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ══ EXPERIENCE & EDUCATION ══ -->
+<section class="section" id="experience">
+    <div class="section-inner">
+        <span class="s-eyebrow reveal" data-en="Background" data-fr="Parcours">Background</span>
+        <h2 class="s-title reveal"><span data-en="Experience &amp; Education" data-fr="Expérience &amp; Formation">Experience &amp; Education</span></h2>
+        <div class="s-rule reveal"></div>
+
+        <div class="exp-grid">
+
+            <!-- Professional Experience -->
+            <div class="reveal">
+                <div class="exp-label" data-en="Professional Experience" data-fr="Expérience Professionnelle">Professional Experience</div>
+                <div class="timeline">
+
+                    <div class="tl-item">
+                        <div class="tl-date" data-en="Dec 2025 — Present" data-fr="Déc 2025 — Présent">Dec 2025 — Present</div>
+                        <div class="tl-title" data-en="Full Stack AI Engineer &amp; Product Owner" data-fr="Ingénieure IA Full Stack &amp; Product Owner">Full Stack AI Engineer &amp; Product Owner</div>
+                        <div class="tl-org"  data-en="High Commission of Digitalization, Algeria" data-fr="Haut-Commissariat à la Numérisation, Algérie">High Commission of Digitalization, Algeria</div>
+                        <div class="tl-desc">
+                            <ul>
+                                <li data-en="Wrote full functional &amp; technical specs; defined system architecture; authored all release notes" data-fr="Rédigé les spécifications fonctionnelles &amp; techniques complètes; défini l'architecture; rédigé toutes les notes de version">Wrote full functional &amp; technical specs; defined system architecture</li>
+                                <li data-en="Designed &amp; developed Next.js admin dashboard for knowledge base management" data-fr="Conçu et développé le tableau de bord admin Next.js pour la gestion de la base de connaissances">Designed &amp; developed Next.js admin dashboard</li>
+                                <li data-en="Built embeddable public chat widget backed by FastAPI RAG + Ollama" data-fr="Construit le widget de chat public embarquable propulsé par FastAPI RAG + Ollama">Built embeddable chat widget (FastAPI RAG + Ollama)</li>
+                                <li data-en="Product Owner: backlog management, acceptance criteria, milestone planning" data-fr="Product Owner : gestion du backlog, critères d'acceptation, planification des jalons">Product Owner: backlog, acceptance criteria, milestones</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="tl-item">
+                        <div class="tl-date" data-en="Jan 2025 — May 2025" data-fr="Jan 2025 — Mai 2025">Jan 2025 — May 2025</div>
+                        <div class="tl-title" data-en="Computer Science Teacher" data-fr="Professeure d'Informatique">Computer Science Teacher</div>
+                        <div class="tl-org"  data-en="Middle School, Algeria" data-fr="Collège, Algérie">Middle School, Algeria</div>
+                        <div class="tl-desc" data-en="Delivered CS curriculum; developed communication, classroom management, and lesson-planning skills." data-fr="Dispensé le programme informatique ; développé des compétences en communication, gestion de classe et planification de cours.">Delivered CS curriculum; developed communication, classroom management, and lesson-planning skills.</div>
+                    </div>
+
+                    <div class="tl-item">
+                        <div class="tl-date" data-en="Dec 2024" data-fr="Déc 2024">Dec 2024</div>
+                        <div class="tl-title" data-en="IT &amp; Telecom Intern" data-fr="Stagiaire IT &amp; Télécom">IT &amp; Telecom Intern</div>
+                        <div class="tl-org">Banque d'Extérieure d'Algérie (BEA)</div>
+                        <div class="tl-desc" data-en="IT project management division and telecom division (datacenter administration, data transmission)." data-fr="Division gestion de projets IT et division télécom (administration datacenter, transmission de données).">IT project management and telecom division (datacenter administration).</div>
+                    </div>
+
+                    <div class="tl-item">
+                        <div class="tl-date" data-en="Jul — Aug 2024" data-fr="Juil — Août 2024">Jul — Aug 2024</div>
+                        <div class="tl-title" data-en="IT Intern" data-fr="Stagiaire IT">IT Intern</div>
+                        <div class="tl-org"  data-en="Sonatrach — Hassi Messaoud DP" data-fr="Sonatrach — Hassi Messaoud DP">Sonatrach — Hassi Messaoud DP</div>
+                        <div class="tl-desc" data-en="IT departments, database management, networking &amp; security, datacenter operations." data-fr="Départements IT, gestion de bases de données, réseaux &amp; sécurité, opérations datacenter.">IT departments, database management, networking &amp; security, datacenter operations.</div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Education -->
+            <div class="reveal">
+                <div class="exp-label" data-en="Education" data-fr="Formation">Education</div>
+                <div class="timeline">
+
+                    <div class="tl-item">
+                        <div class="tl-date">2022 — 2025</div>
+                        <div class="tl-title" data-en="Master's — Intelligent Computer Systems" data-fr="Master — Systèmes Informatiques Intelligents">Master's — Intelligent Computer Systems</div>
+                        <div class="tl-org">UMMTO, Tizi-Ouzou</div>
+                        <div class="tl-desc" data-en="AI · ML · Deep Learning · NLP · Computer Vision · Knowledge Representation" data-fr="IA · ML · Deep Learning · NLP · Vision par Ordinateur · Représentation des Connaissances">AI · ML · Deep Learning · NLP · Computer Vision · Knowledge Representation</div>
+                    </div>
+
+                    <div class="tl-item">
+                        <div class="tl-date">2019 — 2022</div>
+                        <div class="tl-title" data-en="Bachelor's — Computer Systems" data-fr="Licence — Systèmes Informatiques">Bachelor's — Computer Systems</div>
+                        <div class="tl-org">UMMTO, Tizi-Ouzou</div>
+                        <div class="tl-desc" data-en="Algorithms · Databases · Software Engineering · Networks · Systems Programming" data-fr="Algorithmes · Bases de Données · Génie Logiciel · Réseaux · Programmation Système">Algorithms · Databases · Software Engineering · Networks · Systems Programming</div>
+                    </div>
+
+                    <div class="tl-item">
+                        <div class="tl-date">2019</div>
+                        <div class="tl-title" data-en="Baccalaureate — Mathematics" data-fr="Baccalauréat — Mathématiques">Baccalaureate — Mathematics</div>
+                        <div class="tl-org"  data-en="Aghri Mohammed Said High School, Azeffoun" data-fr="Lycée Aghri Mohammed Said, Azeffoun">Aghri Mohammed Said High School, Azeffoun</div>
+                    </div>
+
+                    <div class="tl-item">
+                        <div class="tl-date" data-en="Ongoing" data-fr="En cours">Ongoing</div>
+                        <div class="tl-title" data-en="Self-Directed Learning" data-fr="Formation Autonome">Self-Directed Learning</div>
+                        <div class="tl-org"  data-en="Certificates &amp; Training" data-fr="Certificats &amp; Formations">Certificates &amp; Training</div>
+                        <div class="tl-desc" data-en="Computer Maintenance &amp; Networks · Docker &amp; DevOps · Cloud Computing · Cybersecurity" data-fr="Maintenance Informatique &amp; Réseaux · Docker &amp; DevOps · Cloud Computing · Cybersécurité">Computer Maintenance &amp; Networks · Docker &amp; DevOps · Cloud · Cybersecurity</div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section class="section alt" id="contact">
+    <div class="section-inner">
+        <span class="s-eyebrow reveal" data-en="Say Hello" data-fr="Dire Bonjour">Say Hello</span>
+        <h2 class="s-title reveal"><span data-en="Get In Touch" data-fr="Me Contacter">Get In Touch</span></h2>
+        <div class="s-rule reveal"></div>
+
+        <div class="contact-grid">
+
+            <!-- Contact info -->
+            <div class="reveal">
+                <p class="contact-intro"
+                   data-en="Whether you have an opportunity, a project idea, or just want to connect — my inbox is always open."
+                   data-fr="Que vous ayez une opportunité, une idée de projet ou que vous souhaitiez simplement vous connecter — ma boîte de réception est toujours ouverte.">
+                    Whether you have an opportunity, a project idea, or just want to connect — my inbox is always open.
+                </p>
+                <div class="contact-items">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div class="contact-item-text">
+                            <h4 data-en="Email" data-fr="Email">Email</h4>
+                            <a href="mailto:manelmorsli@hotmail.com">manelmorsli@hotmail.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div class="contact-item-text">
+                            <h4 data-en="Phone" data-fr="Téléphone">Phone</h4>
+                            <a href="tel:+213659727123">+213 659 727 123</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="contact-item-text">
+                            <h4 data-en="Location" data-fr="Localisation">Location</h4>
+                            <p>Algiers, Algeria</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-linkedin"></i>
+                        <div class="contact-item-text">
+                            <h4>LinkedIn</h4>
+                            <a href="https://www.linkedin.com/in/manel-morsli" target="_blank" rel="noopener">linkedin.com/in/manel-morsli</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-github"></i>
+                        <div class="contact-item-text">
+                            <h4>GitHub</h4>
+                            <a href="https://github.com/manelmorsli" target="_blank" rel="noopener">github.com/manelmorsli</a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="contact-form">
-                <div class="form-group">
-                    <label for="name" data-en="Your Name" data-fr="Votre Nom">Your Name</label>
-                    <input type="text" id="name" placeholder="manel morsli">
+
+            <!-- Contact form -->
+            <form class="contact-form reveal" onsubmit="sendMsg(event)">
+                <div class="form-row">
+                    <div class="fg">
+                        <label for="fn" data-en="Name" data-fr="Nom">Name</label>
+                        <input type="text" id="fn" placeholder="Your name" required>
+                    </div>
+                    <div class="fg">
+                        <label for="fe" data-en="Email" data-fr="Email">Email</label>
+                        <input type="email" id="fe" placeholder="your@email.com" required>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="email" data-en="Your Email" data-fr="Votre Email">Your Email</label>
-                    <input type="email" id="email" placeholder="manel@example.com">
+                <div class="fg">
+                    <label for="fs" data-en="Subject" data-fr="Sujet">Subject</label>
+                    <input type="text" id="fs" placeholder="What's this about?">
                 </div>
-                <div class="form-group">
-                    <label for="message" data-en="Message" data-fr="Message">Message</label>
-                    <textarea id="message" rows="5" placeholder="Your message..."></textarea>
+                <div class="fg">
+                    <label for="fm" data-en="Message" data-fr="Message">Message</label>
+                    <textarea id="fm" placeholder="Your message..." required></textarea>
                 </div>
-                <button class="btn btn-primary" onclick="sendMessage()">
+                <button type="submit" class="btn btn-primary" style="align-self:flex-start">
                     <i class="fas fa-paper-plane"></i>
                     <span data-en="Send Message" data-fr="Envoyer">Send Message</span>
                 </button>
-            </div>
+            </form>
+
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        <p data-en="© 2025 Manel MORSLI. All rights reserved." data-fr="© 2025 Manel MORSLI. Tous droits réservés.">
-            © 2025 Manel MORSLI. All rights reserved. Built with passion for AI and innovation.
-        </p>
-        <div class="social-links" style="margin-top: 1rem;">
-            <a href="https://www.linkedin.com/in/manel-morsli" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/manelmorsli" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="mailto:manelmorsli@hotmail.com"><i class="fas fa-envelope"></i></a>
-            <a href="https://www.instagram.com/manelmorsli2025/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/profile.php?id=61581943311243" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
-            <a href="https://x.com/ManelMorsli" target="_blank" title="X (Twitter)"><i class="fab fa-twitter"></i></a>
-            <a href="https://discord.com/users/manel_03018" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
-        </div>
-    </footer>
+<!-- ══ FOOTER ══ -->
+<footer>
+    <p data-en="© 2026 Manel MORSLI — Built with passion for AI &amp; innovation."
+       data-fr="© 2026 Manel MORSLI — Conçu avec passion pour l'IA et l'innovation.">
+        © 2026 Manel MORSLI — Built with passion for AI &amp; innovation.
+    </p>
+    <div class="socials">
+        <a href="https://www.linkedin.com/in/manel-morsli"              target="_blank" rel="noopener" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/manelmorsli"                         target="_blank" rel="noopener" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="mailto:manelmorsli@hotmail.com"                         title="Email"><i class="fas fa-envelope"></i></a>
+        <a href="https://www.instagram.com/manelmorsli2025/"             target="_blank" rel="noopener" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.facebook.com/profile.php?id=61581943311243" target="_blank" rel="noopener" title="Facebook"><i class="fab fa-facebook"></i></a>
+        <a href="https://x.com/ManelMorsli"                             target="_blank" rel="noopener" title="X"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://discord.com/users/manel_03018"                 target="_blank" rel="noopener" title="Discord"><i class="fab fa-discord"></i></a>
+    </div>
+</footer>
 
-    <script>
-        // Variable pour stocker la langue actuelle (EN par défaut)
-        let currentLang = 'en';
-
-        // Fonction pour créer les particules animées en arrière-plan
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 50; // Nombre de particules
-
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                
-                // Position aléatoire sur l'écran
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                
-                // Délai d'animation aléatoire pour un effet plus naturel
-                particle.style.animationDelay = Math.random() * 20 + 's';
-                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
-                
-                particlesContainer.appendChild(particle);
-            }
-        }
-
-        // Fonction pour basculer entre français et anglais
-        function toggleLanguage() {
-            const btn = document.querySelector('.lang-switch');
-            
-            // Changer la langue actuelle
-            currentLang = currentLang === 'en' ? 'fr' : 'en';
-            btn.textContent = currentLang === 'en' ? 'FR' : 'EN';
-            
-            // Sélectionner tous les éléments avec des attributs data-en et data-fr
-            const elements = document.querySelectorAll('[data-en][data-fr]');
-            
-            // Parcourir et mettre à jour le texte de chaque élément
-            elements.forEach(el => {
-                const text = currentLang === 'en' ? el.getAttribute('data-en') : el.getAttribute('data-fr');
-                
-                // Vérifier si l'élément contient du texte direct ou des enfants
-                if (el.childNodes.length === 1 && el.childNodes[0].nodeType === 3) {
-                    el.textContent = text;
-                } else {
-                    // Pour les éléments avec des enfants (comme les icônes), mettre à jour uniquement le texte
-                    const textNode = Array.from(el.childNodes).find(node => node.nodeType === 3);
-                    if (textNode) {
-                        textNode.textContent = text;
-                    } else {
-                        el.innerHTML = text;
-                    }
-                }
-            });
-        
-            // --- AJOUT POUR CHANGER LE LIEN DU CV ---
-            const cvBtn = document.getElementById('cv-download-btn'); 
-            if (cvBtn) {
-                if (currentLang === 'en') {
-                    cvBtn.href = "https://github.com/manelmorsli/manelmorsli.github.io/raw/main/CV_Manel_MORSLI_En.pdf";
-                } else {
-                    cvBtn.href = "https://github.com/manelmorsli/manelmorsli.github.io/raw/main/CV_Manel_MORSLI_Fr.pdf";
-                }
-            }
-        }
-
-        // Fonction d'intersection observer pour les animations au scroll
-        function observeElements() {
-            const options = {
-                threshold: 0.1, // Déclencher quand 10% de l'élément est visible
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, options);
-
-            // Observer tous les éléments avec la classe fade-in
-            document.querySelectorAll('.fade-in').forEach(el => {
-                observer.observe(el);
-            });
-        }
-
-        // Fonction pour le scroll fluide
-        function smoothScroll() {
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
-        }
-
-        // Fonction pour envoyer un message (simulation)
-        function sendMessage() {
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-
-            // Validation simple
-            if (!name || !email || !message) {
-                alert(currentLang === 'en' 
-                    ? 'Please fill in all fields' 
-                    : 'Veuillez remplir tous les champs');
-                return;
-            }
-
-            // Validation email
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert(currentLang === 'en' 
-                    ? 'Please enter a valid email address' 
-                    : 'Veuillez entrer une adresse email valide');
-                return;
-            }
-
-            // Créer le lien mailto avec les informations
-            const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
-            const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
-            const mailtoLink = `mailto:manelmorsli@hotmail.com?subject=${subject}&body=${body}`;
-            
-            // Ouvrir le client email
-            window.location.href = mailtoLink;
-
-            // Message de confirmation
-            alert(currentLang === 'en' 
-                ? 'Your email client will open. Thank you for reaching out!' 
-                : 'Votre client email va s\'ouvrir. Merci de m\'avoir contacté !');
-        }
-
-        // Effet de parallaxe sur le hero
-        function parallaxEffect() {
-            window.addEventListener('scroll', () => {
-                const scrolled = window.pageYOffset;
-                const hero = document.querySelector('.hero-content');
-                
-                if (hero && scrolled < window.innerHeight) {
-                    hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-                    hero.style.opacity = 1 - (scrolled / window.innerHeight);
-                }
-            });
-        }
-
-        // Fonction pour afficher la navigation au scroll
-        function navbarScroll() {
-            const nav = document.querySelector('nav');
-            let lastScroll = 0;
-
-            window.addEventListener('scroll', () => {
-                const currentScroll = window.pageYOffset;
-
-                if (currentScroll <= 0) {
-                    nav.style.boxShadow = 'none';
-                } else {
-                    nav.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';
-                }
-
-                lastScroll = currentScroll;
-            });
-        }
-
-        // Initialisation au chargement de la page
-        document.addEventListener('DOMContentLoaded', () => {
-            createParticles();      // Créer les particules animées
-            observeElements();      // Activer les animations au scroll
-            smoothScroll();         // Activer le scroll fluide
-            parallaxEffect();       // Activer l'effet parallaxe
-            navbarScroll();         // Gérer l'apparence de la navbar au scroll
-        });
-
-        // Animation du curseur personnalisé (optionnel)
-        document.addEventListener('mousemove', (e) => {
-            // Effet subtil de suivi du curseur sur les cartes
-            const cards = document.querySelectorAll('.project-card, .skill-category');
-            
-            cards.forEach(card => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-
-                if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
-                    const centerX = rect.width / 2;
-                    const centerY = rect.height / 2;
-                    const rotateX = (y - centerY) / 20;
-                    const rotateY = (centerX - x) / 20;
-
-                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
-                }
-            });
-        });
-
-        // Réinitialiser la transformation des cartes quand la souris quitte
-        document.addEventListener('mouseout', (e) => {
-            if (!e.relatedTarget) {
-                const cards = document.querySelectorAll('.project-card, .skill-category');
-                cards.forEach(card => {
-                    card.style.transform = '';
-                });
-            }
-        });
-    </script>
+<script src="script.js"></script>
 </body>
 </html>
