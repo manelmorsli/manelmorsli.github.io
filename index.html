@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manel MORSLI — Full Stack AI Engineer &amp; Product Owner</title>
     <meta name="description" content="Manel MORSLI — Full Stack AI Engineer and Product Owner. RAG pipelines, computer vision, NLP, FastAPI, React, Docker, and AI product delivery.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-
-<canvas id="bg-canvas"></canvas>
 
 <!-- ══ NAVIGATION ══ -->
 <nav>
@@ -37,19 +38,20 @@
     <div class="hero-body">
 
         <!-- Left column: text -->
-        <div>
+        <div class="hero-text">
             <div class="badge">
                 <span class="badge-dot"></span>
                 <span data-en="Available for opportunities" data-fr="Disponible pour opportunités">Available for opportunities</span>
             </div>
 
-            <h1>Manel <span class="grad-name">MORSLI</span></h1>
+            <h1>Manel <span class="name-bold">MORSLI</span></h1>
 
             <p class="hero-role"
                data-en="Full Stack AI Engineer &amp; Product Owner"
                data-fr="Ingénieure IA Full Stack &amp; Product Owner">
                 Full Stack AI Engineer &amp; Product Owner
             </p>
+            <div class="role-line"></div>
 
             <p class="hero-desc"
                data-en="End-to-end AI product delivery — from functional specs and system architecture to production RAG pipelines, computer vision, and admin dashboards. Turning ideas into working intelligent systems."
@@ -59,8 +61,8 @@
 
             <div class="hero-ctas">
                 <a href="#contact" class="btn btn-primary">
-                    <i class="fas fa-paper-plane"></i>
                     <span data-en="Get In Touch" data-fr="Me Contacter">Get In Touch</span>
+                    <i class="fas fa-arrow-right"></i>
                 </a>
                 <a href="Manel_MORSLI_CV_en.pdf" download class="btn btn-outline">
                     <i class="fas fa-download"></i> CV <span class="cv-lang-badge">EN</span>
@@ -81,11 +83,15 @@
             </div>
         </div>
 
-        <!-- Right column: avatar -->
-        <div class="avatar-wrap">
-            <div class="avatar-ring">
-                <div class="avatar-inner">
-                    <i class="fas fa-user-astronaut"></i>
+        <!-- Right column: professional avatar card -->
+        <div class="hero-visual">
+            <div class="avatar-card">
+                <div class="avatar-photo">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <div class="avatar-meta">
+                    <span class="avatar-name">Manel MORSLI</span>
+                    <span class="avatar-pos" data-en="Full Stack AI Engineer" data-fr="Ingénieure IA Full Stack">Full Stack AI Engineer</span>
                 </div>
             </div>
         </div>
@@ -115,7 +121,7 @@
 <!-- ══ ABOUT ══ -->
 <section class="section alt" id="about">
     <div class="section-inner">
-        <span class="s-eyebrow reveal" data-en="Who I Am" data-fr="Qui Suis-Je">Who I Am</span>
+        <span class="s-eyebrow reveal" data-en="01 — Who I Am" data-fr="01 — Qui Suis-Je">01 — Who I Am</span>
         <h2 class="s-title reveal"><span data-en="About Me" data-fr="À Propos">About Me</span></h2>
         <div class="s-rule reveal"></div>
 
@@ -208,16 +214,17 @@
 <!-- ══ SKILLS ══ -->
 <section class="section" id="skills">
     <div class="section-inner">
-        <span class="s-eyebrow reveal" data-en="Expertise" data-fr="Expertise">Expertise</span>
+        <span class="s-eyebrow reveal" data-en="02 — Expertise" data-fr="02 — Expertise">02 — Expertise</span>
         <h2 class="s-title reveal"><span data-en="Technical Skills" data-fr="Compétences Techniques">Technical Skills</span></h2>
         <div class="s-rule reveal"></div>
 
         <div class="skills-grid">
             <div class="skill-card reveal">
                 <div class="skill-head">
-                    <div class="skill-icon"><i class="fas fa-code"></i></div>
+                    <div class="skill-icon" style="background:#0044D4"><i class="fas fa-code"></i></div>
                     <h3 data-en="Programming Languages" data-fr="Langages de Programmation">Programming Languages</h3>
                 </div>
+                <div class="skill-divider"></div>
                 <div class="tags">
                     <span class="tag">Python</span><span class="tag">C / C++</span>
                     <span class="tag">JavaScript</span><span class="tag">TypeScript</span>
@@ -229,9 +236,10 @@
 
             <div class="skill-card reveal">
                 <div class="skill-head">
-                    <div class="skill-icon" style="background:linear-gradient(135deg,#f59e0b,#ef4444)"><i class="fas fa-robot"></i></div>
+                    <div class="skill-icon" style="background:#C9501A"><i class="fas fa-robot"></i></div>
                     <h3 data-en="AI / ML / NLP" data-fr="IA / ML / NLP">AI / ML / NLP</h3>
                 </div>
+                <div class="skill-divider"></div>
                 <div class="tags">
                     <span class="tag">PyTorch</span><span class="tag">TensorFlow</span>
                     <span class="tag">Scikit-learn</span><span class="tag">HuggingFace</span>
@@ -243,9 +251,10 @@
 
             <div class="skill-card reveal">
                 <div class="skill-head">
-                    <div class="skill-icon" style="background:linear-gradient(135deg,#06b6d4,#0ea5e9)"><i class="fas fa-server"></i></div>
+                    <div class="skill-icon" style="background:#0891B2"><i class="fas fa-server"></i></div>
                     <h3 data-en="Backend &amp; APIs" data-fr="Backend &amp; APIs">Backend &amp; APIs</h3>
                 </div>
+                <div class="skill-divider"></div>
                 <div class="tags">
                     <span class="tag">FastAPI</span><span class="tag">SQLAlchemy</span>
                     <span class="tag">Alembic</span><span class="tag">Pydantic</span>
@@ -256,9 +265,10 @@
 
             <div class="skill-card reveal">
                 <div class="skill-head">
-                    <div class="skill-icon" style="background:linear-gradient(135deg,#8b5cf6,#ec4899)"><i class="fas fa-database"></i></div>
+                    <div class="skill-icon" style="background:#6D28D9"><i class="fas fa-database"></i></div>
                     <h3 data-en="Databases &amp; Storage" data-fr="Bases de Données &amp; Stockage">Databases &amp; Storage</h3>
                 </div>
+                <div class="skill-divider"></div>
                 <div class="tags">
                     <span class="tag">PostgreSQL</span><span class="tag">pgvector</span>
                     <span class="tag">Redis</span><span class="tag">SeaweedFS</span>
@@ -269,9 +279,10 @@
 
             <div class="skill-card reveal">
                 <div class="skill-head">
-                    <div class="skill-icon" style="background:linear-gradient(135deg,#10b981,#06b6d4)"><i class="fab fa-react"></i></div>
+                    <div class="skill-icon" style="background:#1B7A45"><i class="fab fa-react"></i></div>
                     <h3 data-en="Frontend" data-fr="Frontend">Frontend</h3>
                 </div>
+                <div class="skill-divider"></div>
                 <div class="tags">
                     <span class="tag">React</span><span class="tag">Next.js</span>
                     <span class="tag">Vite</span><span class="tag">Tailwind CSS</span>
@@ -281,9 +292,10 @@
 
             <div class="skill-card reveal">
                 <div class="skill-head">
-                    <div class="skill-icon" style="background:linear-gradient(135deg,#3b82f6,#6366f1)"><i class="fab fa-docker"></i></div>
+                    <div class="skill-icon" style="background:#0044D4"><i class="fab fa-docker"></i></div>
                     <h3 data-en="DevOps &amp; Cloud" data-fr="DevOps &amp; Cloud">DevOps &amp; Cloud</h3>
                 </div>
+                <div class="skill-divider"></div>
                 <div class="tags">
                     <span class="tag">Docker</span><span class="tag">Docker Compose</span>
                     <span class="tag">Git / GitHub</span><span class="tag">CI/CD</span>
@@ -293,9 +305,10 @@
 
             <div class="skill-card reveal">
                 <div class="skill-head">
-                    <div class="skill-icon" style="background:linear-gradient(135deg,#f59e0b,#84cc16)"><i class="fas fa-eye"></i></div>
+                    <div class="skill-icon" style="background:#D97706"><i class="fas fa-eye"></i></div>
                     <h3 data-en="Computer Vision" data-fr="Vision par Ordinateur">Computer Vision</h3>
                 </div>
+                <div class="skill-divider"></div>
                 <div class="tags">
                     <span class="tag">Object Detection</span><span class="tag">Segmentation</span>
                     <span class="tag">Roboflow</span><span class="tag">OpenCV</span>
@@ -305,9 +318,10 @@
 
             <div class="skill-card reveal">
                 <div class="skill-head">
-                    <div class="skill-icon" style="background:linear-gradient(135deg,#ec4899,#f59e0b)"><i class="fas fa-chart-line"></i></div>
+                    <div class="skill-icon" style="background:#C9501A"><i class="fas fa-chart-line"></i></div>
                     <h3 data-en="Product &amp; Project Mgmt" data-fr="Gestion Produit &amp; Projet">Product &amp; Project Mgmt</h3>
                 </div>
+                <div class="skill-divider"></div>
                 <div class="tags">
                     <span class="tag">Product Ownership</span><span class="tag">Agile / Scrum</span>
                     <span class="tag">Roadmap Planning</span><span class="tag">Functional Specs</span>
@@ -321,7 +335,7 @@
 <!-- ══ PROJECTS ══ -->
 <section class="section alt" id="projects">
     <div class="section-inner">
-        <span class="s-eyebrow reveal" data-en="Work" data-fr="Travaux">Work</span>
+        <span class="s-eyebrow reveal" data-en="03 — Work" data-fr="03 — Travaux">03 — Work</span>
         <h2 class="s-title reveal"><span data-en="Featured Projects" data-fr="Projets Phares">Featured Projects</span></h2>
         <div class="s-rule reveal"></div>
 
@@ -332,7 +346,7 @@
                     <span class="project-icon">🧠</span>
                     <div style="display:flex;flex-direction:column;align-items:flex-end;gap:.3rem">
                         <span class="current-badge">
-                            <i class="fas fa-circle" style="font-size:.5rem;color:#22c55e"></i>
+                            <i class="fas fa-circle" style="font-size:.45rem"></i>
                             <span data-en="Current" data-fr="En cours">Current</span>
                         </span>
                         <span class="project-year">2025 →</span>
@@ -458,7 +472,7 @@
 <!-- ══ EXPERIENCE & EDUCATION ══ -->
 <section class="section" id="experience">
     <div class="section-inner">
-        <span class="s-eyebrow reveal" data-en="Background" data-fr="Parcours">Background</span>
+        <span class="s-eyebrow reveal" data-en="04 — Background" data-fr="04 — Parcours">04 — Background</span>
         <h2 class="s-title reveal"><span data-en="Experience &amp; Education" data-fr="Expérience &amp; Formation">Experience &amp; Education</span></h2>
         <div class="s-rule reveal"></div>
 
@@ -549,7 +563,7 @@
 <!-- ══ CONTACT ══ -->
 <section class="section alt" id="contact">
     <div class="section-inner">
-        <span class="s-eyebrow reveal" data-en="Say Hello" data-fr="Dire Bonjour">Say Hello</span>
+        <span class="s-eyebrow reveal" data-en="05 — Say Hello" data-fr="05 — Dire Bonjour">05 — Say Hello</span>
         <h2 class="s-title reveal"><span data-en="Get In Touch" data-fr="Me Contacter">Get In Touch</span></h2>
         <div class="s-rule reveal"></div>
 
@@ -622,8 +636,8 @@
                     <textarea id="fm" placeholder="Your message..." required></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary" style="align-self:flex-start">
-                    <i class="fas fa-paper-plane"></i>
                     <span data-en="Send Message" data-fr="Envoyer">Send Message</span>
+                    <i class="fas fa-paper-plane"></i>
                 </button>
             </form>
 
@@ -633,9 +647,9 @@
 
 <!-- ══ FOOTER ══ -->
 <footer>
-    <p data-en="© 2026 Manel MORSLI — Built with passion for AI &amp; innovation."
-       data-fr="© 2026 Manel MORSLI — Conçu avec passion pour l'IA et l'innovation.">
-        © 2026 Manel MORSLI — Built with passion for AI &amp; innovation.
+    <p data-en="© 2026 Manel MORSLI — Built with precision for AI &amp; innovation."
+       data-fr="© 2026 Manel MORSLI — Conçu avec précision pour l'IA et l'innovation.">
+        © 2026 Manel MORSLI — Built with precision for AI &amp; innovation.
     </p>
     <div class="socials">
         <a href="https://www.linkedin.com/in/manel-morsli"              target="_blank" rel="noopener" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
