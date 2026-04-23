@@ -1,3 +1,11 @@
-# manelmorsli.github.io
-Portfolio personnel
-This website present manel's work as IA Engineer.
+
+  # Minimalist Portfolio
+
+  This is a code bundle for Minimalist Portfolio. The original project is available at https://www.figma.com/design/oQ2fmYh5RgLEjTAV7oFgrO/Minimalist-Portfolio.
+
+  ## Running the code
+
+  Run `npm i` to install the dependencies.
+
+  Run `npm run dev` to start the development server.
+  
