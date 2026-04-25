@@ -53,7 +53,20 @@ const projects: Project[] = [
         "Orchestration Docker Compose complète pour un déploiement local en une commande",
       ],
     },
-    stack: ["Python 3.12", "FastAPI", "PostgreSQL", "pgvector", "Redis", "Ollama", "LangChain", "LlamaIndex", "React", "Next.js", "Docker", "SeaweedFS"],
+    stack: [
+      "Python 3.12",
+      "FastAPI",
+      "PostgreSQL",
+      "pgvector",
+      "Redis",
+      "Ollama",
+      "LangChain",
+      "LlamaIndex",
+      "React",
+      "Next.js",
+      "Docker",
+      "SeaweedFS",
+    ],
     type: "professional",
   },
   {
@@ -92,7 +105,18 @@ const projects: Project[] = [
         "Livraison bout-en-bout : exigences → architecture → développement → tests → notes de version → déploiement",
       ],
     },
-    stack: ["Python", "FastAPI", "PostgreSQL", "pgvector", "Redis", "Ollama", "React", "Next.js", "Docker", "SeaweedFS"],
+    stack: [
+      "Python",
+      "FastAPI",
+      "PostgreSQL",
+      "pgvector",
+      "Redis",
+      "Ollama",
+      "React",
+      "Next.js",
+      "Docker",
+      "SeaweedFS",
+    ],
     type: "professional",
   },
   {
@@ -129,7 +153,15 @@ const projects: Project[] = [
         "Recherche reliant la médecine orientale au deep learning moderne",
       ],
     },
-    stack: ["Python", "YOLO v8", "SAM", "Roboflow", "PyTorch", "Generative AI", "OpenCV"],
+    stack: [
+      "Python",
+      "YOLO v8",
+      "SAM",
+      "Roboflow",
+      "PyTorch",
+      "Generative AI",
+      "OpenCV",
+    ],
     type: "academic",
   },
   {
@@ -164,7 +196,13 @@ const projects: Project[] = [
         "Conçu pour le déploiement dans les systèmes d'information universitaires",
       ],
     },
-    stack: ["Python", "HuggingFace Transformers", "GPT", "T5", "NLP"],
+    stack: [
+      "Python",
+      "HuggingFace Transformers",
+      "GPT",
+      "T5",
+      "NLP",
+    ],
     type: "academic",
   },
   {
@@ -236,7 +274,14 @@ const projects: Project[] = [
         "Rapport comparatif détaillé sur les forces et compromis des algorithmes",
       ],
     },
-    stack: ["Python", "Scikit-learn", "Pandas", "Matplotlib", "Seaborn", "NumPy"],
+    stack: [
+      "Python",
+      "Scikit-learn",
+      "Pandas",
+      "Matplotlib",
+      "Seaborn",
+      "NumPy",
+    ],
     type: "academic",
   },
   {
@@ -273,7 +318,13 @@ const projects: Project[] = [
         "Pipeline IoT bout-en-bout du capteur physique au tableau de bord analytique",
       ],
     },
-    stack: ["Arduino", "Node-RED", "InfluxDB", "Grafana", "OpenWeatherMap API"],
+    stack: [
+      "Arduino",
+      "Node-RED",
+      "InfluxDB",
+      "Grafana",
+      "OpenWeatherMap API",
+    ],
     type: "academic",
   },
   {
@@ -318,43 +369,132 @@ const projects: Project[] = [
 const skillCategories = [
   {
     name: { en: "AI / ML / NLP", fr: "IA / ML / NLP" },
-    skills: ["PyTorch", "TensorFlow", "HuggingFace Transformers", "LangChain", "LlamaIndex", "YOLO", "SAM", "Scikit-learn", "Prompt Engineering", "RAG Pipelines"],
+    skills: [
+      "PyTorch",
+      "TensorFlow",
+      "HuggingFace Transformers",
+      "LangChain",
+      "LlamaIndex",
+      "YOLO",
+      "SAM",
+      "Scikit-learn",
+      "Prompt Engineering",
+      "RAG Pipelines",
+    ],
   },
   {
     name: { en: "Backend & APIs", fr: "Backend & APIs" },
-    skills: ["FastAPI", "SQLAlchemy", "Alembic", "Pydantic", "JWT / OAuth2", "Taskiq", "REST APIs", "asyncpg"],
+    skills: [
+      "FastAPI",
+      "SQLAlchemy",
+      "Alembic",
+      "Pydantic",
+      "JWT / OAuth2",
+      "Taskiq",
+      "REST APIs",
+      "asyncpg",
+    ],
   },
   {
     name: { en: "Frontend", fr: "Frontend" },
-    skills: ["React", "Next.js", "Vite", "TypeScript", "Tailwind CSS", "HTML5 / CSS3"],
+    skills: [
+      "React",
+      "Next.js",
+      "Vite",
+      "TypeScript",
+      "Tailwind CSS",
+      "HTML5 / CSS3",
+    ],
   },
   {
-    name: { en: "Databases & Storage", fr: "Bases de données & Stockage" },
-    skills: ["PostgreSQL", "pgvector", "Redis", "MySQL", "SeaweedFS", "InfluxDB", "Vector Databases"],
+    name: {
+      en: "Databases & Storage",
+      fr: "Bases de données & Stockage",
+    },
+    skills: [
+      "PostgreSQL",
+      "pgvector",
+      "Redis",
+      "MySQL",
+      "SeaweedFS",
+      "InfluxDB",
+      "Vector Databases",
+    ],
   },
   {
     name: { en: "Languages", fr: "Langages" },
-    skills: ["Python", "TypeScript / JavaScript", "C / C++", "PHP", "SQL", "Matlab", "LaTeX"],
+    skills: [
+      "Python",
+      "TypeScript / JavaScript",
+      "C / C++",
+      "PHP",
+      "SQL",
+      "Matlab",
+      "LaTeX",
+    ],
   },
   {
-    name: { en: "DevOps & Infrastructure", fr: "DevOps & Infrastructure" },
-    skills: ["Docker", "Docker Compose", "Git / GitHub", "CI/CD", "Linux"],
+    name: {
+      en: "DevOps & Infrastructure",
+      fr: "DevOps & Infrastructure",
+    },
+    skills: [
+      "Docker",
+      "Docker Compose",
+      "Git / GitHub",
+      "CI/CD",
+      "Linux",
+    ],
   },
   {
-    name: { en: "Computer Vision", fr: "Vision par Ordinateur" },
-    skills: ["YOLO v8/v11", "SAM", "OpenCV", "Roboflow", "Data Annotation"],
+    name: {
+      en: "Computer Vision",
+      fr: "Vision par Ordinateur",
+    },
+    skills: [
+      "YOLO v8/v11",
+      "SAM",
+      "OpenCV",
+      "Roboflow",
+      "Data Annotation",
+    ],
   },
   {
     name: { en: "Web Scraping", fr: "Web Scraping" },
-    skills: ["Playwright", "Crawlee", "Crawl4AI", "BeautifulSoup", "Trafilatura"],
+    skills: [
+      "Playwright",
+      "Crawlee",
+      "Crawl4AI",
+      "BeautifulSoup",
+      "Trafilatura",
+    ],
   },
   {
-    name: { en: "Knowledge Representation", fr: "Représentation des Connaissances" },
-    skills: ["Ontologies", "OWL", "RDF / RDFS", "Protégé", "SPARQL"],
+    name: {
+      en: "Knowledge Representation",
+      fr: "Représentation des Connaissances",
+    },
+    skills: [
+      "Ontologies",
+      "OWL",
+      "RDF / RDFS",
+      "Protégé",
+      "SPARQL",
+    ],
   },
   {
-    name: { en: "Product & Management", fr: "Produit & Gestion" },
-    skills: ["Product Ownership", "Agile / Scrum", "System Architecture", "Roadmap Planning", "Functional Specifications", "Release Management"],
+    name: {
+      en: "Product & Management",
+      fr: "Produit & Gestion",
+    },
+    skills: [
+      "Product Ownership",
+      "Agile / Scrum",
+      "System Architecture",
+      "Roadmap Planning",
+      "Functional Specifications",
+      "Release Management",
+    ],
   },
 ];
 
@@ -365,11 +505,14 @@ const t = {
     skills: { en: "Skills", fr: "Compétences" },
     experience: { en: "Experience", fr: "Expérience" },
     contact: { en: "Contact", fr: "Contact" },
-    downloadCV: { en: "Download CV", fr: "Télécharger le CV" },
+    downloadCV: { en: "↓ Resume", fr: "↓ CV" },
   },
   hero: {
     greeting: { en: "Hello, I'm", fr: "Bonjour, je suis" },
-    title: { en: "Intelligent Systems Engineer · AI Engineer · Full-Stack AI Developer", fr: "Ingénieure en Systèmes Intelligents · Ingénieure IA · Développeuse Full-Stack AI" },
+    title: {
+      en: "Intelligent Systems Engineer · AI Engineer · Full-Stack AI Developer",
+      fr: "Ingénieure en Systèmes Intelligents · Ingénieure IA · Développeuse Full-Stack AI",
+    },
     tagline: {
       en: "Building production-grade AI systems — from RAG pipelines and knowledge bases to full-stack platforms.",
       fr: "Construction de systèmes IA en production — des pipelines RAG et bases de connaissances aux plateformes full-stack.",
@@ -419,11 +562,20 @@ const t = {
       en: "I'm always open to discussing new projects, AI challenges, or opportunities to contribute to high-impact research-driven initiatives.",
       fr: "Je suis toujours ouverte à discuter de nouveaux projets, défis IA, ou opportunités de contribuer à des initiatives à fort impact orientées recherche.",
     },
-    downloadEn: { en: "Download CV (English)", fr: "Télécharger le CV (Anglais)" },
-    downloadFr: { en: "Download CV (French)", fr: "Télécharger le CV (Français)" },
+    downloadEn: {
+      en: "↓ Resume (English)",
+      fr: "↓ CV (Anglais)",
+    },
+    downloadFr: {
+      en: "↓ Resume (French)",
+      fr: "↓ CV (Français)",
+    },
   },
   footer: {
-    built: { en: "Designed & Built by Manel Morsli", fr: "Conçu & Développé par Manel Morsli" },
+    built: {
+      en: "Designed & Built by Manel Morsli",
+      fr: "Conçu & Développé par Manel Morsli",
+    },
   },
 };
 
@@ -436,23 +588,23 @@ function get(obj: { en: string; fr: string }, lang: Lang) {
 // ─────────────────────────────────────────────────────────────
 const THEME = {
   card: {
-    bg:      "#ffffff",    // project card background
-    hoverBg: "#f9f9f9",   // slightly darker on hover — change this
+    bg: "#ffffff", // project card background
+    hoverBg: "#f9f9f9", // slightly darker on hover — change this
   },
   badge: {
-    professional: { bg: "#18181b", text: "#ffffff" },  // black — premium feel
-    academic:     { bg: "#eff6ff", text: "#2563eb" },  // soft blue
-    personal:     { bg: "#fdf4ff", text: "#9333ea" },  // soft purple
+    professional: { bg: "#18181b", text: "#ffffff" }, // black — premium feel
+    academic: { bg: "#71717a", text: "#ffffff" }, // gray — same style as professional
+    personal: { bg: "#fdf4ff", text: "#9333ea" }, // soft purple
   },
   modal: {
-    bg:           "#ffffff",
-    bulletBg:     "#fafafa",   // detail bullet box background
-    bulletBorder: "#e4e4e7",   // left accent line on bullets
+    bg: "#ffffff",
+    bulletBg: "#fafafa", // detail bullet box background
+    bulletBorder: "#e4e4e7", // left accent line on bullets
   },
   skill: {
-    bg:      "#fafafa",        // skill tag background
-    hoverBg: "#f0f0f0",       // skill tag hover
-    border:  "rgba(0,0,0,0.08)",
+    bg: "#fafafa", // skill tag background
+    hoverBg: "#f0f0f0", // skill tag hover
+    border: "rgba(0,0,0,0.08)",
   },
   section: {
     hoverLine: "#d4d4d8",
@@ -462,7 +614,8 @@ const THEME = {
 
 export default function App() {
   const [lang, setLang] = useState<Lang>("en");
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [selectedProject, setSelectedProject] =
+    useState<Project | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -491,9 +644,12 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    if (selectedProject) document.body.style.overflow = "hidden";
+    if (selectedProject)
+      document.body.style.overflow = "hidden";
     else document.body.style.overflow = "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [selectedProject]);
 
   const navLinks = [
@@ -507,471 +663,627 @@ export default function App() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <style>{cssVars}</style>
-      {/* ── Navigation ─────────────────────────────────────── */}
-      <nav
-        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-          scrolled ? "bg-background/95 backdrop-blur-md border-b border-border shadow-sm" : "bg-transparent"
-        }`}
-      >
-        <div className="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
-          <a href="#home" className="font-medium tracking-tight text-sm hover:opacity-70 transition-opacity">
-            MM
-          </a>
 
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((l) => (
-              <a key={l.href} href={l.href} className="text-sm opacity-60 hover:opacity-100 transition-opacity">
-                {l.label}
-              </a>
-            ))}
-          </div>
+      {/* ── Sidebar Navigation (Desktop) ──────────────────────── */}
+      <aside className="hidden md:flex fixed left-0 top-0 h-screen w-20 border-r border-border bg-background z-50 flex-col items-center py-8 justify-between">
+        <a
+          href="#home"
+          className="font-medium tracking-tight text-sm hover:opacity-70 transition-opacity rotate-0"
+        >
+          MM
+        </a>
 
-          <div className="hidden md:flex items-center gap-4">
-            {/* Language Toggle */}
-            <button
-              onClick={() => setLang(lang === "en" ? "fr" : "en")}
-              className="text-sm opacity-60 hover:opacity-100 transition-opacity border border-border rounded px-2 py-1 font-mono"
-            >
-              {lang === "en" ? "FR" : "EN"}
-            </button>
-            {/* CV Download */}
+        <nav className="flex flex-col gap-6">
+          {navLinks.map((l) => (
             <a
-              href={`/Manel_MORSLI_CV_${lang}.pdf`}
-              download
-              className="text-sm border border-foreground/30 hover:border-foreground hover:bg-foreground hover:text-background transition-all rounded px-3 py-1.5"
+              key={l.href}
+              href={l.href}
+              className="text-xs opacity-40 hover:opacity-100 transition-opacity writing-mode-vertical-rl rotate-180"
+              style={{ writingMode: "vertical-rl" }}
+              title={l.label}
             >
-              {get(t.nav.downloadCV, lang)}
+              {l.label}
             </a>
-          </div>
+          ))}
+        </nav>
 
-          {/* Mobile hamburger */}
+        <div className="flex flex-col items-center gap-4">
           <button
-            className="md:hidden opacity-60 hover:opacity-100 transition-opacity"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle menu"
+            onClick={() => setLang(lang === "en" ? "fr" : "en")}
+            className="text-xs opacity-40 hover:opacity-100 transition-opacity font-mono"
           >
-            <div className="space-y-1.5">
-              <span className={`block h-px w-6 bg-foreground transition-transform duration-300 ${mobileOpen ? "translate-y-2 rotate-45" : ""}`} />
-              <span className={`block h-px w-6 bg-foreground transition-opacity duration-300 ${mobileOpen ? "opacity-0" : ""}`} />
-              <span className={`block h-px w-6 bg-foreground transition-transform duration-300 ${mobileOpen ? "-translate-y-2 -rotate-45" : ""}`} />
-            </div>
+            {lang === "en" ? "FR" : "EN"}
           </button>
         </div>
+      </aside>
 
-        {/* Mobile Menu */}
-        {mobileOpen && (
-          <div className="md:hidden border-t border-border bg-background/98 backdrop-blur-md px-6 pb-6 pt-4 space-y-4">
-            {navLinks.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                className="block text-sm opacity-60 hover:opacity-100 transition-opacity py-1"
-                onClick={() => setMobileOpen(false)}
-              >
-                {l.label}
-              </a>
-            ))}
-            <div className="flex gap-3 pt-2">
-              <button
-                onClick={() => setLang(lang === "en" ? "fr" : "en")}
-                className="text-sm opacity-60 hover:opacity-100 border border-border rounded px-2 py-1 font-mono"
-              >
-                {lang === "en" ? "FR" : "EN"}
-              </button>
-              <a
-                href={`/Manel_MORSLI_CV_${lang}.pdf`}
-                download
-                className="text-sm border border-foreground/30 hover:border-foreground rounded px-3 py-1"
-              >
-                {get(t.nav.downloadCV, lang)}
-              </a>
-            </div>
-          </div>
-        )}
-      </nav>
-
-      {/* ── Hero ────────────────────────────────────────────── */}
-      <section id="home" className="min-h-screen flex items-center justify-center px-6 pt-20">
-        <div className="max-w-5xl w-full">
-          <div className="space-y-6 max-w-2xl">
-            <p className="text-sm opacity-40 tracking-widest uppercase font-mono">
-              {get(t.hero.greeting, lang)}
-            </p>
-            <h1 className="text-5xl md:text-7xl font-medium leading-tight tracking-tight">
-              Manel Morsli
-            </h1>
-            <p className="text-base md:text-lg opacity-50 leading-relaxed font-mono">
-              {get(t.hero.title, lang)}
-            </p>
-            <p className="text-base md:text-xl opacity-70 leading-relaxed max-w-xl">
-              {get(t.hero.tagline, lang)}
-            </p>
-            <div className="flex flex-wrap items-center gap-4 pt-2">
-              <a
-                href="#projects"
-                className="inline-block bg-foreground text-background text-sm px-6 py-3 hover:opacity-80 transition-opacity"
-              >
-                {get(t.hero.cta, lang)}
-              </a>
-              <a
-                href="#contact"
-                className="inline-block text-sm px-6 py-3 border border-foreground/30 hover:border-foreground transition-colors opacity-70 hover:opacity-100"
-              >
-                {get(t.nav.contact, lang)}
-              </a>
-            </div>
-            <p className="text-xs opacity-30 tracking-wider pt-4">
-              📍 {get(t.hero.location, lang)}
-            </p>
-          </div>
+      {/* ── Mobile Menu Toggle ─────────────────────────────────── */}
+      <button
+        className="md:hidden fixed top-6 right-6 z-50 opacity-60 hover:opacity-100 transition-opacity"
+        onClick={() => setMobileOpen(!mobileOpen)}
+        aria-label="Toggle menu"
+      >
+        <div className="space-y-1.5">
+          <span
+            className={`block h-px w-6 bg-foreground transition-transform duration-300 ${mobileOpen ? "translate-y-2 rotate-45" : ""}`}
+          />
+          <span
+            className={`block h-px w-6 bg-foreground transition-opacity duration-300 ${mobileOpen ? "opacity-0" : ""}`}
+          />
+          <span
+            className={`block h-px w-6 bg-foreground transition-transform duration-300 ${mobileOpen ? "-translate-y-2 -rotate-45" : ""}`}
+          />
         </div>
-      </section>
+      </button>
 
-      {/* ── About ────────────────────────────────────────────── */}
-      <section id="about" className="py-32 px-6">
-        <div className="max-w-5xl mx-auto">
-          <p className="text-xs opacity-30 tracking-widest uppercase font-mono mb-12">
-            {get(t.about.section, lang)}
-          </p>
-          <div className="grid md:grid-cols-2 gap-16 lg:gap-24">
-            <div className="space-y-5">
-              <p className="leading-relaxed opacity-80 text-base">{get(t.about.p1, lang)}</p>
-              <p className="leading-relaxed opacity-80 text-base">{get(t.about.p2, lang)}</p>
-              <p className="leading-relaxed opacity-70 text-sm">{get(t.about.p3, lang)}</p>
-            </div>
-            <div className="space-y-8">
-              <div>
-                <h3 className="text-xs opacity-30 tracking-widest uppercase font-mono mb-3">
-                  {get(t.about.languages, lang)}
-                </h3>
-                <div className="space-y-1.5 text-sm opacity-70">
-                  {[
-                    lang === "en" ? "Tamazight — Native" : "Tamazight — Natif",
-                    lang === "en" ? "Arabic — Fluent" : "Arabe — Courant",
-                    lang === "en" ? "French — Professional Proficiency" : "Français — Niveau Professionnel",
-                    lang === "en" ? "English — Professional Proficiency" : "Anglais — Niveau Professionnel",
-                  ].map((l) => <p key={l}>{l}</p>)}
-                </div>
-              </div>
-              <div>
-                <h3 className="text-xs opacity-30 tracking-widest uppercase font-mono mb-3">
-                  {get(t.about.interests, lang)}
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {["Artificial Intelligence", "Quantum Computing", "Medical Technology", "Cybersecurity", "Mathematics", "Teaching", "Entrepreneurship", "Fashion Design"].map((interest) => (
-                    <span key={interest} className="text-xs opacity-50 border border-border rounded-full px-3 py-1">
-                      {interest}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              <div>
-                <h3 className="text-xs opacity-30 tracking-widest uppercase font-mono mb-3">
-                  {lang === "en" ? "Connect" : "Contact"}
-                </h3>
-                <div className="space-y-2 text-sm">
-                  {[
-                    { label: "manelmorsli@hotmail.com", href: "mailto:manelmorsli@hotmail.com" },
-                    { label: "GitHub", href: "https://github.com" },
-                    { label: "LinkedIn", href: "https://linkedin.com" },
-                  ].map((link) => (
-                    <a key={link.label} href={link.href} className="block opacity-50 hover:opacity-100 transition-opacity">
-                      {link.label} →
-                    </a>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
+      {/* Mobile Menu Overlay */}
+      {mobileOpen && (
+        <div className="md:hidden fixed inset-0 bg-background z-40 flex flex-col items-center justify-center gap-8 p-6">
+          {navLinks.map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              className="text-lg opacity-60 hover:opacity-100 transition-opacity"
+              onClick={() => setMobileOpen(false)}
+            >
+              {l.label}
+            </a>
+          ))}
+          <button
+            onClick={() => {
+              setLang(lang === "en" ? "fr" : "en");
+              setMobileOpen(false);
+            }}
+            className="text-sm opacity-60 hover:opacity-100 border border-border rounded px-3 py-1.5 font-mono"
+          >
+            {lang === "en" ? "FR" : "EN"}
+          </button>
         </div>
-      </section>
+      )}
 
-      {/* ── Projects ─────────────────────────────────────────── */}
-      <section id="projects" className="py-32 px-6 border-t border-border">
-        <div className="max-w-5xl mx-auto">
-          <p className="text-xs opacity-30 tracking-widest uppercase font-mono mb-12">
-            {get(t.projects.section, lang)}
-          </p>
-          <div className="grid md:grid-cols-2 gap-px bg-border">
-            {projects.map((project) => (
-              <div
-                key={project.id}
-                className="p-8 flex flex-col justify-between gap-6 group cursor-pointer transition-colors duration-200 bg-[var(--card-bg)] hover:bg-[var(--card-hover-bg)]"
-                onClick={() => setSelectedProject(project)}
-              >
-                <div className="space-y-4">
-                  <div className="flex items-start justify-between gap-4">
-                    <span
-                      className="text-xs px-2 py-0.5 rounded font-mono"
-                      style={{
-                        background: THEME.badge[project.type as keyof typeof THEME.badge]?.bg,
-                        color:      THEME.badge[project.type as keyof typeof THEME.badge]?.text,
-                      }}
-                    >
-                      {get(t.projects[project.type as "professional" | "academic" | "personal"], lang)}
-                    </span>
-                    <span className="text-xs opacity-30 font-mono whitespace-nowrap">{project.year}</span>
-                  </div>
-                  <div>
-                    <p className="text-xs opacity-40 font-mono mb-1">{project.category}</p>
-                    <h3 className="text-base font-medium leading-snug">{get(project.title, lang)}</h3>
-                  </div>
-                  <p className="text-sm opacity-60 leading-relaxed">{get(project.tagline, lang)}</p>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex flex-wrap gap-1">
-                    {project.stack.slice(0, 3).map((s) => (
-                      <span key={s} className="text-xs opacity-40 font-mono">{s}</span>
-                    ))}
-                    {project.stack.length > 3 && (
-                      <span className="text-xs opacity-30 font-mono">+{project.stack.length - 3}</span>
-                    )}
-                  </div>
-                  <span className="text-xs opacity-0 group-hover:opacity-60 transition-opacity">
-                    {get(t.projects.viewDetails, lang)} →
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Skills ────────────────────────────────────────────── */}
-      <section id="skills" className="py-32 px-6 border-t border-border">
-        <div className="max-w-5xl mx-auto">
-          <p className="text-xs opacity-30 tracking-widest uppercase font-mono mb-12">
-            {get(t.skills.section, lang)}
-          </p>
-          <div className="grid md:grid-cols-2 gap-12">
-            {skillCategories.map((cat) => (
-              <div key={cat.name.en} className="space-y-3">
-                <h3 className="text-xs opacity-40 tracking-widest uppercase font-mono">
-                  {get(cat.name, lang)}
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {cat.skills.map((skill) => (
-                    <span
-                      key={skill}
-                      className="text-sm transition-colors duration-150 rounded px-2.5 py-1 bg-[var(--skill-bg)] hover:bg-[var(--skill-hover-bg)]"
-                      style={{ border: `1px solid ${THEME.skill.border}` }}
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Experience ───────────────────────────────────────── */}
-      <section id="experience" className="py-32 px-6 border-t border-border">
-        <div className="max-w-5xl mx-auto">
-          <p className="text-xs opacity-30 tracking-widest uppercase font-mono mb-12">
-            {get(t.experience.section, lang)}
-          </p>
-          <div className="space-y-0">
-            {[
-              {
-                role: {
-                  en: "Full Stack AI Engineer & Product Owner",
-                  fr: "Ingénieure Full Stack IA & Product Owner",
-                },
-                org: {
-                  en: "High Commission of Digitalization Algeria",
-                  fr: "Haut-Commissariat à la Numérisation d'Algérie",
-                },
-                period: "Dec 2025 – Present",
-                bullets: {
-                  en: [
-                    "Owned the full product lifecycle: functional specs, system architecture, solution design, and release notes up to v0.0.1",
-                    "Built and maintained product backlog, defined acceptance criteria, planned delivery milestones as Product Owner",
-                    "Designed & developed the Admin Dashboard (Next.js) for knowledge base and AI configuration management",
-                    "Built the embeddable public chat widget (React + Vite) backed by FastAPI RAG pipeline with pgvector + Ollama",
-                    "Architected multi-tenant data isolation with JWT authentication and async task workers",
-                  ],
-                  fr: [
-                    "Ownership du cycle produit complet : spécifications fonctionnelles, architecture système, conception de solution et notes de version jusqu'à v0.0.1",
-                    "Construction et maintenance du backlog produit, définition des critères d'acceptation, planification des jalons de livraison",
-                    "Conception & développement du tableau de bord Admin (Next.js) pour la gestion de la base de connaissances et de la configuration IA",
-                    "Développement du widget de chat public embarquable (React + Vite) adossé à un pipeline RAG FastAPI avec pgvector + Ollama",
-                    "Architecture d'isolation multi-tenant avec authentification JWT et workers de tâches asynchrones",
-                  ],
-                },
-              },
-              {
-                role: { en: "Computer Science Teacher", fr: "Enseignante en Informatique" },
-                org: { en: "Middle School, Algeria", fr: "Collège, Algérie" },
-                period: "Jan 2025 – May 2025",
-                bullets: {
-                  en: [
-                    "Delivered computer-science curriculum to middle-school students",
-                    "Developed strong communication, classroom management, and lesson-planning skills",
-                  ],
-                  fr: [
-                    "Enseignement du programme d'informatique aux élèves du collège",
-                    "Développement de compétences en communication, gestion de classe et planification des cours",
-                  ],
-                },
-              },
-              {
-                role: { en: "IT & Telecom Intern", fr: "Stagiaire IT & Télécom" },
-                org: { en: "Banque d'Extérieure d'Algérie", fr: "Banque d'Extérieure d'Algérie" },
-                period: "Dec 2024",
-                bullets: {
-                  en: [
-                    "Gained overview of banking IT operations, project management, and telecom division (datacenter administration and data transmission)",
-                  ],
-                  fr: [
-                    "Aperçu des opérations informatiques bancaires, gestion de projet et division télécom (administration datacenter et transmission de données)",
-                  ],
-                },
-              },
-              {
-                role: { en: "IT Intern", fr: "Stagiaire IT" },
-                org: { en: "Sonatrach — Regional Directorate Hassi Messaoud", fr: "Sonatrach — Direction Régionale Hassi Messaoud" },
-                period: "Jul – Aug 2024",
-                bullets: {
-                  en: [
-                    "Explored IT departments, industrial development, database management, networking & security services, and datacenter operations at a major energy company",
-                  ],
-                  fr: [
-                    "Exploration des départements IT, développement industriel, gestion de bases de données, services réseau & sécurité, et opérations datacenter dans une grande entreprise énergétique",
-                  ],
-                },
-              },
-            ].map((exp, i) => (
-              <div key={i} className="grid md:grid-cols-[200px_1fr] gap-6 py-10 border-b border-border last:border-0">
-                <div className="space-y-1">
-                  <p className="text-xs font-mono opacity-40">{exp.period}</p>
-                </div>
-                <div className="space-y-3">
-                  <div>
-                    <h3 className="font-medium text-base">{get(exp.role, lang)}</h3>
-                    <p className="text-sm opacity-50">{get(exp.org, lang)}</p>
-                  </div>
-                  <ul className="space-y-1.5">
-                    {get(exp.bullets, lang).map((b, j) => (
-                      <li key={j} className="text-sm opacity-70 leading-relaxed pl-3 border-l border-border">
-                        {b}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Education ────────────────────────────────────────── */}
-      <section className="py-32 px-6 border-t border-border">
-        <div className="max-w-5xl mx-auto">
-          <p className="text-xs opacity-30 tracking-widest uppercase font-mono mb-12">
-            {get(t.education.section, lang)}
-          </p>
-          <div className="space-y-0">
-            {[
-              {
-                degree: { en: "Master's Degree — Intelligent Computer Systems", fr: "Master — Systèmes Informatiques Intelligents" },
-                school: { en: "Mouloud Mammeri University (UMMTO), Tizi-Ouzou, Algeria", fr: "Université Mouloud Mammeri (UMMTO), Tizi-Ouzou, Algérie" },
-                period: "2022 – 2025",
-                detail: { en: "Specialisation in Artificial Intelligence — Machine Learning, Deep Learning, NLP, Computer Vision, Knowledge Representation, Distributed Systems.", fr: "Spécialisation en Intelligence Artificielle — Machine Learning, Deep Learning, NLP, Vision par Ordinateur, Représentation des Connaissances, Systèmes Distribués." },
-              },
-              {
-                degree: { en: "Bachelor's Degree — Computer Systems", fr: "Licence — Systèmes Informatiques" },
-                school: { en: "Mouloud Mammeri University (UMMTO), Tizi-Ouzou, Algeria", fr: "Université Mouloud Mammeri (UMMTO), Tizi-Ouzou, Algérie" },
-                period: "2019 – 2022",
-                detail: { en: "Strong foundation in computer systems, algorithms, databases, and software engineering.", fr: "Solide base en systèmes informatiques, algorithmes, bases de données et génie logiciel." },
-              },
-              {
-                degree: { en: "Baccalaureate — Mathematics", fr: "Baccalauréat — Mathématiques" },
-                school: { en: "Aghri Mohammed Said High School, Azeffoun, Algeria", fr: "Lycée Aghri Mohammed Said, Azeffoun, Algérie" },
-                period: "2019",
-                detail: { en: "", fr: "" },
-              },
-            ].map((edu, i) => (
-              <div key={i} className="grid md:grid-cols-[200px_1fr] gap-6 py-10 border-b border-border last:border-0">
-                <p className="text-xs font-mono opacity-40">{edu.period}</p>
-                <div className="space-y-1">
-                  <h3 className="font-medium text-base">{get(edu.degree, lang)}</h3>
-                  <p className="text-sm opacity-50">{get(edu.school, lang)}</p>
-                  {get(edu.detail, lang) && (
-                    <p className="text-sm opacity-60 leading-relaxed pt-1">{get(edu.detail, lang)}</p>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Contact ─────────────────────────────────────────── */}
-      <section id="contact" className="py-32 px-6 border-t border-border">
-        <div className="max-w-5xl mx-auto">
-          <p className="text-xs opacity-30 tracking-widest uppercase font-mono mb-12">
-            {get(t.contact.section, lang)}
-          </p>
-          <div className="grid md:grid-cols-2 gap-16">
-            <div className="space-y-6">
-              <p className="text-lg leading-relaxed opacity-70 max-w-sm">
-                {get(t.contact.p1, lang)}
+      {/* ── Main Content Wrapper ────────────────────────────── */}
+      <div className="md:pl-20">
+        {/* ── Hero ────────────────────────────────────────────── */}
+        <section
+          id="home"
+          className="min-h-screen flex items-center justify-center px-6"
+        >
+          <div className="max-w-5xl w-full">
+            <div className="space-y-6 max-w-2xl">
+              <p className="text-sm opacity-40 tracking-widest uppercase font-mono">
+                {get(t.hero.greeting, lang)}
               </p>
-              <div className="flex flex-col gap-3 pt-2">
+              <h1 className="text-5xl md:text-7xl font-medium leading-tight tracking-tight">
+                Manel Morsli
+              </h1>
+              <p className="text-base md:text-lg opacity-50 leading-relaxed font-mono">
+                {get(t.hero.title, lang)}
+              </p>
+              <p className="text-base md:text-xl opacity-70 leading-relaxed max-w-xl">
+                {get(t.hero.tagline, lang)}
+              </p>
+              <div className="flex flex-wrap items-center gap-4 pt-2">
                 <a
-                  href="/Manel_MORSLI_CV_en.pdf"
-                  download
-                  className="inline-flex items-center gap-2 text-sm border border-foreground/30 hover:border-foreground hover:bg-foreground hover:text-background transition-all px-5 py-2.5 w-fit"
+                  href="#projects"
+                  className="inline-block bg-foreground text-background text-sm px-6 py-3 hover:opacity-80 transition-opacity"
                 >
-                  ↓ {get(t.contact.downloadEn, lang)}
-                </a>
-                <a
-                  href="/Manel_MORSLI_CV_fr.pdf"
-                  download
-                  className="inline-flex items-center gap-2 text-sm border border-foreground/30 hover:border-foreground hover:bg-foreground hover:text-background transition-all px-5 py-2.5 w-fit"
-                >
-                  ↓ {get(t.contact.downloadFr, lang)}
+                  {get(t.hero.cta, lang)}
                 </a>
               </div>
             </div>
-            <div className="space-y-4">
-              {[
-                { label: "manelmorsli@hotmail.com", href: "mailto:manelmorsli@hotmail.com", detail: "Email" },
-                { label: "GitHub", href: "https://github.com", detail: "Code" },
-                { label: "LinkedIn", href: "https://linkedin.com", detail: "Professional" },
-              ].map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="flex items-center justify-between py-4 border-b border-border opacity-60 hover:opacity-100 transition-opacity group"
+          </div>
+        </section>
+
+        {/* ── About ────────────────────────────────────────────── */}
+        <section id="about" className="py-16 px-6">
+          <div className="max-w-5xl mx-auto">
+            <p className="text-xs opacity-30 tracking-widest uppercase font-mono mb-12">
+              {get(t.about.section, lang)}
+            </p>
+            <div className="grid md:grid-cols-2 gap-16 lg:gap-24">
+              <div className="space-y-5">
+                <p className="leading-relaxed opacity-80 text-base">
+                  {get(t.about.p1, lang)}
+                </p>
+                <p className="leading-relaxed opacity-80 text-base">
+                  {get(t.about.p2, lang)}
+                </p>
+                <p className="leading-relaxed opacity-70 text-sm">
+                  {get(t.about.p3, lang)}
+                </p>
+              </div>
+              <div className="space-y-8">
+                <div>
+                  <h3 className="text-xs opacity-30 tracking-widest uppercase font-mono mb-3">
+                    {get(t.about.languages, lang)}
+                  </h3>
+                  <div className="space-y-1.5 text-sm opacity-70">
+                    {[
+                      lang === "en"
+                        ? "Tamazight — Native"
+                        : "Tamazight — Natif",
+                      lang === "en"
+                        ? "Arabic — Fluent"
+                        : "Arabe — Courant",
+                      lang === "en"
+                        ? "French — Professional Proficiency"
+                        : "Français — Niveau Professionnel",
+                      lang === "en"
+                        ? "English — Professional Proficiency"
+                        : "Anglais — Niveau Professionnel",
+                    ].map((l) => (
+                      <p key={l}>{l}</p>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-xs opacity-30 tracking-widest uppercase font-mono mb-3">
+                    {get(t.about.interests, lang)}
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {[
+                      "Artificial Intelligence",
+                      "Quantum Computing",
+                      "Medical Technology",
+                      "Cybersecurity",
+                      "Mathematics",
+                      "Teaching",
+                      "Entrepreneurship",
+                      "Fashion Design",
+                    ].map((interest) => (
+                      <span
+                        key={interest}
+                        className="text-xs opacity-50 border border-border rounded-full px-3 py-1"
+                      >
+                        {interest}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-xs opacity-30 tracking-widest uppercase font-mono mb-3">
+                    {lang === "en" ? "Connect" : "Contact"}
+                  </h3>
+                  <div className="space-y-2 text-sm">
+                    {[
+                      {
+                        label: "manelmorsli@hotmail.com",
+                        href: "mailto:manelmorsli@hotmail.com",
+                      },
+                      {
+                        label: "GitHub",
+                        href: "https://github.com",
+                      },
+                      {
+                        label: "LinkedIn",
+                        href: "https://linkedin.com",
+                      },
+                    ].map((link) => (
+                      <a
+                        key={link.label}
+                        href={link.href}
+                        className="block opacity-50 hover:opacity-100 transition-opacity"
+                      >
+                        {link.label} →
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── Projects ─────────────────────────────────────────── */}
+        <section
+          id="projects"
+          className="py-16 px-6 border-t border-border"
+        >
+          <div className="max-w-5xl mx-auto">
+            <p className="text-xs opacity-30 tracking-widest uppercase font-mono mb-12">
+              {get(t.projects.section, lang)}
+            </p>
+            <div className="grid md:grid-cols-2 gap-px bg-border">
+              {projects.map((project) => (
+                <div
+                  key={project.id}
+                  className="p-8 flex flex-col justify-between gap-6 group cursor-pointer transition-colors duration-200 bg-[var(--card-bg)] hover:bg-[var(--card-hover-bg)]"
+                  onClick={() => setSelectedProject(project)}
                 >
-                  <span className="text-base">{link.label}</span>
-                  <span className="text-xs font-mono opacity-0 group-hover:opacity-60 transition-opacity">
-                    {link.detail} →
-                  </span>
-                </a>
+                  <div className="space-y-4">
+                    <div className="flex items-start justify-between gap-4">
+                      <span
+                        className="text-xs px-2 py-0.5 rounded font-mono"
+                        style={{
+                          background:
+                            THEME.badge[
+                              project.type as keyof typeof THEME.badge
+                            ]?.bg,
+                          color:
+                            THEME.badge[
+                              project.type as keyof typeof THEME.badge
+                            ]?.text,
+                        }}
+                      >
+                        {get(
+                          t.projects[
+                            project.type as
+                              | "professional"
+                              | "academic"
+                              | "personal"
+                          ],
+                          lang,
+                        )}
+                      </span>
+                      <span className="text-xs opacity-30 font-mono whitespace-nowrap">
+                        {project.year}
+                      </span>
+                    </div>
+                    <div>
+                      <p className="text-xs opacity-40 font-mono mb-1">
+                        {project.category}
+                      </p>
+                      <h3 className="text-base font-medium leading-snug">
+                        {get(project.title, lang)}
+                      </h3>
+                    </div>
+                    <p className="text-sm opacity-60 leading-relaxed">
+                      {get(project.tagline, lang)}
+                    </p>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex flex-wrap gap-1">
+                      {project.stack.slice(0, 3).map((s) => (
+                        <span
+                          key={s}
+                          className="text-xs opacity-40 font-mono"
+                        >
+                          {s}
+                        </span>
+                      ))}
+                      {project.stack.length > 3 && (
+                        <span className="text-xs opacity-30 font-mono">
+                          +{project.stack.length - 3}
+                        </span>
+                      )}
+                    </div>
+                    <span className="text-xs opacity-0 group-hover:opacity-60 transition-opacity">
+                      {get(t.projects.viewDetails, lang)} →
+                    </span>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ── Footer ──────────────────────────────────────────── */}
-      <footer className="border-t border-border py-8 px-6">
-        <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2 opacity-30">
-          <p className="text-xs font-mono">{get(t.footer.built, lang)}</p>
-          <p className="text-xs font-mono">© 2026</p>
-        </div>
-      </footer>
+        {/* ── Skills ────────────────────────────────────────────── */}
+        <section
+          id="skills"
+          className="py-16 px-6 border-t border-border"
+        >
+          <div className="max-w-5xl mx-auto">
+            <p className="text-xs opacity-30 tracking-widest uppercase font-mono mb-12">
+              {get(t.skills.section, lang)}
+            </p>
+            <div className="grid md:grid-cols-2 gap-12">
+              {skillCategories.map((cat) => (
+                <div key={cat.name.en} className="space-y-3">
+                  <h3 className="text-xs opacity-40 tracking-widest uppercase font-mono">
+                    {get(cat.name, lang)}
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {cat.skills.map((skill) => (
+                      <span
+                        key={skill}
+                        className="text-sm transition-colors duration-150 rounded px-2.5 py-1 bg-[var(--skill-bg)] hover:bg-[var(--skill-hover-bg)]"
+                        style={{
+                          border: `1px solid ${THEME.skill.border}`,
+                        }}
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── Experience ───────────────────────────────────────── */}
+        <section
+          id="experience"
+          className="py-16 px-6 border-t border-border"
+        >
+          <div className="max-w-5xl mx-auto">
+            <p className="text-xs opacity-30 tracking-widest uppercase font-mono mb-12">
+              {get(t.experience.section, lang)}
+            </p>
+            <div className="space-y-0">
+              {[
+                {
+                  role: {
+                    en: "Full Stack AI Engineer & Product Owner",
+                    fr: "Ingénieure Full Stack IA & Product Owner",
+                  },
+                  org: {
+                    en: "High Commission of Digitalization Algeria",
+                    fr: "Haut-Commissariat à la Numérisation d'Algérie",
+                  },
+                  period: "Dec 2025 – Present",
+                  bullets: {
+                    en: [
+                      "Owned the full product lifecycle: functional specs, system architecture, solution design, and release notes up to v0.0.1",
+                      "Built and maintained product backlog, defined acceptance criteria, planned delivery milestones as Product Owner",
+                      "Designed & developed the Admin Dashboard (Next.js) for knowledge base and AI configuration management",
+                      "Built the embeddable public chat widget (React + Vite) backed by FastAPI RAG pipeline with pgvector + Ollama",
+                      "Architected multi-tenant data isolation with JWT authentication and async task workers",
+                    ],
+                    fr: [
+                      "Ownership du cycle produit complet : spécifications fonctionnelles, architecture système, conception de solution et notes de version jusqu'à v0.0.1",
+                      "Construction et maintenance du backlog produit, définition des critères d'acceptation, planification des jalons de livraison",
+                      "Conception & développement du tableau de bord Admin (Next.js) pour la gestion de la base de connaissances et de la configuration IA",
+                      "Développement du widget de chat public embarquable (React + Vite) adossé à un pipeline RAG FastAPI avec pgvector + Ollama",
+                      "Architecture d'isolation multi-tenant avec authentification JWT et workers de tâches asynchrones",
+                    ],
+                  },
+                },
+                {
+                  role: {
+                    en: "Computer Science Teacher",
+                    fr: "Enseignante en Informatique",
+                  },
+                  org: {
+                    en: "Middle School, Algeria",
+                    fr: "Collège, Algérie",
+                  },
+                  period: "Jan 2025 – May 2025",
+                  bullets: {
+                    en: [
+                      "Delivered computer-science curriculum to middle-school students",
+                      "Developed strong communication, classroom management, and lesson-planning skills",
+                    ],
+                    fr: [
+                      "Enseignement du programme d'informatique aux élèves du collège",
+                      "Développement de compétences en communication, gestion de classe et planification des cours",
+                    ],
+                  },
+                },
+                {
+                  role: {
+                    en: "IT & Telecom Intern",
+                    fr: "Stagiaire IT & Télécom",
+                  },
+                  org: {
+                    en: "Banque d'Extérieure d'Algérie",
+                    fr: "Banque d'Extérieure d'Algérie",
+                  },
+                  period: "Dec 2024",
+                  bullets: {
+                    en: [
+                      "Gained overview of banking IT operations, project management, and telecom division (datacenter administration and data transmission)",
+                    ],
+                    fr: [
+                      "Aperçu des opérations informatiques bancaires, gestion de projet et division télécom (administration datacenter et transmission de données)",
+                    ],
+                  },
+                },
+                {
+                  role: { en: "IT Intern", fr: "Stagiaire IT" },
+                  org: {
+                    en: "Sonatrach — Regional Directorate Hassi Messaoud",
+                    fr: "Sonatrach — Direction Régionale Hassi Messaoud",
+                  },
+                  period: "Jul – Aug 2024",
+                  bullets: {
+                    en: [
+                      "Explored IT departments, industrial development, database management, networking & security services, and datacenter operations at a major energy company",
+                    ],
+                    fr: [
+                      "Exploration des départements IT, développement industriel, gestion de bases de données, services réseau & sécurité, et opérations datacenter dans une grande entreprise énergétique",
+                    ],
+                  },
+                },
+              ].map((exp, i) => (
+                <div
+                  key={i}
+                  className="grid md:grid-cols-[200px_1fr] gap-6 py-10 border-b border-border last:border-0"
+                >
+                  <div className="space-y-1">
+                    <p className="text-xs font-mono opacity-40">
+                      {exp.period}
+                    </p>
+                  </div>
+                  <div className="space-y-3">
+                    <div>
+                      <h3 className="font-medium text-base">
+                        {get(exp.role, lang)}
+                      </h3>
+                      <p className="text-sm opacity-50">
+                        {get(exp.org, lang)}
+                      </p>
+                    </div>
+                    <ul className="space-y-1.5">
+                      {get(exp.bullets, lang).map((b, j) => (
+                        <li
+                          key={j}
+                          className="text-sm opacity-70 leading-relaxed pl-3 border-l border-border"
+                        >
+                          {b}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── Education ────────────────────────────────────────── */}
+        <section className="py-16 px-6 border-t border-border">
+          <div className="max-w-5xl mx-auto">
+            <p className="text-xs opacity-30 tracking-widest uppercase font-mono mb-12">
+              {get(t.education.section, lang)}
+            </p>
+            <div className="space-y-0">
+              {[
+                {
+                  degree: {
+                    en: "Master's Degree — Intelligent Computer Systems",
+                    fr: "Master — Systèmes Informatiques Intelligents",
+                  },
+                  school: {
+                    en: "Mouloud Mammeri University (UMMTO), Tizi-Ouzou, Algeria",
+                    fr: "Université Mouloud Mammeri (UMMTO), Tizi-Ouzou, Algérie",
+                  },
+                  period: "2022 – 2025",
+                  detail: {
+                    en: "Specialisation in Artificial Intelligence — Machine Learning, Deep Learning, NLP, Computer Vision, Knowledge Representation, Distributed Systems.",
+                    fr: "Spécialisation en Intelligence Artificielle — Machine Learning, Deep Learning, NLP, Vision par Ordinateur, Représentation des Connaissances, Systèmes Distribués.",
+                  },
+                },
+                {
+                  degree: {
+                    en: "Bachelor's Degree — Computer Systems",
+                    fr: "Licence — Systèmes Informatiques",
+                  },
+                  school: {
+                    en: "Mouloud Mammeri University (UMMTO), Tizi-Ouzou, Algeria",
+                    fr: "Université Mouloud Mammeri (UMMTO), Tizi-Ouzou, Algérie",
+                  },
+                  period: "2019 – 2022",
+                  detail: {
+                    en: "Strong foundation in computer systems, algorithms, databases, and software engineering.",
+                    fr: "Solide base en systèmes informatiques, algorithmes, bases de données et génie logiciel.",
+                  },
+                },
+                {
+                  degree: {
+                    en: "Baccalaureate — Mathematics",
+                    fr: "Baccalauréat — Mathématiques",
+                  },
+                  school: {
+                    en: "Aghri Mohammed Said High School, Azeffoun, Algeria",
+                    fr: "Lycée Aghri Mohammed Said, Azeffoun, Algérie",
+                  },
+                  period: "2019",
+                  detail: { en: "", fr: "" },
+                },
+              ].map((edu, i) => (
+                <div
+                  key={i}
+                  className="grid md:grid-cols-[200px_1fr] gap-6 py-10 border-b border-border last:border-0"
+                >
+                  <p className="text-xs font-mono opacity-40">
+                    {edu.period}
+                  </p>
+                  <div className="space-y-1">
+                    <h3 className="font-medium text-base">
+                      {get(edu.degree, lang)}
+                    </h3>
+                    <p className="text-sm opacity-50">
+                      {get(edu.school, lang)}
+                    </p>
+                    {get(edu.detail, lang) && (
+                      <p className="text-sm opacity-60 leading-relaxed pt-1">
+                        {get(edu.detail, lang)}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── Contact ─────────────────────────────────────────── */}
+        <section
+          id="contact"
+          className="py-16 px-6 border-t border-border"
+        >
+          <div className="max-w-5xl mx-auto">
+            <p className="text-xs opacity-30 tracking-widest uppercase font-mono mb-12">
+              {get(t.contact.section, lang)}
+            </p>
+            <div className="grid md:grid-cols-2 gap-16">
+              <div className="space-y-6">
+                <p className="text-lg leading-relaxed opacity-70 max-w-sm">
+                  {get(t.contact.p1, lang)}
+                </p>
+                <div className="flex flex-col gap-3 pt-2">
+                  <a
+                    href="/Manel_MORSLI_CV_en.pdf"
+                    download
+                    className="inline-flex items-center gap-2 text-sm border border-foreground/30 hover:border-foreground hover:bg-foreground hover:text-background transition-all px-5 py-2.5 w-fit"
+                  >
+                    {get(t.contact.downloadEn, lang)}
+                  </a>
+                  <a
+                    href="/Manel_MORSLI_CV_fr.pdf"
+                    download
+                    className="inline-flex items-center gap-2 text-sm border border-foreground/30 hover:border-foreground hover:bg-foreground hover:text-background transition-all px-5 py-2.5 w-fit"
+                  >
+                    {get(t.contact.downloadFr, lang)}
+                  </a>
+                </div>
+              </div>
+              <div className="space-y-4">
+                {[
+                  {
+                    label: "manelmorsli@hotmail.com",
+                    href: "mailto:manelmorsli@hotmail.com",
+                    detail: "Email",
+                  },
+                  {
+                    label: "GitHub",
+                    href: "https://github.com",
+                    detail: "Code",
+                  },
+                  {
+                    label: "LinkedIn",
+                    href: "https://linkedin.com",
+                    detail: "Professional",
+                  },
+                ].map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    className="flex items-center justify-between py-4 border-b border-border opacity-60 hover:opacity-100 transition-opacity group"
+                  >
+                    <span className="text-base">
+                      {link.label}
+                    </span>
+                    <span className="text-xs font-mono opacity-0 group-hover:opacity-60 transition-opacity">
+                      {link.detail} →
+                    </span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── Footer ──────────────────────────────────────────── */}
+        <footer className="border-t border-border py-8 px-6">
+          <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2 opacity-30">
+            <p className="text-xs font-mono">
+              {get(t.footer.built, lang)}
+            </p>
+            <p className="text-xs font-mono">© 2026</p>
+          </div>
+        </footer>
+      </div>
 
       {/* ── Project Detail Modal ─────────────────────────────── */}
       {selectedProject && (
         <div
           className="fixed inset-0 z-50 bg-background/90 backdrop-blur-sm flex items-start justify-center overflow-y-auto p-6 md:p-12"
-          onClick={(e) => { if (e.target === e.currentTarget) setSelectedProject(null); }}
+          onClick={(e) => {
+            if (e.target === e.currentTarget)
+              setSelectedProject(null);
+          }}
         >
           <div className="bg-background border border-border max-w-2xl w-full my-auto">
             {/* Modal Header */}
@@ -981,16 +1293,36 @@ export default function App() {
                   <span
                     className="text-xs px-2 py-0.5 rounded font-mono"
                     style={{
-                      background: THEME.badge[selectedProject.type as keyof typeof THEME.badge]?.bg,
-                      color:      THEME.badge[selectedProject.type as keyof typeof THEME.badge]?.text,
+                      background:
+                        THEME.badge[
+                          selectedProject.type as keyof typeof THEME.badge
+                        ]?.bg,
+                      color:
+                        THEME.badge[
+                          selectedProject.type as keyof typeof THEME.badge
+                        ]?.text,
                     }}
                   >
-                    {get(t.projects[selectedProject.type as "professional" | "academic" | "personal"], lang)}
+                    {get(
+                      t.projects[
+                        selectedProject.type as
+                          | "professional"
+                          | "academic"
+                          | "personal"
+                      ],
+                      lang,
+                    )}
                   </span>
-                  <span className="text-xs opacity-30 font-mono">{selectedProject.year}</span>
+                  <span className="text-xs opacity-30 font-mono">
+                    {selectedProject.year}
+                  </span>
                 </div>
-                <p className="text-xs opacity-40 font-mono">{selectedProject.category}</p>
-                <h2 className="text-xl font-medium leading-snug">{get(selectedProject.title, lang)}</h2>
+                <p className="text-xs opacity-40 font-mono">
+                  {selectedProject.category}
+                </p>
+                <h2 className="text-xl font-medium leading-snug">
+                  {get(selectedProject.title, lang)}
+                </h2>
               </div>
               <button
                 onClick={() => setSelectedProject(null)}
@@ -1012,20 +1344,22 @@ export default function App() {
                   {get(t.projects.keyPoints, lang)}
                 </h4>
                 <ul className="space-y-2.5">
-                  {get(selectedProject.details, lang).map((point, i) => (
-                    <li
-                      key={i}
-                      className="text-sm leading-relaxed px-3 py-2 rounded"
-                      style={{
-                        background:   THEME.modal.bulletBg,
-                        borderLeft:   `3px solid ${THEME.modal.bulletBorder}`,
-                        color:        "inherit",
-                        opacity:      0.85,
-                      }}
-                    >
-                      {point}
-                    </li>
-                  ))}
+                  {get(selectedProject.details, lang).map(
+                    (point, i) => (
+                      <li
+                        key={i}
+                        className="text-sm leading-relaxed px-3 py-2 rounded"
+                        style={{
+                          background: THEME.modal.bulletBg,
+                          borderLeft: `3px solid ${THEME.modal.bulletBorder}`,
+                          color: "inherit",
+                          opacity: 0.85,
+                        }}
+                      >
+                        {point}
+                      </li>
+                    ),
+                  )}
                 </ul>
               </div>
 
@@ -1038,7 +1372,9 @@ export default function App() {
                     <span
                       key={tech}
                       className="text-xs font-mono rounded px-2.5 py-1 transition-colors duration-150 bg-[var(--skill-bg)] hover:bg-[var(--skill-hover-bg)]"
-                      style={{ border: `1px solid ${THEME.skill.border}` }}
+                      style={{
+                        border: `1px solid ${THEME.skill.border}`,
+                      }}
                     >
                       {tech}
                     </span>
