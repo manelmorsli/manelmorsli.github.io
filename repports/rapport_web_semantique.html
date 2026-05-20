@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rapport — Ontologie de la Mode · Web Sémantique</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink:   #1a1a2e;
+  --muted: #5a5a7a;
+  --line:  #d8d8e8;
+  --accent:#8b5cf6;
+  --gold:  #b8860b;
+  --bg:    #fafaf8;
+  --card:  #f4f4f0;
+  --red:   #c0392b;
+  --blue:  #2563eb;
+  --green: #166534;
+}
+
+html { font-size: 15px; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Crimson Pro', Georgia, serif;
+  line-height: 1.75;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 3rem 2.5rem;
+}
+
+/* ── PRINT ── */
+@media print {
+  body { padding: 0; max-width: none; }
+  .no-print { display: none; }
+  .page-break { break-before: page; }
+  a { color: inherit; text-decoration: none; }
+}
+
+/* ── COVER ── */
+.cover {
+  text-align: center;
+  padding: 4rem 2rem 5rem;
+  border-bottom: 3px solid var(--ink);
+  margin-bottom: 3rem;
+}
+.cover .univ {
+  font-family: 'Inter', sans-serif;
+  font-size: .82rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--muted);
+  margin-bottom: .5rem;
+}
+.cover .module {
+  font-family: 'Inter', sans-serif;
+  font-size: .88rem;
+  color: var(--muted);
+  margin-bottom: 2.5rem;
+}
+.cover .title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: .6rem;
+}
+.cover .subtitle {
+  font-size: 1.4rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--muted);
+  margin-bottom: 2.5rem;
+}
+.cover .meta {
+  font-family: 'Inter', sans-serif;
+  font-size: .85rem;
+  color: var(--muted);
+}
+.cover .meta span { font-weight: 600; color: var(--ink); }
+.cover-rule { width: 60px; height: 3px; background: var(--gold); margin: 1.5rem auto; }
+
+/* ── TOC ── */
+.toc { margin-bottom: 3rem; }
+.toc h2 { font-family: 'Inter', sans-serif; font-size: 1rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); margin-bottom: 1rem; }
+.toc ol { list-style: none; padding: 0; }
+.toc li { display: flex; justify-content: space-between; padding: .35rem 0; border-bottom: 1px dotted var(--line); font-size: .95rem; }
+.toc li .num { color: var(--muted); min-width: 2rem; }
+.toc li .page { color: var(--muted); font-family: 'Inter', sans-serif; font-size: .82rem; }
+.toc-part { font-weight: 700; margin-top: .6rem; }
+.toc-sub { padding-left: 1.5rem; font-style: italic; }
+
+/* ── HEADINGS ── */
+h1.part-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -.3px;
+  border-top: 3px solid var(--ink);
+  border-bottom: 1px solid var(--line);
+  padding: .7rem 0;
+  margin: 2.5rem 0 1.5rem;
+}
+h2.section {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 2rem 0 .8rem;
+  color: var(--ink);
+}
+h2.section::before {
+  content: attr(data-n) '. ';
+  color: var(--muted);
+}
+h3.subsection {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1.5rem 0 .6rem;
+  color: var(--ink);
+}
+
+/* ── BODY TEXT ── */
+p { margin-bottom: 1rem; font-size: 1rem; text-align: justify; }
+p + p { text-indent: 1.5em; }
+strong { font-weight: 700; }
+em { font-style: italic; }
+
+/* ── TABLES ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2rem 0;
+  font-family: 'Inter', sans-serif;
+  font-size: .82rem;
+}
+th {
+  background: var(--ink);
+  color: #fff;
+  text-align: left;
+  padding: .55rem .8rem;
+  font-weight: 600;
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+td { padding: .5rem .8rem; border-bottom: 1px solid var(--line); }
+tr:nth-child(even) td { background: var(--card); }
+caption {
+  font-family: 'Inter', sans-serif;
+  font-size: .8rem;
+  color: var(--muted);
+  text-align: left;
+  padding: .3rem 0;
+  caption-side: bottom;
+}
+
+/* ── CODE ── */
+code {
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-size: .88em;
+  background: #ededf7;
+  padding: 1px 5px;
+  border-radius: 3px;
+  color: var(--accent);
+}
+pre {
+  background: #13131f;
+  color: #ccd6f6;
+  border-radius: 6px;
+  padding: 1.2rem;
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-size: .82rem;
+  line-height: 1.7;
+  overflow-x: auto;
+  margin: 1rem 0 1.5rem;
+  white-space: pre-wrap;
+}
+pre .kw  { color: #c792ea; }
+pre .cls { color: #82aaff; }
+pre .str { color: #c3e88d; }
+pre .cmt { color: #546e7a; font-style: italic; }
+pre .attr{ color: #ffcb6b; }
+pre .var { color: #f78c6c; }
+
+/* ── CALLOUTS ── */
+.callout {
+  border-left: 4px solid var(--gold);
+  background: #fefce8;
+  padding: .9rem 1.2rem;
+  border-radius: 0 6px 6px 0;
+  margin: 1.2rem 0;
+  font-size: .92rem;
+}
+.callout.info { border-color: var(--blue); background: #eff6ff; }
+.callout.def  { border-color: var(--green); background: #f0fdf4; }
+.callout .callout-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .8px;
+  margin-bottom: .4rem;
+  color: var(--muted);
+}
+
+/* ── FIGURE / SCHEMA ── */
+.fig { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 1.5rem; margin: 1.5rem 0; text-align: center; }
+.fig-cap { font-family: 'Inter', sans-serif; font-size: .78rem; color: var(--muted); margin-top: .8rem; }
+
+/* ── HIERARCHY TREE (in report) ── */
+.tree { font-family: 'Consolas', 'Courier New', monospace; font-size: .85rem; line-height: 1.8; background: var(--card); padding: 1.2rem; border-radius: 6px; margin: 1rem 0; }
+
+/* ── BIBLIO ── */
+.biblio li { margin-bottom: .6rem; font-size: .92rem; }
+.biblio li::before { content: ''; }
+
+/* ── PAGE NUMBER PLACEHOLDER ── */
+.page-num { font-family: 'Inter', sans-serif; font-size: .75rem; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════
+     COVER PAGE
+══════════════════════════════════════════════════════ -->
+<div class="cover">
+  <div class="univ">Université · Département Informatique</div>
+  <div class="module">Module : Web Sémantique &amp; Ontologies · 2024–2025</div>
+  <div class="cover-rule"></div>
+  <div class="title">Ontologie de la Mode</div>
+  <div class="subtitle">Modélisation du domaine de la mode vestimentaire<br>par les technologies du Web Sémantique</div>
+  <div class="cover-rule"></div>
+  <div class="meta">
+    Réalisé par : <span>Manel Morsli</span><br>
+    Encadrant : <span>—</span><br>
+    Année universitaire : <span>2024 – 2025</span><br>
+    Technologies : <span>OWL 2 · RDF/XML · SPARQL 1.1 · Protégé 5</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     TABLE OF CONTENTS
+══════════════════════════════════════════════════════ -->
+<div class="toc">
+  <h2>Table des matières</h2>
+  <ol>
+    <li class="toc-part"><span class="num"></span><span>Partie I — Introduction au Web Sémantique</span><span class="page">3</span></li>
+    <li class="toc-sub"><span class="num">1.</span><span>Le Web Sémantique : contexte et enjeux</span><span class="page">3</span></li>
+    <li class="toc-sub"><span class="num">2.</span><span>RDF — Resource Description Framework</span><span class="page">4</span></li>
+    <li class="toc-sub"><span class="num">3.</span><span>OWL — Web Ontology Language</span><span class="page">5</span></li>
+    <li class="toc-sub"><span class="num">4.</span><span>SPARQL — Langage de requête</span><span class="page">6</span></li>
+    <li class="toc-sub"><span class="num">5.</span><span>Protégé — Éditeur d'ontologies</span><span class="page">7</span></li>
+    <li class="toc-part" style="margin-top:.8rem"><span class="num"></span><span>Partie II — Ontologie de la Mode</span><span class="page">8</span></li>
+    <li class="toc-sub"><span class="num">6.</span><span>Présentation du domaine et motivations</span><span class="page">8</span></li>
+    <li class="toc-sub"><span class="num">7.</span><span>Conception de l'ontologie</span><span class="page">9</span></li>
+    <li class="toc-sub"><span class="num">8.</span><span>Les classes et leur hiérarchie</span><span class="page">10</span></li>
+    <li class="toc-sub"><span class="num">9.</span><span>Les propriétés</span><span class="page">12</span></li>
+    <li class="toc-sub"><span class="num">10.</span><span>Les individus nommés</span><span class="page">14</span></li>
+    <li class="toc-sub"><span class="num">11.</span><span>Requêtes SPARQL et résultats</span><span class="page">15</span></li>
+    <li class="toc-sub"><span class="num">12.</span><span>Discussion et perspectives</span><span class="page">17</span></li>
+    <li class="toc-sub"><span class="num">13.</span><span>Conclusion</span><span class="page">18</span></li>
+    <li class="toc-sub"><span class="num"></span><span>Références</span><span class="page">19</span></li>
+  </ol>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     PARTIE I — WEB SÉMANTIQUE
+══════════════════════════════════════════════════════ -->
+<h1 class="part-title page-break">Partie I — Introduction au Web Sémantique</h1>
+
+<h2 class="section" data-n="1">Le Web Sémantique : contexte et enjeux</h2>
+
+<p>
+  Le <strong>Web Sémantique</strong> est une extension du Web actuel, proposée en 2001 par Sir Tim Berners-Lee, James Hendler et Ora Lassila dans l'article fondateur publié dans <em>Scientific American</em>. L'idée directrice est de rendre le contenu du Web non plus seulement lisible par des humains, mais <strong>interprétable par des machines</strong>. Là où le Web traditionnel publie des documents HTML destinés à l'affichage, le Web Sémantique publie des <em>données structurées</em> dotées d'une signification formelle, exploitables par des agents logiciels autonomes.
+</p>
+
+<p>
+  Le problème fondamental que cherche à résoudre le Web Sémantique est celui de l'<strong>ambiguïté</strong>. Une même ressource peut être décrite de multiples façons sur différents sites ; un moteur de recherche ne sait pas si « Chanel » désigne la styliste française, la chaîne de télévision ou un prénom. Grâce à des <em>identifiants universels</em> (URI/IRI), des <em>vocabulaires partagés</em> (ontologies) et des <em>langages de représentation formels</em>, le Web Sémantique permet aux machines de relier, croiser et raisonner sur des données hétérogènes.
+</p>
+
+<div class="callout def">
+  <div class="callout-title">Définition — Ontologie (informatique)</div>
+  Une ontologie est une <strong>spécification formelle et explicite d'une conceptualisation partagée</strong> d'un domaine de connaissance (Gruber, 1993). Elle définit les <em>concepts</em>, leurs <em>relations</em>, leurs <em>propriétés</em> et les <em>contraintes</em> qui régissent leur utilisation.
+</div>
+
+<p>
+  L'architecture du Web Sémantique est souvent représentée par la <em>Layer Cake</em> de Berners-Lee, une pile de couches technologiques superposées allant des URI et Unicode en base jusqu'aux interfaces de confiance en sommet, en passant par RDF, OWL et les règles logiques. Ce projet s'appuie sur les couches RDF, OWL et SPARQL.
+</p>
+
+
+<h2 class="section" data-n="2">RDF — Resource Description Framework</h2>
+
+<p>
+  <strong>RDF</strong> (Resource Description Framework) est le modèle de données fondamental du Web Sémantique, standardisé par le W3C. Il représente l'information sous forme de <em>triplets</em> de la forme <strong>sujet – prédicat – objet</strong>, qui constituent ensemble un graphe orienté étiqueté.
+</p>
+
+<table>
+  <thead><tr><th>Composant</th><th>Rôle</th><th>Exemple</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Sujet</strong></td><td>La ressource décrite</td><td><code>:Gabrielle_Chasnel</code></td></tr>
+    <tr><td><strong>Prédicat</strong></td><td>La propriété ou relation</td><td><code>:paysOrigine</code></td></tr>
+    <tr><td><strong>Objet</strong></td><td>La valeur ou ressource liée</td><td><code>"France"</code></td></tr>
+  </tbody>
+  <caption>Table 1 — Structure d'un triplet RDF</caption>
+</table>
+
+<p>
+  Chaque ressource est identifiée par un <strong>IRI</strong> (Internationalized Resource Identifier), garantissant l'unicité mondiale de l'identifiant. RDF dispose de plusieurs syntaxes de sérialisation : Turtle (lisible par l'humain), N-Triples, JSON-LD, et <strong>RDF/XML</strong> — le format utilisé dans ce projet.
+</p>
+
+<pre><span class="cmt"># Exemple de triplets RDF en syntaxe Turtle</span>
+<span class="cls">@prefix mode:</span> <span class="str">&lt;http://www.semanticweb.org/manel/ontologies/2025/1/la_mode#&gt;</span> .
+<span class="cls">@prefix xsd:</span>  <span class="str">&lt;http://www.w3.org/2001/XMLSchema#&gt;</span> .
+
+<span class="kw">mode:Gabrielle_Chasnel</span>
+    <span class="attr">a</span>                   mode:Créateur_de_Mode ;
+    <span class="attr">mode:nom</span>            <span class="str">"Coco Chanel"</span> ;
+    <span class="attr">mode:paysOrigine</span>    <span class="str">"France"</span> ;
+    <span class="attr">mode:dateNaissance</span>  <span class="str">"1883-08-19T00:00:00"^^xsd:dateTime</span> .</pre>
+
+<p>
+  RDFS (RDF Schema) enrichit RDF en ajoutant des primitives de hiérarchie : <code>rdfs:subClassOf</code> pour les classes, <code>rdfs:subPropertyOf</code> pour les propriétés, <code>rdfs:domain</code> et <code>rdfs:range</code> pour contraindre les propriétés. Toutefois, RDFS ne permet pas d'exprimer des contraintes de cardinalité, des disjonctions ou des équivalences — d'où la nécessité d'OWL.
+</p>
+
+
+<h2 class="section" data-n="3">OWL — Web Ontology Language</h2>
+
+<p>
+  <strong>OWL</strong> (Web Ontology Language) est le standard W3C pour la représentation d'ontologies riches sur le Web. Basé sur les <em>Logiques de Description</em> (Description Logics), il offre une expressivité formelle permettant le <strong>raisonnement automatique</strong> : inférence de nouvelles connaissances, détection de contradictions, classification de concepts.
+</p>
+
+<h3 class="subsection">OWL 2 — Profils et expressivité</h3>
+<p>
+  OWL 2 définit plusieurs profils selon le niveau d'expressivité requis : OWL 2 DL (le plus complet, utilisé dans ce projet), OWL 2 EL, OWL 2 QL et OWL 2 RL. Ce projet utilise <strong>OWL 2 DL</strong>, qui offre un équilibre entre expressivité et décidabilité.
+</p>
+
+<table>
+  <thead><tr><th>Constructeur OWL</th><th>Syntaxe</th><th>Signification</th></tr></thead>
+  <tbody>
+    <tr><td>Classe</td><td><code>owl:Class</code></td><td>Ensemble de ressources partageant des caractéristiques</td></tr>
+    <tr><td>Sous-classe</td><td><code>rdfs:subClassOf</code></td><td>Relation de spécialisation (A ⊆ B)</td></tr>
+    <tr><td>Propriété objet</td><td><code>owl:ObjectProperty</code></td><td>Relation entre deux individus</td></tr>
+    <tr><td>Propriété de données</td><td><code>owl:DatatypeProperty</code></td><td>Relation entre un individu et une valeur littérale</td></tr>
+    <tr><td>Propriété fonctionnelle</td><td><code>owl:FunctionalProperty</code></td><td>Chaque individu a au plus une valeur</td></tr>
+    <tr><td>Individu</td><td><code>owl:NamedIndividual</code></td><td>Instance concrète d'une classe</td></tr>
+    <tr><td>Identité</td><td><code>owl:sameAs</code></td><td>Deux URIs désignent le même individu</td></tr>
+    <tr><td>Disjonction</td><td><code>owl:disjointWith</code></td><td>Deux classes ne peuvent avoir de membres communs</td></tr>
+    <tr><td>Équivalence</td><td><code>owl:equivalentClass</code></td><td>Deux classes ont exactement les mêmes membres</td></tr>
+  </tbody>
+  <caption>Table 2 — Principaux constructeurs OWL 2 utilisés</caption>
+</table>
+
+<h3 class="subsection">Raisonnement automatique</h3>
+<p>
+  Un des grands atouts d'OWL est la possibilité de connecter un <em>raisonneur</em> (reasoner) à l'ontologie. Les raisonneurs OWL 2 DL les plus utilisés sont <strong>HermiT</strong> (intégré à Protégé) et <strong>Pellet</strong>. Le raisonneur peut :
+</p>
+<ul style="margin-left:1.5rem;margin-bottom:1rem;font-size:.97rem">
+  <li style="margin-bottom:.4rem"><strong>Classifier</strong> automatiquement les individus dans leurs classes les plus spécifiques ;</li>
+  <li style="margin-bottom:.4rem"><strong>Détecter les incohérences</strong> (classes insatisfiables, violations de disjonctions) ;</li>
+  <li style="margin-bottom:.4rem"><strong>Inférer</strong> de nouvelles propriétés à partir des axiomes déclarés ;</li>
+  <li><strong>Vérifier la consistance</strong> globale de l'ontologie.</li>
+</ul>
+<p>
+  Dans ce projet, le raisonneur HermiT détecte automatiquement que <code>Coco_Chanel</code> et <code>Gabrielle_Chasnel</code> désignent la même personne grâce à l'axiome <code>owl:sameAs</code>.
+</p>
+
+
+<h2 class="section" data-n="4">SPARQL — Langage de requête</h2>
+
+<p>
+  <strong>SPARQL</strong> (SPARQL Protocol and RDF Query Language) est le standard W3C pour interroger des graphes RDF, à la manière de SQL pour les bases de données relationnelles. SPARQL 1.1 (2013) permet les requêtes <code>SELECT</code>, <code>CONSTRUCT</code>, <code>ASK</code> et <code>DESCRIBE</code>, ainsi que les mises à jour via SPARQL Update.
+</p>
+
+<p>
+  Une requête SPARQL repose sur des <em>patterns de triplets</em> contenant des variables (préfixées par <code>?</code>) qui sont liées aux données du graphe lors de l'exécution.
+</p>
+
+<pre><span class="cmt"># Requête : Créateurs de Mode avec nom, date, pays</span>
+<span class="kw">PREFIX</span> <span class="cls">mode:</span> <span class="str">&lt;http://www.semanticweb.org/manel/ontologies/2025/1/la_mode#&gt;</span>
+<span class="kw">PREFIX</span> <span class="cls">xsd:</span>  <span class="str">&lt;http://www.w3.org/2001/XMLSchema#&gt;</span>
+
+<span class="kw">SELECT</span> <span class="var">?nom</span> <span class="var">?dateNaissance</span> <span class="var">?paysOrigine</span>
+<span class="kw">WHERE</span> {
+  <span class="var">?createur</span>  <span class="attr">a</span>                   <span class="cls">mode:Créateur_de_Mode</span> .
+  <span class="var">?createur</span>  <span class="cls">mode:nom</span>            <span class="var">?nom</span> .
+  <span class="var">?createur</span>  <span class="cls">mode:dateNaissance</span>  <span class="var">?dateNaissance</span> .
+  <span class="var">?createur</span>  <span class="cls">mode:paysOrigine</span>    <span class="var">?paysOrigine</span> .
+}
+<span class="kw">ORDER BY</span> <span class="var">?dateNaissance</span></pre>
+
+<table>
+  <thead><tr><th>Clause</th><th>Rôle</th></tr></thead>
+  <tbody>
+    <tr><td><code>PREFIX</code></td><td>Déclare les espaces de noms pour abréger les IRIs</td></tr>
+    <tr><td><code>SELECT</code></td><td>Choisit les variables à retourner</td></tr>
+    <tr><td><code>WHERE { }</code></td><td>Pattern de triplets à faire correspondre</td></tr>
+    <tr><td><code>OPTIONAL { }</code></td><td>Correspondance optionnelle (JOIN gauche)</td></tr>
+    <tr><td><code>FILTER</code></td><td>Filtre les résultats (comparaisons, fonctions)</td></tr>
+    <tr><td><code>ORDER BY</code></td><td>Tri des résultats</td></tr>
+  </tbody>
+  <caption>Table 3 — Clauses principales de SPARQL</caption>
+</table>
+
+
+<h2 class="section" data-n="5">Protégé — Éditeur d'ontologies</h2>
+
+<p>
+  <strong>Protégé</strong> est un éditeur d'ontologies libre et open-source développé par l'Université de Stanford depuis 1999. C'est l'outil le plus utilisé dans la communauté du Web Sémantique pour créer, éditer et visualiser des ontologies OWL/RDF.
+</p>
+
+<table>
+  <thead><tr><th>Onglet</th><th>Fonction</th></tr></thead>
+  <tbody>
+    <tr><td>Active Ontology</td><td>Métadonnées de l'ontologie (IRI, annotations)</td></tr>
+    <tr><td>Classes</td><td>Visualisation et édition de la hiérarchie de classes</td></tr>
+    <tr><td>Object Properties</td><td>Gestion des propriétés objet (domaine, portée, axiomes)</td></tr>
+    <tr><td>Data Properties</td><td>Gestion des propriétés de données</td></tr>
+    <tr><td>Individuals by type</td><td>Création et édition des individus nommés</td></tr>
+    <tr><td>SPARQL Query</td><td>Exécution de requêtes SPARQL sur l'ontologie chargée</td></tr>
+    <tr><td>Reasoner</td><td>Lancement du raisonneur (HermiT, Pellet…)</td></tr>
+  </tbody>
+  <caption>Table 4 — Principaux onglets de Protégé 5</caption>
+</table>
+
+<div class="callout info">
+  <div class="callout-title">Comment ouvrir l'ontologie</div>
+  Lancez Protégé → <strong>File → Open</strong> → sélectionnez <code>la_mode.owl</code>.
+  Pour activer le raisonneur : <strong>Reasoner → HermiT → Start reasoner</strong> (Ctrl+R).
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     PARTIE II — ONTOLOGIE DE LA MODE
+══════════════════════════════════════════════════════ -->
+<h1 class="part-title page-break">Partie II — Ontologie de la Mode</h1>
+
+<h2 class="section" data-n="6">Présentation du domaine et motivations</h2>
+
+<h3 class="subsection">Choix du sujet</h3>
+<p>
+  Le domaine de la <strong>mode vestimentaire</strong> a été choisi précisément parce qu'il constitue l'un des sujets les <em>moins représentés</em> dans la littérature des ontologies du Web Sémantique. Une revue de la littérature montre que la quasi-totalité des ontologies de domaine publiées concerne des secteurs comme la médecine (SNOMED CT, Gene Ontology), le droit, la géographie ou les sciences formelles. La mode, en revanche, malgré son importance économique mondiale (estimée à plus de 1 500 milliards de dollars) et son rôle sociologique majeur, n'a fait l'objet que de très rares formalisations ontologiques.
+</p>
+<p>
+  Cette lacune constitue précisément la valeur ajoutée de ce projet : proposer une ontologie structurée, extensible et interrogeable pour un domaine riche en concepts, en relations et en dimensions sociologiques.
+</p>
+
+<h3 class="subsection">Périmètre et objectifs</h3>
+<p>
+  L'ontologie modélise trois grands axes du domaine de la mode :
+</p>
+<ul style="margin-left:1.5rem;margin-bottom:1rem;font-size:.97rem">
+  <li style="margin-bottom:.5rem"><strong>L'industrie</strong> : les créateurs de mode, les marques et les tendances qui structurent le marché ;</li>
+  <li style="margin-bottom:.5rem"><strong>La sociologie</strong> : les mécanismes d'adoption, de diffusion et de signification sociale de la mode ;</li>
+  <li><strong>Les individus concrets</strong> : des personnalités réelles (Coco Chanel, Virgil Abloh, Yves Saint Laurent) et des tendances identifiées (Denim universel, Mode des Sneakers).</li>
+</ul>
+
+
+<h2 class="section" data-n="7">Conception de l'ontologie</h2>
+
+<h3 class="subsection">Méthodologie</h3>
+<p>
+  La conception a suivi une approche <strong>top-down</strong> : définition des concepts les plus généraux en premier, puis raffinement progressif vers les concepts spécifiques. Les étapes ont été :
+</p>
+<ol style="margin-left:1.5rem;margin-bottom:1rem;font-size:.97rem">
+  <li style="margin-bottom:.4rem"><strong>Identification du domaine</strong> : analyse des concepts clés de la mode (créateur, marque, tendance, style) ;</li>
+  <li style="margin-bottom:.4rem"><strong>Collecte des ressources</strong> : dictionnaires de la mode, articles de sociologie de la mode (Simmel, Lipovetsky) ;</li>
+  <li style="margin-bottom:.4rem"><strong>Modélisation des classes</strong> : deux racines (industrie et sociologie), avec sous-hiérarchies ;</li>
+  <li style="margin-bottom:.4rem"><strong>Définition des propriétés</strong> : propriétés objet (relations) et propriétés de données (attributs) ;</li>
+  <li style="margin-bottom:.4rem"><strong>Instanciation</strong> : création des individus nommés avec leurs propriétés ;</li>
+  <li><strong>Axiomatisation</strong> : ajout des contraintes de disjonction, de fonctionnalité, et de l'identité <code>owl:sameAs</code>.</li>
+</ol>
+
+<h3 class="subsection">IRI de base</h3>
+<p>
+  L'ontologie est identifiée par l'IRI de base :
+</p>
+<pre>http://www.semanticweb.org/manel/ontologies/2025/1/la_mode</pre>
+<p>
+  Toutes les entités de l'ontologie sont référencées par des IRI construits à partir de cette base, en ajoutant un fragment identifiant (<code>#Créateur_de_Mode</code>, <code>#nom</code>, etc.).
+</p>
+
+
+<h2 class="section" data-n="8">Les classes et leur hiérarchie</h2>
+
+<p>
+  L'ontologie contient <strong>21 classes</strong> organisées en deux branches racines indépendantes, reflétant les deux dimensions — industrielle et sociologique — du domaine de la mode.
+</p>
+
+<div class="tree">owl:Thing
+├── <strong>Industrie_de_la_Mode</strong>
+│   ├── Créateur_de_Mode
+│   │   ├── DateNaissance
+│   │   ├── Nom          (héritage multiple)
+│   │   └── PaysOrigine  (héritage multiple)
+│   ├── Marque
+│   │   ├── DateCreation
+│   │   ├── Nom
+│   │   ├── PaysOrigine
+│   │   ├── PrixMoyen
+│   │   └── TypeMode
+│   ├── Tendance
+│   │   ├── DateDebut
+│   │   ├── Durabilite
+│   │   ├── Nom
+│   │   └── Popularite
+│   └── Convergence
+│       ├── Description  (héritage multiple)
+│       └── Nom
+└── <strong>Sociologie_de_la_Mode</strong>
+    ├── Affirmation
+    │   ├── Nom
+    │   └── Description
+    ├── Autonomie
+    ├── Impérialisation
+    ├── Personnalisation
+    └── Symbolisation</div>
+
+<table>
+  <thead><tr><th>Classe</th><th>Super-classe</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td><code>Industrie_de_la_Mode</code></td><td>owl:Thing</td><td>Racine des entités économiques et stylistiques</td></tr>
+    <tr><td><code>Sociologie_de_la_Mode</code></td><td>owl:Thing</td><td>Racine des phénomènes sociologiques</td></tr>
+    <tr><td><code>Créateur_de_Mode</code></td><td>Industrie_de_la_Mode</td><td>Personne créant des collections de mode</td></tr>
+    <tr><td><code>Marque</code></td><td>Industrie_de_la_Mode</td><td>Entreprise ou label de mode</td></tr>
+    <tr><td><code>Tendance</code></td><td>Industrie_de_la_Mode</td><td>Mouvement stylistique observable</td></tr>
+    <tr><td><code>Convergence</code></td><td>Industrie_de_la_Mode</td><td>Fusion de tendances vers un style commun</td></tr>
+    <tr><td><code>Affirmation</code></td><td>Sociologie_de_la_Mode</td><td>Mode comme affirmation d'identité</td></tr>
+    <tr><td><code>Autonomie</code></td><td>Sociologie_de_la_Mode</td><td>Mode comme liberté individuelle</td></tr>
+    <tr><td><code>Impérialisation</code></td><td>Sociologie_de_la_Mode</td><td>Mode imposée par des acteurs dominants</td></tr>
+    <tr><td><code>Personnalisation</code></td><td>Sociologie_de_la_Mode</td><td>Adaptation personnelle d'une tendance</td></tr>
+    <tr><td><code>Symbolisation</code></td><td>Sociologie_de_la_Mode</td><td>Mode comme vecteur symbolique</td></tr>
+  </tbody>
+  <caption>Table 5 — Classes principales de l'ontologie (extrait)</caption>
+</table>
+
+<h3 class="subsection">Héritage multiple</h3>
+<p>
+  Les classes <code>Nom</code>, <code>Description</code> et <code>PaysOrigine</code> illustrent l'<strong>héritage multiple</strong> autorisé par OWL. Par exemple, <code>Nom</code> est sous-classe simultanément de <code>Créateur_de_Mode</code>, <code>Marque</code>, <code>Tendance</code>, <code>Affirmation</code>, <code>Autonomie</code>, <code>Impérialisation</code>, <code>Personnalisation</code> et <code>Symbolisation</code>, car le concept de « nom » est transversal à toutes ces entités.
+</p>
+
+<h3 class="subsection">Contraintes de disjonction</h3>
+<p>
+  Quatre groupes d'axiomes <code>owl:AllDisjointClasses</code> garantissent que certaines classes ne peuvent avoir de membres communs :
+</p>
+<table>
+  <thead><tr><th>Groupe</th><th>Classes disjointes</th></tr></thead>
+  <tbody>
+    <tr><td>Phénomènes sociologiques</td><td>Affirmation, Autonomie, Impérialisation, Personnalisation, Symbolisation</td></tr>
+    <tr><td>Attributs d'une Marque</td><td>DateCreation, Nom, PaysOrigine, PrixMoyen, TypeMode</td></tr>
+    <tr><td>Attributs d'une Tendance</td><td>DateDebut, Durabilite, Nom, Popularite</td></tr>
+    <tr><td>Attributs d'un Créateur</td><td>DateNaissance, Nom, PaysOrigine</td></tr>
+  </tbody>
+  <caption>Table 6 — Groupes de disjonction</caption>
+</table>
+
+
+<h2 class="section" data-n="9">Les propriétés</h2>
+
+<h3 class="subsection">Propriétés objet (Object Properties)</h3>
+<p>
+  Les <strong>16 propriétés objet</strong> modélisent les relations sémantiques entre les classes de l'ontologie. Elles représentent les interactions entre l'industrie de la mode (créateurs, marques, tendances) et les phénomènes sociologiques.
+</p>
+
+<table>
+  <thead><tr><th>Propriété</th><th>Domaine</th><th>Portée</th></tr></thead>
+  <tbody>
+    <tr><td><code>cree</code></td><td>Créateur_de_Mode</td><td>Marque, Tendance</td></tr>
+    <tr><td><code>estCreePar</code></td><td>Marque</td><td>Créateur_de_Mode, Marque</td></tr>
+    <tr><td><code>colaboreAvec</code></td><td>Créateur_de_Mode</td><td>Marque</td></tr>
+    <tr><td><code>commercialise</code></td><td>Marque</td><td>Tendance</td></tr>
+    <tr><td><code>estInspirePar</code></td><td>Créateur_de_Mode, Marque</td><td>Tendance</td></tr>
+    <tr><td><code>inspire</code></td><td>Tendance</td><td>Créateur_de_Mode, Marque</td></tr>
+    <tr><td><code>convergeVers</code></td><td>Tendance</td><td>Convergence</td></tr>
+    <tr><td><code>convergeDe</code></td><td>Convergence</td><td>Tendance</td></tr>
+    <tr><td><code>affirme</code></td><td>Tendance</td><td>Affirmation</td></tr>
+    <tr><td><code>exprimeAutonomie</code></td><td>Tendance</td><td>Autonomie</td></tr>
+    <tr><td><code>impose</code></td><td>Tendance</td><td>Impérialisation</td></tr>
+    <tr><td><code>estImposePar</code></td><td>Impérialisation</td><td>Tendance</td></tr>
+    <tr><td><code>personnalise</code></td><td>Tendance</td><td>Personnalisation</td></tr>
+    <tr><td><code>symbolise</code></td><td>Tendance</td><td>Symbolisation</td></tr>
+    <tr><td><code>estPersonnalisePar</code></td><td>Personnalisation</td><td>Tendance</td></tr>
+    <tr><td><code>estSymbolisePar</code></td><td>Symbolisation</td><td>Tendance</td></tr>
+  </tbody>
+  <caption>Table 7 — Propriétés objet de l'ontologie</caption>
+</table>
+
+<h3 class="subsection">Propriétés de données (Data Properties)</h3>
+<p>
+  Les <strong>11 propriétés de données</strong> associent des valeurs littérales typées (chaînes, entiers, dates, booléens) aux individus. La propriété <code>paysOrigine</code> est déclarée <strong>fonctionnelle</strong> (<code>owl:FunctionalProperty</code>), ce qui signifie que chaque individu ne peut avoir qu'un seul pays d'origine.
+</p>
+
+<table>
+  <thead><tr><th>Propriété</th><th>Domaine</th><th>Type XSD</th><th>Fonctionnelle</th></tr></thead>
+  <tbody>
+    <tr><td><code>nom</code></td><td>Nom</td><td>xsd:string</td><td>Non</td></tr>
+    <tr><td><code>description</code></td><td>Description</td><td>xsd:string</td><td>Non</td></tr>
+    <tr><td><code>dateNaissance</code></td><td>DateNaissance</td><td>xsd:dateTime</td><td>Non</td></tr>
+    <tr><td><code>dateCreation</code></td><td>DateCreation</td><td>xsd:dateTime</td><td>Non</td></tr>
+    <tr><td><code>dateDebut</code></td><td>DateDebut</td><td>xsd:dateTime</td><td>Non</td></tr>
+    <tr><td><code>dateActuelle</code></td><td>—</td><td>xsd:dateTime</td><td>Non</td></tr>
+    <tr><td><code>paysOrigine</code></td><td>PaysOrigine</td><td>xsd:string</td><td><strong>Oui</strong></td></tr>
+    <tr><td><code>typeMode</code></td><td>TypeMode</td><td>xsd:string</td><td>Non</td></tr>
+    <tr><td><code>prixMoyen</code></td><td>PrixMoyen</td><td>xsd:float</td><td>Non</td></tr>
+    <tr><td><code>popularite</code></td><td>Popularite</td><td>xsd:integer</td><td>Non</td></tr>
+    <tr><td><code>durabilite</code></td><td>Durabilite</td><td>xsd:boolean</td><td>Non</td></tr>
+  </tbody>
+  <caption>Table 8 — Propriétés de données de l'ontologie</caption>
+</table>
+
+<p>
+  Un axiome de <strong>disjonction entre propriétés</strong> garantit que <code>dateActuelle</code>, <code>dateCreation</code>, <code>dateDebut</code> et <code>dateNaissance</code> sont des propriétés distinctes ne pouvant pas partager la même valeur sur le même individu.
+</p>
+
+
+<h2 class="section" data-n="10">Les individus nommés</h2>
+
+<p>
+  L'ontologie contient <strong>7 individus nommés</strong> représentant des entités concrètes du monde de la mode.
+</p>
+
+<table>
+  <thead><tr><th>Individu</th><th>Type</th><th>Propriétés clés</th></tr></thead>
+  <tbody>
+    <tr><td><code>Gabrielle_Chasnel</code></td><td>Créateur_de_Mode</td><td>nom : Coco Chanel, né le 1883-08-19, France</td></tr>
+    <tr><td><code>Coco_Chanel</code></td><td>Nom</td><td>owl:sameAs → Gabrielle_Chasnel</td></tr>
+    <tr><td><code>Virgil_Abloh</code></td><td>Créateur_de_Mode</td><td>nom : Virgil Abloh, né le 1980-09-30, Amérique</td></tr>
+    <tr><td><code>Yves_Saint_Laurent</code></td><td>Créateur_de_Mode</td><td>nom : Yves Saint Laurent, né le 1936-04-01, Algérie</td></tr>
+    <tr><td><code>Costumes_cravates</code></td><td>Convergence</td><td>"Toujours associés au sérieux et au professionnalisme."</td></tr>
+    <tr><td><code>Mode_des_Sneakers</code></td><td>Tendance</td><td>"Tout le monde adopte les baskets comme pièce incontournable."</td></tr>
+    <tr><td><code>Denim_universel</code></td><td>Tendance</td><td>"Le jean est adopté dans tous les milieux sociaux."</td></tr>
+  </tbody>
+  <caption>Table 9 — Individus nommés de l'ontologie</caption>
+</table>
+
+<h3 class="subsection">owl:sameAs — Identité entre individus</h3>
+<p>
+  L'axiome <code>owl:sameAs</code> entre <code>Coco_Chanel</code> et <code>Gabrielle_Chasnel</code> illustre le principe de l'<em>hypothèse du monde ouvert</em> (OWA) propre à OWL. Contrairement aux bases de données classiques (hypothèse du monde fermé), OWL suppose qu'une même entité peut être désignée par plusieurs URIs différents. L'axiome <code>owl:sameAs</code> permet au raisonneur de fusionner les informations des deux individus et d'inférer l'ensemble de leurs propriétés communes.
+</p>
+
+<pre><span class="cmt">&lt;!-- Déclaration d'identité entre deux individus --&gt;</span>
+<span class="kw">&lt;owl:NamedIndividual</span> <span class="attr">rdf:about=</span><span class="str">"...#Coco_Chanel"</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;rdf:type</span>    <span class="attr">rdf:resource=</span><span class="str">"...#Nom"</span><span class="kw">/&gt;</span>
+  <span class="kw">&lt;owl:sameAs</span> <span class="attr">rdf:resource=</span><span class="str">"...#Gabrielle_Chasnel"</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;/owl:NamedIndividual&gt;</span></pre>
+
+
+<h2 class="section" data-n="11">Requêtes SPARQL et résultats</h2>
+
+<h3 class="subsection">Requête 1 — Hiérarchie des classes</h3>
+<pre><span class="kw">PREFIX</span> <span class="cls">rdfs:</span> <span class="str">&lt;http://www.w3.org/2000/01/rdf-schema#&gt;</span>
+
+<span class="kw">SELECT</span> <span class="var">?sousClasse</span> <span class="var">?superClasse</span>
+<span class="kw">WHERE</span> {
+  <span class="var">?sousClasse</span> <span class="cls">rdfs:subClassOf</span> <span class="var">?superClasse</span> .
+  <span class="kw">FILTER</span> (!isBlank(<span class="var">?sousClasse</span>) &amp;&amp; !isBlank(<span class="var">?superClasse</span>))
+}
+<span class="kw">ORDER BY</span> <span class="var">?superClasse</span></pre>
+<p><em>Résultat :</em> 16 paires de (sous-classe, super-classe) reflétant la hiérarchie complète de l'ontologie.</p>
+
+<h3 class="subsection">Requête 2 — Créateurs de Mode</h3>
+<pre><span class="kw">PREFIX</span> <span class="cls">mode:</span> <span class="str">&lt;http://www.semanticweb.org/manel/ontologies/2025/1/la_mode#&gt;</span>
+
+<span class="kw">SELECT</span> <span class="var">?nom</span> <span class="var">?dateNaissance</span> <span class="var">?paysOrigine</span>
+<span class="kw">WHERE</span> {
+  <span class="var">?c</span>  <span class="attr">a</span>                   <span class="cls">mode:Créateur_de_Mode</span> .
+  <span class="var">?c</span>  <span class="cls">mode:nom</span>            <span class="var">?nom</span> .
+  <span class="var">?c</span>  <span class="cls">mode:dateNaissance</span>  <span class="var">?dateNaissance</span> .
+  <span class="var">?c</span>  <span class="cls">mode:paysOrigine</span>    <span class="var">?paysOrigine</span> .
+}
+<span class="kw">ORDER BY</span> <span class="var">?nom</span></pre>
+
+<table>
+  <thead><tr><th>nom</th><th>dateNaissance</th><th>paysOrigine</th></tr></thead>
+  <tbody>
+    <tr><td>Coco Chanel</td><td>1883-08-19T00:00:00</td><td>France</td></tr>
+    <tr><td>Virgil Abloh</td><td>1980-09-30T00:00:00</td><td>Amérique</td></tr>
+    <tr><td>Yves Saint Laurent</td><td>1936-04-01T12:00:00</td><td>Algérie</td></tr>
+  </tbody>
+  <caption>Table 10 — Résultats Requête 2</caption>
+</table>
+
+<h3 class="subsection">Requête 3 — Éléments de type Convergence</h3>
+<pre><span class="kw">PREFIX</span> <span class="cls">mode:</span> <span class="str">&lt;http://www.semanticweb.org/manel/ontologies/2025/1/la_mode#&gt;</span>
+
+<span class="kw">SELECT</span> <span class="var">?element</span> <span class="var">?nom</span> <span class="var">?description</span>
+<span class="kw">WHERE</span> {
+  <span class="var">?element</span>  <span class="attr">a</span>                  <span class="cls">mode:Convergence</span> .
+  <span class="kw">OPTIONAL</span> { <span class="var">?element</span>  <span class="cls">mode:nom</span>         <span class="var">?nom</span>         . }
+  <span class="kw">OPTIONAL</span> { <span class="var">?element</span>  <span class="cls">mode:description</span> <span class="var">?description</span> . }
+}</pre>
+
+<table>
+  <thead><tr><th>element</th><th>nom</th><th>description</th></tr></thead>
+  <tbody>
+    <tr><td>Costumes-cravates</td><td>Costume-cravate</td><td>Toujours associés au sérieux et au professionnalisme.</td></tr>
+  </tbody>
+  <caption>Table 11 — Résultats Requête 3</caption>
+</table>
+
+<h3 class="subsection">Requête 7 — Filtrage temporel (créateurs avant 1950)</h3>
+<pre><span class="kw">PREFIX</span> <span class="cls">mode:</span> <span class="str">&lt;...#&gt;</span>
+<span class="kw">PREFIX</span> <span class="cls">xsd:</span>  <span class="str">&lt;http://www.w3.org/2001/XMLSchema#&gt;</span>
+
+<span class="kw">SELECT</span> <span class="var">?nom</span> <span class="var">?dateNaissance</span>
+<span class="kw">WHERE</span> {
+  <span class="var">?c</span>  <span class="attr">a</span>                   <span class="cls">mode:Créateur_de_Mode</span> .
+  <span class="var">?c</span>  <span class="cls">mode:nom</span>            <span class="var">?nom</span> .
+  <span class="var">?c</span>  <span class="cls">mode:dateNaissance</span>  <span class="var">?dateNaissance</span> .
+  <span class="kw">FILTER</span> (<span class="var">?dateNaissance</span> &lt; <span class="str">"1950-01-01T00:00:00"^^xsd:dateTime</span>)
+}
+<span class="kw">ORDER BY</span> <span class="var">?dateNaissance</span></pre>
+
+<table>
+  <thead><tr><th>nom</th><th>dateNaissance</th></tr></thead>
+  <tbody>
+    <tr><td>Coco Chanel</td><td>1883-08-19T00:00:00</td></tr>
+    <tr><td>Yves Saint Laurent</td><td>1936-04-01T12:00:00</td></tr>
+  </tbody>
+  <caption>Table 12 — Résultats Requête 7</caption>
+</table>
+
+
+<h2 class="section" data-n="12">Discussion et perspectives</h2>
+
+<h3 class="subsection">Résultats obtenus</h3>
+<p>
+  L'ontologie développée répond aux objectifs initiaux : elle offre une représentation formelle du domaine de la mode, exploitable par des machines et interrogeable via SPARQL. Le raisonneur HermiT valide la cohérence de l'ontologie et détecte automatiquement l'identité entre <code>Coco_Chanel</code> et <code>Gabrielle_Chasnel</code>.
+</p>
+
+<h3 class="subsection">Limites</h3>
+<p>
+  Les principales limites de cette version sont : (1) le nombre restreint d'individus, qui pourrait être étendu à des dizaines ou centaines de créateurs, marques et tendances ; (2) l'absence de relations objet instanciées entre individus (seules les propriétés de données sont peuplées) ; (3) l'absence d'alignement avec des ontologies existantes telles que FOAF, DBpedia ou Wikidata.
+</p>
+
+<h3 class="subsection">Perspectives d'extension</h3>
+<ul style="margin-left:1.5rem;font-size:.97rem">
+  <li style="margin-bottom:.5rem"><strong>Enrichissement des données</strong> : ajout de dizaines de créateurs, marques historiques et tendances contemporaines ;</li>
+  <li style="margin-bottom:.5rem"><strong>Alignement ontologique</strong> : liens <code>owl:sameAs</code> vers DBpedia/Wikidata pour chaque créateur ;</li>
+  <li style="margin-bottom:.5rem"><strong>Règles SWRL</strong> : règles inférant automatiquement le style d'une tendance à partir de ses attributs ;</li>
+  <li style="margin-bottom:.5rem"><strong>Endpoint SPARQL</strong> : déploiement sur Apache Jena Fuseki pour interrogation distante ;</li>
+  <li><strong>Intégration à un système de recommandation</strong> mode basé sur le raisonnement ontologique.</li>
+</ul>
+
+
+<h2 class="section" data-n="13">Conclusion</h2>
+
+<p>
+  Ce projet a permis de concevoir et d'implémenter une ontologie formelle du domaine de la mode vestimentaire en utilisant les technologies du Web Sémantique — OWL 2, RDF/XML et SPARQL 1.1 — avec l'éditeur Protégé 5. L'ontologie modélise les entités industrielles (créateurs, marques, tendances) et les phénomènes sociologiques (affirmation, autonomie, impérialisation, personnalisation, symbolisation), et les relie par un réseau de propriétés objet et de données.
+</p>
+<p>
+  La valeur de ce travail réside dans l'originalité du domaine choisi — la mode, très peu représentée dans la littérature ontologique — ainsi que dans la rigueur de la modélisation : hiérarchies de classes bien définies, contraintes de disjonction, propriétés fonctionnelles, et démonstration de l'identité via <code>owl:sameAs</code>.
+</p>
+<p>
+  Ce projet constitue une première pierre vers une base de connaissances sémantique complète sur la mode, ouvrant des perspectives dans les domaines de la recommandation, de la recherche d'information et de l'analyse sociologique computationnelle.
+</p>
+
+
+<!-- ══════════════════════════════════════════════════════
+     RÉFÉRENCES
+══════════════════════════════════════════════════════ -->
+<h2 class="section" data-n="">Références</h2>
+<ol class="biblio">
+  <li>Berners-Lee, T., Hendler, J., &amp; Lassila, O. (2001). <em>The Semantic Web</em>. Scientific American, 284(5), 34–43.</li>
+  <li>Gruber, T. R. (1993). <em>A translation approach to portable ontology specifications</em>. Knowledge Acquisition, 5(2), 199–220.</li>
+  <li>W3C. (2012). <em>OWL 2 Web Ontology Language — Document Overview</em>. https://www.w3.org/TR/owl2-overview/</li>
+  <li>W3C. (2013). <em>SPARQL 1.1 Query Language</em>. https://www.w3.org/TR/sparql11-query/</li>
+  <li>W3C. (2014). <em>RDF 1.1 Concepts and Abstract Syntax</em>. https://www.w3.org/TR/rdf11-concepts/</li>
+  <li>Musen, M. A. (2015). <em>The Protégé project: A look back and a look forward</em>. AI Matters, 1(4), 4–12.</li>
+  <li>Lipovetsky, G. (1987). <em>L'empire de l'éphémère — La mode et son destin dans les sociétés modernes</em>. Gallimard.</li>
+  <li>Simmel, G. (1904). <em>Fashion</em>. International Quarterly, 10(1), 130–155.</li>
+  <li>Horridge, M., &amp; Patel-Schneider, P. F. (2012). <em>OWL 2 Web Ontology Language — Manchester Syntax</em>. W3C Working Group Note.</li>
+  <li>Hitzler, P., Krötzsch, M., Parsia, B., Patel-Schneider, P. F., &amp; Rudolph, S. (2012). <em>OWL 2 Web Ontology Language — Primer</em>. W3C Recommendation.</li>
+</ol>
+
+</body>
+</html>

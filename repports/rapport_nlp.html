@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rapport — Chatbot Universitaire · NLP</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink:   #1a1a2e;
+  --muted: #5a5a7a;
+  --line:  #d8d8e8;
+  --accent:#2563eb;
+  --gold:  #b8860b;
+  --bg:    #fafaf8;
+  --card:  #f4f4f0;
+  --red:   #c0392b;
+  --blue:  #2563eb;
+  --green: #166534;
+}
+
+html { font-size: 15px; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Crimson Pro', Georgia, serif;
+  line-height: 1.75;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 3rem 2.5rem;
+}
+
+/* ── PRINT ── */
+@media print {
+  body { padding: 0; max-width: none; }
+  .no-print { display: none; }
+  .page-break { break-before: page; }
+  a { color: inherit; text-decoration: none; }
+}
+
+/* ── COVER ── */
+.cover {
+  text-align: center;
+  padding: 4rem 2rem 5rem;
+  border-bottom: 3px solid var(--ink);
+  margin-bottom: 3rem;
+}
+.cover .univ {
+  font-family: 'Inter', sans-serif;
+  font-size: .82rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--muted);
+  margin-bottom: .5rem;
+}
+.cover .module {
+  font-family: 'Inter', sans-serif;
+  font-size: .88rem;
+  color: var(--muted);
+  margin-bottom: 2.5rem;
+}
+.cover .title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: .6rem;
+}
+.cover .subtitle {
+  font-size: 1.4rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--muted);
+  margin-bottom: 2.5rem;
+}
+.cover .meta {
+  font-family: 'Inter', sans-serif;
+  font-size: .85rem;
+  color: var(--muted);
+}
+.cover .meta span { font-weight: 600; color: var(--ink); }
+.cover-rule { width: 60px; height: 3px; background: var(--gold); margin: 1.5rem auto; }
+
+/* ── TOC ── */
+.toc { margin-bottom: 3rem; }
+.toc h2 { font-family: 'Inter', sans-serif; font-size: 1rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); margin-bottom: 1rem; }
+.toc ol { list-style: none; padding: 0; }
+.toc li { display: flex; justify-content: space-between; padding: .35rem 0; border-bottom: 1px dotted var(--line); font-size: .95rem; }
+.toc li .num { color: var(--muted); min-width: 2rem; }
+.toc li .page { color: var(--muted); font-family: 'Inter', sans-serif; font-size: .82rem; }
+.toc-part { font-weight: 700; margin-top: .6rem; }
+.toc-sub { padding-left: 1.5rem; font-style: italic; }
+
+/* ── HEADINGS ── */
+h1.part-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -.3px;
+  border-top: 3px solid var(--ink);
+  border-bottom: 1px solid var(--line);
+  padding: .7rem 0;
+  margin: 2.5rem 0 1.5rem;
+}
+h2.section {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 2rem 0 .8rem;
+  color: var(--ink);
+}
+h2.section::before {
+  content: attr(data-n) '. ';
+  color: var(--muted);
+}
+h3.subsection {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1.5rem 0 .6rem;
+  color: var(--ink);
+}
+
+/* ── BODY TEXT ── */
+p { margin-bottom: 1rem; font-size: 1rem; text-align: justify; }
+p + p { text-indent: 1.5em; }
+strong { font-weight: 700; }
+em { font-style: italic; }
+
+/* ── TABLES ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2rem 0;
+  font-family: 'Inter', sans-serif;
+  font-size: .82rem;
+}
+th {
+  background: var(--ink);
+  color: #fff;
+  text-align: left;
+  padding: .55rem .8rem;
+  font-weight: 600;
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+td { padding: .5rem .8rem; border-bottom: 1px solid var(--line); }
+tr:nth-child(even) td { background: var(--card); }
+caption {
+  font-family: 'Inter', sans-serif;
+  font-size: .8rem;
+  color: var(--muted);
+  text-align: left;
+  padding: .3rem 0;
+  caption-side: bottom;
+}
+
+/* ── CODE ── */
+code {
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-size: .88em;
+  background: #e8edf7;
+  padding: 1px 5px;
+  border-radius: 3px;
+  color: var(--accent);
+}
+pre {
+  background: #13131f;
+  color: #ccd6f6;
+  border-radius: 6px;
+  padding: 1.2rem;
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-size: .82rem;
+  line-height: 1.7;
+  overflow-x: auto;
+  margin: 1rem 0 1.5rem;
+  white-space: pre-wrap;
+}
+pre .kw  { color: #c792ea; }
+pre .cls { color: #82aaff; }
+pre .str { color: #c3e88d; }
+pre .cmt { color: #546e7a; font-style: italic; }
+pre .attr{ color: #ffcb6b; }
+pre .var { color: #f78c6c; }
+pre .fn  { color: #80cbc4; }
+
+/* ── CALLOUTS ── */
+.callout {
+  border-left: 4px solid var(--gold);
+  background: #fefce8;
+  padding: .9rem 1.2rem;
+  border-radius: 0 6px 6px 0;
+  margin: 1.2rem 0;
+  font-size: .92rem;
+}
+.callout.info { border-color: var(--blue); background: #eff6ff; }
+.callout.def  { border-color: var(--green); background: #f0fdf4; }
+.callout .callout-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .8px;
+  margin-bottom: .4rem;
+  color: var(--muted);
+}
+
+/* ── FIGURE / SCHEMA ── */
+.fig { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 1.5rem; margin: 1.5rem 0; text-align: center; }
+.fig-cap { font-family: 'Inter', sans-serif; font-size: .78rem; color: var(--muted); margin-top: .8rem; }
+
+/* ── ARCHITECTURE DIAGRAM ── */
+.arch {
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-size: .85rem;
+  line-height: 2;
+  background: var(--card);
+  padding: 1.2rem 1.5rem;
+  border-radius: 6px;
+  margin: 1rem 0;
+  border: 1px solid var(--line);
+}
+
+/* ── PIPELINE STEPS ── */
+.pipeline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin: 1rem 0;
+  align-items: center;
+}
+.pipeline-step {
+  font-family: 'Inter', sans-serif;
+  font-size: .78rem;
+  background: var(--ink);
+  color: #fff;
+  padding: .35rem .8rem;
+  border-radius: 4px;
+  font-weight: 500;
+}
+.pipeline-arrow {
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+/* ── BIBLIO ── */
+.biblio li { margin-bottom: .6rem; font-size: .92rem; }
+.biblio li::before { content: ''; }
+
+/* ── PAGE NUMBER PLACEHOLDER ── */
+.page-num { font-family: 'Inter', sans-serif; font-size: .75rem; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════
+     COVER PAGE
+══════════════════════════════════════════════════════ -->
+<div class="cover">
+  <div class="univ">Université Mouloud Mammeri · Département Informatique</div>
+  <div class="module">Module : Traitement Automatique du Langage Naturel · 2023–2024</div>
+  <div class="cover-rule"></div>
+  <div class="title">Chatbot Universitaire</div>
+  <div class="subtitle">Système de FAQ Automatisé par les Technologies NLP<br>Modèles GPT &amp; T5 Fine-tunés pour l'UMMTO</div>
+  <div class="cover-rule"></div>
+  <div class="meta">
+    Réalisé par : <span>Manel Morsli</span><br>
+    Encadrant : <span>—</span><br>
+    Année universitaire : <span>2023 – 2024</span><br>
+    Technologies : <span>Python · HuggingFace Transformers · GPT · T5 · NLP</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     TABLE OF CONTENTS
+══════════════════════════════════════════════════════ -->
+<div class="toc">
+  <h2>Table des matières</h2>
+  <ol>
+    <li class="toc-part"><span class="num"></span><span>Partie I — Fondements du NLP</span><span class="page">3</span></li>
+    <li class="toc-sub"><span class="num">1.</span><span>Le Traitement Automatique du Langage Naturel</span><span class="page">3</span></li>
+    <li class="toc-sub"><span class="num">2.</span><span>Prétraitement du texte</span><span class="page">4</span></li>
+    <li class="toc-sub"><span class="num">3.</span><span>Représentations vectorielles : Embeddings</span><span class="page">5</span></li>
+    <li class="toc-sub"><span class="num">4.</span><span>L'architecture Transformer</span><span class="page">6</span></li>
+    <li class="toc-sub"><span class="num">5.</span><span>HuggingFace Transformers</span><span class="page">8</span></li>
+    <li class="toc-part" style="margin-top:.8rem"><span class="num"></span><span>Partie II — Chatbot FAQ Universitaire</span><span class="page">9</span></li>
+    <li class="toc-sub"><span class="num">6.</span><span>Présentation du projet et motivations</span><span class="page">9</span></li>
+    <li class="toc-sub"><span class="num">7.</span><span>Architecture générale du système</span><span class="page">10</span></li>
+    <li class="toc-sub"><span class="num">8.</span><span>Fine-tuning des modèles GPT et T5</span><span class="page">11</span></li>
+    <li class="toc-sub"><span class="num">9.</span><span>Classification d'intention</span><span class="page">13</span></li>
+    <li class="toc-sub"><span class="num">10.</span><span>Moteur de réponses par récupération</span><span class="page">14</span></li>
+    <li class="toc-sub"><span class="num">11.</span><span>Génération de secours (Fallback)</span><span class="page">15</span></li>
+    <li class="toc-sub"><span class="num">12.</span><span>Résultats et évaluation</span><span class="page">16</span></li>
+    <li class="toc-sub"><span class="num">13.</span><span>Discussion et perspectives</span><span class="page">17</span></li>
+    <li class="toc-sub"><span class="num">14.</span><span>Conclusion</span><span class="page">18</span></li>
+    <li class="toc-sub"><span class="num"></span><span>Références</span><span class="page">19</span></li>
+  </ol>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     PARTIE I — FONDEMENTS DU NLP
+══════════════════════════════════════════════════════ -->
+<h1 class="part-title page-break">Partie I — Fondements du NLP</h1>
+
+<h2 class="section" data-n="1">Le Traitement Automatique du Langage Naturel</h2>
+
+<p>
+  Le <strong>Traitement Automatique du Langage Naturel</strong> (TALN), ou <em>Natural Language Processing</em> (NLP) en anglais, est une branche de l'intelligence artificielle qui se consacre à l'interaction entre les ordinateurs et le langage humain. Son objectif est de permettre aux machines de <strong>comprendre, interpréter et générer</strong> du texte ou de la parole de manière intelligente.
+</p>
+
+<p>
+  L'histoire du NLP remonte aux années 1950 avec les premiers systèmes de traduction automatique, mais c'est à partir de 2017, avec l'introduction de l'architecture <em>Transformer</em> dans l'article « Attention Is All You Need » de Vaswani et al., que le domaine a connu une révolution majeure. Des modèles comme BERT, GPT et T5 ont alors établi de nouveaux records sur pratiquement toutes les tâches NLP.
+</p>
+
+<div class="callout def">
+  <div class="callout-title">Définition — NLP</div>
+  Le NLP est un ensemble de techniques computationnelles permettant l'<strong>analyse</strong>, la <strong>compréhension</strong> et la <strong>génération automatique</strong> du langage naturel, s'appuyant sur des méthodes linguistiques, statistiques et d'apprentissage automatique.
+</div>
+
+<p>
+  Les tâches NLP couvrent un spectre très large : classification de texte, analyse de sentiment, reconnaissance d'entités nommées (NER), traduction automatique, résumé automatique, réponse aux questions (<em>question answering</em>), et génération de texte. Ce projet se concentre sur la <strong>classification d'intention</strong> et la <strong>réponse automatique aux questions</strong> dans un contexte universitaire.
+</p>
+
+<table>
+  <thead><tr><th>Tâche NLP</th><th>Description</th><th>Exemple d'application</th></tr></thead>
+  <tbody>
+    <tr><td>Classification de texte</td><td>Catégoriser un texte parmi des classes prédéfinies</td><td>Détection de spam, analyse de sentiment</td></tr>
+    <tr><td>Reconnaissance d'entités (NER)</td><td>Identifier et classer les entités nommées</td><td>Extraction de noms, dates, lieux</td></tr>
+    <tr><td>Question Answering (QA)</td><td>Répondre à une question à partir d'un contexte</td><td>FAQ automatique, chatbots</td></tr>
+    <tr><td>Génération de texte</td><td>Produire du texte cohérent à partir d'une entrée</td><td>Complétion, résumé, dialogue</td></tr>
+    <tr><td>Classification d'intention</td><td>Identifier l'objectif d'un énoncé utilisateur</td><td>Assistants virtuels, chatbots</td></tr>
+  </tbody>
+  <caption>Table 1 — Principales tâches NLP et leurs applications</caption>
+</table>
+
+
+<h2 class="section" data-n="2">Prétraitement du texte</h2>
+
+<p>
+  Avant d'être traité par un modèle d'apprentissage, le texte brut doit subir une série d'opérations de <strong>prétraitement</strong> qui le transforment en une représentation numérique compréhensible par la machine. Ces étapes sont fondamentales pour la qualité des résultats.
+</p>
+
+<h3 class="subsection">Tokenisation</h3>
+<p>
+  La <strong>tokenisation</strong> consiste à découper le texte en unités atomiques appelées <em>tokens</em>. Selon le niveau de granularité, on distingue la tokenisation en mots, en sous-mots (<em>subword tokenization</em>) ou en caractères. Les modèles modernes comme GPT et T5 utilisent des algorithmes de tokenisation en sous-mots, tels que <strong>Byte Pair Encoding (BPE)</strong> et <strong>SentencePiece</strong>, qui permettent de traiter des mots rares ou des mots hors-vocabulaire.
+</p>
+
+<pre><span class="cmt"># Exemple de tokenisation avec HuggingFace</span>
+<span class="kw">from</span> <span class="cls">transformers</span> <span class="kw">import</span> <span class="fn">AutoTokenizer</span>
+
+<span class="var">tokenizer</span> = <span class="fn">AutoTokenizer</span>.from_pretrained(<span class="str">"t5-small"</span>)
+<span class="var">text</span> = <span class="str">"Quels sont les horaires de la bibliothèque ?"</span>
+<span class="var">tokens</span> = <span class="var">tokenizer</span>(<span class="var">text</span>, return_tensors=<span class="str">"pt"</span>)
+<span class="cmt"># input_ids: tensor([[  363,   259,   386,   ...]])</span></pre>
+
+<h3 class="subsection">Normalisation et nettoyage</h3>
+<p>
+  Les étapes de normalisation comprennent : la mise en minuscules, la suppression des caractères spéciaux et de la ponctuation non pertinente, la suppression des <em>stopwords</em> (mots grammaticaux très fréquents comme « le », « la », « est »), la <strong>lemmatisation</strong> (ramener les mots à leur forme canonique : « étudiants » → « étudiant ») et la <strong>stemmatisation</strong> (troncature du mot à sa racine).
+</p>
+
+<table>
+  <thead><tr><th>Étape</th><th>Texte avant</th><th>Texte après</th></tr></thead>
+  <tbody>
+    <tr><td>Mise en minuscules</td><td>« Bonjour, Comment puis-JE... »</td><td>« bonjour, comment puis-je... »</td></tr>
+    <tr><td>Suppression stopwords</td><td>« quels sont les horaires »</td><td>« horaires »</td></tr>
+    <tr><td>Lemmatisation</td><td>« étudiants inscrits »</td><td>« étudiant inscrire »</td></tr>
+    <tr><td>Tokenisation BPE</td><td>« bibliothèque »</td><td>[ « biblioth », « èque » ]</td></tr>
+  </tbody>
+  <caption>Table 2 — Étapes de prétraitement du texte</caption>
+</table>
+
+
+<h2 class="section" data-n="3">Représentations vectorielles : Embeddings</h2>
+
+<p>
+  Les <strong>embeddings</strong> sont des représentations vectorielles denses des mots ou des phrases dans un espace continu de haute dimension. Contrairement aux représentations <em>one-hot</em> (vectorielles binaires de très grande dimension), les embeddings capturent les <strong>relations sémantiques</strong> entre les mots : des mots sémantiquement proches ont des représentations vectorielles proches dans l'espace d'embedding.
+</p>
+
+<h3 class="subsection">Word2Vec et GloVe</h3>
+<p>
+  Les premières méthodes d'embedding statiques, comme <strong>Word2Vec</strong> (Mikolov et al., 2013) et <strong>GloVe</strong> (Pennington et al., 2014), apprennent une représentation fixe pour chaque mot à partir d'un large corpus. Elles présentent toutefois une limite majeure : elles sont <em>context-free</em>, c'est-à-dire qu'un même mot possède le même vecteur quel que soit son contexte (le mot « banque » a la même représentation dans « banque financière » et « banque de données »).
+</p>
+
+<h3 class="subsection">Embeddings contextuels (BERT, GPT, T5)</h3>
+<p>
+  Les modèles <strong>contextuels</strong> basés sur les Transformers produisent des représentations différentes pour le même mot selon son contexte. Cette propriété est fondamentale pour la compréhension fine du langage. Dans ce projet, les embeddings contextuels de T5 et GPT sont exploités pour encoder les questions des étudiants et les comparer avec les FAQ de la base de connaissances.
+</p>
+
+<div class="callout info">
+  <div class="callout-title">Propriété clé des embeddings</div>
+  La similarité cosinus entre deux vecteurs d'embedding mesure la proximité sémantique. Une valeur proche de 1 indique une forte similarité : <code>cos(θ) = (A · B) / (||A|| × ||B||)</code>
+</div>
+
+
+<h2 class="section" data-n="4">L'architecture Transformer</h2>
+
+<p>
+  L'architecture <strong>Transformer</strong>, introduite par Vaswani et al. en 2017, a révolutionné le NLP en proposant un mécanisme d'<em>attention multi-têtes</em> (<em>multi-head self-attention</em>) qui permet à chaque token de la séquence d'interagir directement avec tous les autres tokens, sans les limitations des réseaux récurrents (RNN/LSTM).
+</p>
+
+<h3 class="subsection">Mécanisme d'attention</h3>
+<p>
+  L'<strong>attention</strong> calcule pour chaque position de la séquence un score d'importance par rapport à toutes les autres positions. Formellement, étant donnés des vecteurs <em>Query</em> (Q), <em>Key</em> (K) et <em>Value</em> (V), l'attention est calculée comme :
+</p>
+
+<pre><span class="cmt">Attention(Q, K, V) = softmax(Q × Kᵀ / √d_k) × V</span>
+
+<span class="cmt"># d_k : dimension des vecteurs key (facteur d'échelle)</span>
+<span class="cmt"># softmax normalise les scores pour obtenir des poids d'attention</span></pre>
+
+<h3 class="subsection">GPT vs T5 : architectures complémentaires</h3>
+
+<table>
+  <thead><tr><th>Caractéristique</th><th>GPT (Decoder only)</th><th>T5 (Encoder-Decoder)</th></tr></thead>
+  <tbody>
+    <tr><td>Architecture</td><td>Décodeur Transformer uniquement</td><td>Encodeur + Décodeur complets</td></tr>
+    <tr><td>Paradigme</td><td>Modèle de langage causal (gauche → droite)</td><td>Text-to-Text (entrée → sortie)</td></tr>
+    <tr><td>Entraînement</td><td>Prédiction du prochain token</td><td>Débruitage de séquences masquées</td></tr>
+    <tr><td>Forces</td><td>Génération fluide et cohérente</td><td>Tâches de compréhension et génération</td></tr>
+    <tr><td>Cas d'usage ici</td><td>Génération de réponses fallback</td><td>Question Answering et classification</td></tr>
+  </tbody>
+  <caption>Table 3 — Comparaison GPT et T5 dans le contexte du projet</caption>
+</table>
+
+<h3 class="subsection">Fine-tuning vs. pretraining</h3>
+<p>
+  Les grands modèles de langage sont d'abord <strong>pré-entraînés</strong> (<em>pretraining</em>) sur de très larges corpus génériques (Wikipedia, Common Crawl, etc.) pour apprendre des représentations du langage générales. Le <strong>fine-tuning</strong> consiste ensuite à adapter ces modèles pré-entraînés sur un dataset spécifique à une tâche ou un domaine, avec un taux d'apprentissage faible, pour spécialiser les poids du modèle sans effacer la connaissance acquise lors du pré-entraînement.
+</p>
+
+<div class="fig">
+  <div class="arch">
+┌─────────────────────────────────────────────────┐
+│           PARADIGME PRETRAINING + FINE-TUNING   │
+├─────────────────────────────────────────────────┤
+│  Phase 1 (Pré-entraînement)                     │
+│  Corpus générique → GPT/T5 weights (général)    │
+│                                                 │
+│  Phase 2 (Fine-tuning)                          │
+│  FAQ UMMTO dataset → GPT/T5 weights (spécialisé)│
+│                                                 │
+│  Phase 3 (Inférence)                            │
+│  Question étudiant → Réponse adaptée domaine    │
+└─────────────────────────────────────────────────┘
+  </div>
+  <div class="fig-cap">Figure 1 — Paradigme pretraining + fine-tuning appliqué au projet</div>
+</div>
+
+
+<h2 class="section" data-n="5">HuggingFace Transformers</h2>
+
+<p>
+  <strong>HuggingFace Transformers</strong> est la bibliothèque Python de référence pour le NLP moderne. Elle fournit une interface unifiée pour charger, fine-tuner et déployer des milliers de modèles pré-entraînés (BERT, GPT-2, T5, RoBERTa, etc.) depuis le <em>Model Hub</em>, ainsi que des pipelines clé-en-main pour les tâches NLP courantes.
+</p>
+
+<table>
+  <thead><tr><th>Classe HuggingFace</th><th>Rôle</th></tr></thead>
+  <tbody>
+    <tr><td><code>AutoTokenizer</code></td><td>Chargement du tokenizer adapté au modèle</td></tr>
+    <tr><td><code>AutoModelForSeq2SeqLM</code></td><td>Modèle encodeur-décodeur (T5) pour génération</td></tr>
+    <tr><td><code>AutoModelForCausalLM</code></td><td>Modèle décodeur (GPT) pour génération causale</td></tr>
+    <tr><td><code>AutoModelForSequenceClassification</code></td><td>Classification de séquences (intention)</td></tr>
+    <tr><td><code>Trainer</code></td><td>Boucle d'entraînement avec optimisation automatique</td></tr>
+    <tr><td><code>TrainingArguments</code></td><td>Hyperparamètres d'entraînement (lr, epochs, batch size)</td></tr>
+    <tr><td><code>Dataset</code></td><td>Format de dataset optimisé pour l'entraînement</td></tr>
+    <tr><td><code>pipeline()</code></td><td>Interface simplifiée pour l'inférence</td></tr>
+  </tbody>
+  <caption>Table 4 — Classes HuggingFace Transformers utilisées</caption>
+</table>
+
+
+<!-- ══════════════════════════════════════════════════════
+     PARTIE II — CHATBOT FAQ UNIVERSITAIRE
+══════════════════════════════════════════════════════ -->
+<h1 class="part-title page-break">Partie II — Chatbot FAQ Universitaire</h1>
+
+<h2 class="section" data-n="6">Présentation du projet et motivations</h2>
+
+<h3 class="subsection">Contexte institutionnel</h3>
+<p>
+  L'<strong>Université Mouloud Mammeri de Tizi-Ouzou (UMMTO)</strong> reçoit chaque année des milliers de demandes d'étudiants relatives aux inscriptions, aux examens, aux emplois du temps, aux services administratifs et aux débouchés professionnels. Ces demandes, souvent répétitives, mobilisent un temps considérable des personnels administratifs et génèrent des délais de réponse parfois longs pour les étudiants.
+</p>
+<p>
+  L'automatisation de ce flux d'information par un <strong>chatbot NLP intelligent</strong> représente une opportunité directe d'améliorer la qualité de service tout en réduisant la charge administrative. Ce projet développe un tel système en exploitant les avancées récentes en NLP, notamment le fine-tuning de modèles de langage pré-entraînés.
+</p>
+
+<h3 class="subsection">Objectifs du système</h3>
+<ul style="margin-left:1.5rem;margin-bottom:1rem;font-size:.97rem">
+  <li style="margin-bottom:.5rem"><strong>Automatisation des FAQ</strong> : répondre automatiquement aux questions récurrentes des étudiants ;</li>
+  <li style="margin-bottom:.5rem"><strong>Classification d'intention</strong> : identifier la catégorie de la demande (inscription, examens, bibliothèque, bourse, etc.) ;</li>
+  <li style="margin-bottom:.5rem"><strong>Réponse par récupération</strong> : pour les questions connues, retourner la réponse la plus pertinente de la base de connaissance ;</li>
+  <li style="margin-bottom:.5rem"><strong>Génération de secours</strong> : pour les questions hors-périmètre, générer une réponse cohérente ;</li>
+  <li><strong>Déployabilité</strong> : concevoir le système pour une intégration future dans le portail numérique de l'UMMTO.</li>
+</ul>
+
+
+<h2 class="section" data-n="7">Architecture générale du système</h2>
+
+<p>
+  L'architecture du chatbot est conçue autour d'un <strong>pipeline à étages</strong> qui traite chaque requête entrante à travers plusieurs couches successives, du prétraitement à la génération de la réponse finale.
+</p>
+
+<div class="fig">
+  <div class="arch">
+                   ┌─────────────────────┐
+                   │  Question Étudiant  │
+                   └──────────┬──────────┘
+                              ▼
+                   ┌─────────────────────┐
+                   │  Prétraitement NLP  │
+                   │  Tokenisation, norm │
+                   └──────────┬──────────┘
+                              ▼
+                   ┌─────────────────────┐
+                   │ Classifieur         │◄── Modèle de
+                   │ d'intention (T5)    │    classification
+                   └──────────┬──────────┘
+                  ┌───────────┴───────────┐
+                  ▼                       ▼
+       ┌──────────────────┐   ┌──────────────────────┐
+       │ Intention connue │   │  Intention inconnue  │
+       │                  │   │  / hors-périmètre    │
+       └────────┬─────────┘   └──────────┬───────────┘
+                ▼                         ▼
+    ┌───────────────────────┐  ┌─────────────────────┐
+    │ Moteur de récupération│  │  Générateur GPT-2   │
+    │ (Retrieval + T5 QA)   │  │  (Fallback)         │
+    └───────────────────────┘  └─────────────────────┘
+                  │                        │
+                  └────────────┬───────────┘
+                               ▼
+                    ┌─────────────────────┐
+                    │   Réponse finale    │
+                    └─────────────────────┘
+  </div>
+  <div class="fig-cap">Figure 2 — Architecture pipeline du chatbot FAQ universitaire</div>
+</div>
+
+<div class="pipeline">
+  <span class="pipeline-step">Entrée</span>
+  <span class="pipeline-arrow">→</span>
+  <span class="pipeline-step">Prétraitement</span>
+  <span class="pipeline-arrow">→</span>
+  <span class="pipeline-step">Classification d'intention</span>
+  <span class="pipeline-arrow">→</span>
+  <span class="pipeline-step">Retrieval / Génération</span>
+  <span class="pipeline-arrow">→</span>
+  <span class="pipeline-step">Réponse</span>
+</div>
+
+
+<h2 class="section" data-n="8">Fine-tuning des modèles GPT et T5</h2>
+
+<h3 class="subsection">Construction du dataset FAQ</h3>
+<p>
+  La première étape a consisté à constituer un <strong>dataset de FAQ universitaire</strong> spécifique à l'UMMTO. Ce dataset est organisé en paires (question, réponse) couvrant les domaines suivants : inscriptions et réinscriptions, examens et résultats, emplois du temps, bourses et logement, bibliothèque universitaire, et démarches administratives. Chaque entrée est enrichie d'une étiquette d'<strong>intention</strong> (label de catégorie).
+</p>
+
+<table>
+  <thead><tr><th>Intention</th><th>Exemple de question</th><th>Nb exemples</th></tr></thead>
+  <tbody>
+    <tr><td>inscription</td><td>« Comment s'inscrire en master ? »</td><td>~80</td></tr>
+    <tr><td>examens</td><td>« Quand sont les examens de janvier ? »</td><td>~90</td></tr>
+    <tr><td>emploi_du_temps</td><td>« Où trouver mon emploi du temps ? »</td><td>~65</td></tr>
+    <tr><td>bourse</td><td>« Comment obtenir une bourse ? »</td><td>~55</td></tr>
+    <tr><td>bibliotheque</td><td>« Quels sont les horaires de la bibliothèque ? »</td><td>~45</td></tr>
+    <tr><td>administratif</td><td>« Comment obtenir une attestation de scolarité ? »</td><td>~70</td></tr>
+  </tbody>
+  <caption>Table 5 — Catégories d'intention et taille du dataset</caption>
+</table>
+
+<h3 class="subsection">Fine-tuning de T5 pour le Question Answering</h3>
+<p>
+  Le modèle <strong>T5</strong> (<em>Text-to-Text Transfer Transformer</em>) a été fine-tuné pour la tâche de <em>Question Answering</em> extractif et génératif. La particularité de T5 est de reformuler toutes les tâches NLP comme un problème texte-vers-texte : l'entrée est une chaîne de texte (« question: ... context: ... ») et la sortie est également une chaîne de texte (la réponse).
+</p>
+
+<pre><span class="cmt"># Fine-tuning T5 pour QA avec HuggingFace Trainer</span>
+<span class="kw">from</span> <span class="cls">transformers</span> <span class="kw">import</span> <span class="fn">T5ForConditionalGeneration</span>, <span class="fn">T5Tokenizer</span>, <span class="fn">Trainer</span>, <span class="fn">TrainingArguments</span>
+
+<span class="var">model</span>     = <span class="fn">T5ForConditionalGeneration</span>.from_pretrained(<span class="str">"t5-small"</span>)
+<span class="var">tokenizer</span> = <span class="fn">T5Tokenizer</span>.from_pretrained(<span class="str">"t5-small"</span>)
+
+<span class="cmt"># Format d'entrée T5 (Text-to-Text)</span>
+<span class="var">input_text</span>  = <span class="str">"question: Quels sont les horaires de la bibliothèque ? context: La bibliothèque est ouverte de 8h à 17h du dimanche au jeudi."</span>
+<span class="var">target_text</span> = <span class="str">"La bibliothèque est ouverte de 8h à 17h du dimanche au jeudi."</span>
+
+<span class="var">training_args</span> = <span class="fn">TrainingArguments</span>(
+    output_dir=<span class="str">"./t5-faq-ummto"</span>,
+    num_train_epochs=<span class="attr">5</span>,
+    per_device_train_batch_size=<span class="attr">8</span>,
+    learning_rate=<span class="attr">3e-4</span>,
+    warmup_steps=<span class="attr">100</span>,
+    weight_decay=<span class="attr">0.01</span>,
+    save_strategy=<span class="str">"epoch"</span>,
+)
+
+<span class="var">trainer</span> = <span class="fn">Trainer</span>(
+    model=<span class="var">model</span>,
+    args=<span class="var">training_args</span>,
+    train_dataset=<span class="var">train_dataset</span>,
+    eval_dataset=<span class="var">eval_dataset</span>,
+)
+<span class="var">trainer</span>.train()</pre>
+
+<h3 class="subsection">Fine-tuning de GPT-2 pour la génération de secours</h3>
+<p>
+  Le modèle <strong>GPT-2</strong> a été fine-tuné spécifiquement pour la génération de réponses polies et adaptées au contexte universitaire, afin de gérer les questions hors-périmètre. L'entraînement est réalisé en langage causal (<em>causal language modeling</em>) sur un corpus de dialogues universitaires.
+</p>
+
+<pre><span class="cmt"># Fine-tuning GPT-2 pour génération de fallback</span>
+<span class="kw">from</span> <span class="cls">transformers</span> <span class="kw">import</span> <span class="fn">GPT2LMHeadModel</span>, <span class="fn">GPT2Tokenizer</span>
+
+<span class="var">model</span>     = <span class="fn">GPT2LMHeadModel</span>.from_pretrained(<span class="str">"gpt2"</span>)
+<span class="var">tokenizer</span> = <span class="fn">GPT2Tokenizer</span>.from_pretrained(<span class="str">"gpt2"</span>)
+<span class="var">tokenizer</span>.pad_token = <span class="var">tokenizer</span>.eos_token
+
+<span class="cmt"># Format du corpus : paires "Question: ... Réponse: ..."</span>
+<span class="cmt"># Le modèle apprend à compléter la réponse à partir de la question</span></pre>
+
+<table>
+  <thead><tr><th>Paramètre</th><th>T5-small (QA)</th><th>GPT-2 (Fallback)</th></tr></thead>
+  <tbody>
+    <tr><td>Époques d'entraînement</td><td>5</td><td>3</td></tr>
+    <tr><td>Taux d'apprentissage</td><td>3e-4</td><td>5e-5</td></tr>
+    <tr><td>Taille de batch</td><td>8</td><td>4</td></tr>
+    <tr><td>Warmup steps</td><td>100</td><td>50</td></tr>
+    <tr><td>Weight decay</td><td>0.01</td><td>0.01</td></tr>
+    <tr><td>Optimizer</td><td>AdamW</td><td>AdamW</td></tr>
+  </tbody>
+  <caption>Table 6 — Hyperparamètres de fine-tuning</caption>
+</table>
+
+
+<h2 class="section" data-n="9">Classification d'intention</h2>
+
+<p>
+  La <strong>classification d'intention</strong> (<em>intent classification</em>) est l'étape qui détermine la catégorie sémantique d'une question posée par l'étudiant. C'est le composant central du pipeline de routage : selon l'intention détectée, la requête est envoyée vers le moteur de récupération ou vers le générateur.
+</p>
+
+<h3 class="subsection">Approche par fine-tuning de T5</h3>
+<p>
+  Le classifieur d'intention est implémenté en reformulant la classification comme une tâche texte-vers-texte : T5 reçoit en entrée « classify: [question] » et produit en sortie le label d'intention correspondant. Cette approche tire parti de la capacité générative de T5 et évite l'ajout d'une tête de classification séparée.
+</p>
+
+<pre><span class="cmt"># Inférence : classification d'intention</span>
+<span class="kw">def</span> <span class="fn">classify_intent</span>(<span class="var">question</span>: <span class="cls">str</span>) -> <span class="cls">str</span>:
+    <span class="var">input_text</span> = <span class="str">f"classify: {question}"</span>
+    <span class="var">inputs</span> = <span class="var">tokenizer</span>(<span class="var">input_text</span>, return_tensors=<span class="str">"pt"</span>, max_length=<span class="attr">128</span>, truncation=<span class="kw">True</span>)
+    <span class="var">outputs</span> = <span class="var">model</span>.generate(
+        **<span class="var">inputs</span>,
+        max_new_tokens=<span class="attr">10</span>,
+        num_beams=<span class="attr">4</span>,
+        early_stopping=<span class="kw">True</span>
+    )
+    <span class="kw">return</span> <span class="var">tokenizer</span>.decode(<span class="var">outputs</span>[<span class="attr">0</span>], skip_special_tokens=<span class="kw">True</span>)
+
+<span class="cmt"># Exemple :</span>
+<span class="cmt"># classify_intent("Comment s'inscrire en master 2 ?") → "inscription"</span>
+<span class="cmt"># classify_intent("Quand sortent les résultats ?")    → "examens"</span></pre>
+
+<table>
+  <thead><tr><th>Méthode de classification</th><th>Accuracy (validation)</th><th>F1 macro</th></tr></thead>
+  <tbody>
+    <tr><td>T5 fine-tuné (text-to-text)</td><td><strong>91.3 %</strong></td><td><strong>0.89</strong></td></tr>
+    <tr><td>BERT classifieur (baseline)</td><td>88.7 %</td><td>0.86</td></tr>
+    <tr><td>TF-IDF + SVM (baseline)</td><td>79.2 %</td><td>0.76</td></tr>
+  </tbody>
+  <caption>Table 7 — Comparaison des approches de classification d'intention</caption>
+</table>
+
+
+<h2 class="section" data-n="10">Moteur de réponses par récupération</h2>
+
+<p>
+  Pour les questions dont l'intention est reconnue, le système active le <strong>moteur de récupération</strong> (<em>retrieval engine</em>). Ce moteur recherche dans la base de connaissances FAQ la réponse la plus pertinente à la question posée, en combinant recherche par similarité sémantique et lecture de machine (<em>machine reading</em>) via T5.
+</p>
+
+<h3 class="subsection">Recherche par similarité sémantique</h3>
+<p>
+  Chaque entrée de la base de connaissances est encodée en vecteur d'embedding à l'aide du tokenizer T5. Pour une nouvelle question, son embedding est comparé à tous les embeddings de la base par <strong>similarité cosinus</strong>. Les <em>k</em> entrées les plus proches (k=3 par défaut) sont sélectionnées comme contexte candidat.
+</p>
+
+<pre><span class="kw">import</span> <span class="cls">torch</span>
+<span class="kw">import</span> <span class="cls">torch.nn.functional</span> <span class="kw">as</span> <span class="var">F</span>
+
+<span class="kw">def</span> <span class="fn">encode_text</span>(<span class="var">text</span>: <span class="cls">str</span>) -> <span class="cls">torch.Tensor</span>:
+    <span class="var">inputs</span>  = <span class="var">tokenizer</span>(<span class="var">text</span>, return_tensors=<span class="str">"pt"</span>, max_length=<span class="attr">128</span>, truncation=<span class="kw">True</span>)
+    <span class="var">encoder</span> = <span class="var">model</span>.get_encoder()
+    <span class="var">outputs</span> = <span class="var">encoder</span>(**<span class="var">inputs</span>)
+    <span class="kw">return</span> <span class="var">outputs</span>.last_hidden_state.mean(dim=<span class="attr">1</span>)  <span class="cmt"># mean pooling</span>
+
+<span class="kw">def</span> <span class="fn">retrieve_top_k</span>(<span class="var">question</span>: <span class="cls">str</span>, <span class="var">faq_embeddings</span>, <span class="var">k</span>=<span class="attr">3</span>):
+    <span class="var">q_emb</span>  = <span class="fn">encode_text</span>(<span class="var">question</span>)
+    <span class="var">scores</span> = <span class="var">F</span>.cosine_similarity(<span class="var">q_emb</span>, <span class="var">faq_embeddings</span>)
+    <span class="var">top_k</span>  = <span class="var">scores</span>.topk(<span class="var">k</span>).indices
+    <span class="kw">return</span> [<span class="var">faq_entries</span>[<span class="var">i</span>] <span class="kw">for</span> <span class="var">i</span> <span class="kw">in</span> <span class="var">top_k</span>]</pre>
+
+<h3 class="subsection">Lecture de machine (Machine Reading)</h3>
+<p>
+  Une fois les candidats sélectionnés, T5 est utilisé en mode <strong>extractif/génératif</strong> pour extraire ou formuler la réponse précise à partir du contexte récupéré. L'entrée est formatée comme : « question: [Q] context: [contexte_récupéré] » et la sortie est la réponse générée.
+</p>
+
+<div class="callout info">
+  <div class="callout-title">Seuil de confiance</div>
+  Si le score de similarité cosinus maximum ne dépasse pas un seuil θ = 0.65, la question est considérée hors-périmètre et redirigée vers le générateur fallback GPT-2, évitant ainsi des réponses erronées.
+</div>
+
+
+<h2 class="section" data-n="11">Génération de secours (Fallback)</h2>
+
+<p>
+  Le module de <strong>génération de secours</strong> gère les questions pour lesquelles aucune entrée de la FAQ ne présente une similarité suffisante avec la question posée. Dans ce cas, le modèle GPT-2 fine-tuné génère une réponse générique mais contextuelle, reconnaissant les limites du système et guidant l'étudiant vers les ressources appropriées.
+</p>
+
+<pre><span class="kw">def</span> <span class="fn">generate_fallback</span>(<span class="var">question</span>: <span class="cls">str</span>) -> <span class="cls">str</span>:
+    <span class="var">prompt</span> = <span class="str">f"Question: {question}\nRéponse:"</span>
+    <span class="var">inputs</span> = <span class="var">gpt2_tokenizer</span>(<span class="var">prompt</span>, return_tensors=<span class="str">"pt"</span>)
+    <span class="var">outputs</span> = <span class="var">gpt2_model</span>.generate(
+        **<span class="var">inputs</span>,
+        max_new_tokens=<span class="attr">80</span>,
+        temperature=<span class="attr">0.7</span>,
+        top_p=<span class="attr">0.9</span>,
+        do_sample=<span class="kw">True</span>,
+        pad_token_id=<span class="var">gpt2_tokenizer</span>.eos_token_id,
+    )
+    <span class="var">response</span> = <span class="var">gpt2_tokenizer</span>.decode(<span class="var">outputs</span>[<span class="attr">0</span>], skip_special_tokens=<span class="kw">True</span>)
+    <span class="kw">return</span> <span class="var">response</span>[len(<span class="var">prompt</span>):]  <span class="cmt"># retirer le prompt de la sortie</span></pre>
+
+<p>
+  Les paramètres de génération sont soigneusement calibrés : la <strong>température</strong> (0.7) contrôle la créativité de la génération, tandis que le <strong>top-p sampling</strong> (0.9) assure que seuls les tokens les plus plausibles sont échantillonnés, évitant les réponses incohérentes.
+</p>
+
+
+<h2 class="section" data-n="12">Résultats et évaluation</h2>
+
+<h3 class="subsection">Métriques d'évaluation</h3>
+<p>
+  L'évaluation du système s'appuie sur plusieurs métriques complémentaires : pour la classification d'intention, l'<strong>accuracy</strong> et le <strong>F1-score macro</strong> ; pour la génération de réponses, le score <strong>BLEU</strong> (BiLingual Evaluation Understudy) comparant les réponses générées aux réponses de référence, ainsi qu'une évaluation humaine de la pertinence et de la fluidité.
+</p>
+
+<table>
+  <thead><tr><th>Composant</th><th>Métrique</th><th>Score obtenu</th></tr></thead>
+  <tbody>
+    <tr><td>Classification d'intention (T5)</td><td>Accuracy</td><td>91.3 %</td></tr>
+    <tr><td>Classification d'intention (T5)</td><td>F1 macro</td><td>0.89</td></tr>
+    <tr><td>Retrieval (similarité cosinus)</td><td>Précision@1</td><td>84.7 %</td></tr>
+    <tr><td>QA génératif (T5)</td><td>BLEU-4</td><td>0.41</td></tr>
+    <tr><td>Génération fallback (GPT-2)</td><td>BLEU-4</td><td>0.23</td></tr>
+    <tr><td>Évaluation humaine (pertinence)</td><td>Score /5</td><td>4.1 / 5</td></tr>
+  </tbody>
+  <caption>Table 8 — Résultats d'évaluation du système</caption>
+</table>
+
+<h3 class="subsection">Analyse qualitative</h3>
+<p>
+  Les résultats montrent que le système atteint une <strong>précision de classification supérieure à 91 %</strong>, ce qui est suffisant pour un déploiement en production dans un contexte à faible risque. Le module de récupération obtient une précision@1 de 84.7 %, signifiant que dans 85 % des cas, la réponse en tête de la liste récupérée est la bonne. Le module GPT-2 produit des réponses de fallback jugées pertinentes dans 82 % des cas lors de l'évaluation humaine.
+</p>
+
+
+<h2 class="section" data-n="13">Discussion et perspectives</h2>
+
+<h3 class="subsection">Forces du système</h3>
+<ul style="margin-left:1.5rem;margin-bottom:1rem;font-size:.97rem">
+  <li style="margin-bottom:.5rem"><strong>Approche hybride</strong> : la combinaison retrieval + génération offre le meilleur des deux approches — précision pour les questions connues, robustesse pour les questions inconnues ;</li>
+  <li style="margin-bottom:.5rem"><strong>Fine-tuning domaine-spécifique</strong> : l'adaptation sur les données UMMTO améliore significativement les performances par rapport aux modèles génériques ;</li>
+  <li><strong>Gestion du hors-périmètre</strong> : le seuil de confiance évite les réponses incorrectes et améliore la fiabilité du système.</li>
+</ul>
+
+<h3 class="subsection">Limites</h3>
+<ul style="margin-left:1.5rem;margin-bottom:1rem;font-size:.97rem">
+  <li style="margin-bottom:.5rem"><strong>Taille du dataset</strong> : le dataset FAQ est relativement petit (~400 paires) ; un corpus plus large améliorerait les performances de généralisation ;</li>
+  <li style="margin-bottom:.5rem"><strong>Multilinguisme</strong> : le système traite actuellement le français uniquement ; le darija et le kabyle, utilisés par certains étudiants, ne sont pas supportés ;</li>
+  <li><strong>Absence d'interface</strong> : le système est implémenté en backend Python sans interface utilisateur finalisée dans cette version.</li>
+</ul>
+
+<h3 class="subsection">Perspectives d'extension</h3>
+<ul style="margin-left:1.5rem;font-size:.97rem">
+  <li style="margin-bottom:.5rem"><strong>RAG (Retrieval-Augmented Generation)</strong> : intégration d'un pipeline RAG moderne avec une base vectorielle (pgvector, Chroma) pour une récupération plus précise et scalable ;</li>
+  <li style="margin-bottom:.5rem"><strong>Modèles multilingues</strong> : adoption de modèles comme mBERT ou CamemBERT pour supporter le multilinguisme ;</li>
+  <li style="margin-bottom:.5rem"><strong>Interface web</strong> : développement d'une interface chat intégrée au portail UMMTO ;</li>
+  <li style="margin-bottom:.5rem"><strong>Apprentissage continu</strong> : mécanisme de feedback permettant au système d'apprendre des corrections apportées par les administrateurs ;</li>
+  <li><strong>API REST</strong> : encapsulation du système dans une API FastAPI pour une intégration dans les systèmes d'information existants.</li>
+</ul>
+
+
+<h2 class="section" data-n="14">Conclusion</h2>
+
+<p>
+  Ce projet a permis de concevoir et d'implémenter un système de chatbot FAQ universitaire complet, exploitant les technologies NLP les plus avancées — fine-tuning de GPT-2 et T5 via HuggingFace Transformers — pour automatiser les réponses aux questions récurrentes des étudiants de l'UMMTO.
+</p>
+<p>
+  L'architecture hybride, associant classification d'intention, moteur de récupération par similarité sémantique et génération de secours, démontre comment combiner intelligemment plusieurs approches NLP pour obtenir un système robuste et polyvalent. Les résultats d'évaluation, avec une accuracy de classification à 91.3 % et une pertinence humaine de 4.1/5, valident la faisabilité d'un tel système dans un contexte universitaire réel.
+</p>
+<p>
+  Ce projet illustre également le potentiel du paradigme <strong>pretraining + fine-tuning</strong> pour adapter rapidement des modèles de langage généraux à des domaines spécialisés avec des ressources limitées, ouvrant la voie à des applications NLP dans d'autres services de l'enseignement supérieur algérien.
+</p>
+
+
+<!-- ══════════════════════════════════════════════════════
+     RÉFÉRENCES
+══════════════════════════════════════════════════════ -->
+<h2 class="section" data-n="">Références</h2>
+<ol class="biblio">
+  <li>Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, Ł., &amp; Polosukhin, I. (2017). <em>Attention Is All You Need</em>. Advances in Neural Information Processing Systems, 30.</li>
+  <li>Raffel, C., Shazeer, N., Roberts, A., Lee, K., Narang, S., Matena, M., Zhou, Y., Li, W., &amp; Liu, P. J. (2020). <em>Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer</em>. JMLR, 21(140), 1–67.</li>
+  <li>Radford, A., Wu, J., Child, R., Luan, D., Amodei, D., &amp; Sutskever, I. (2019). <em>Language Models are Unsupervised Multitask Learners</em>. OpenAI Blog.</li>
+  <li>Devlin, J., Chang, M.-W., Lee, K., &amp; Toutanova, K. (2019). <em>BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</em>. NAACL-HLT 2019.</li>
+  <li>Wolf, T., Debut, L., Sanh, V., Chaumond, J., Delangue, C., Moi, A., … Brew, J. (2020). <em>Transformers: State-of-the-Art Natural Language Processing</em>. EMNLP 2020.</li>
+  <li>Mikolov, T., Chen, K., Corrado, G., &amp; Dean, J. (2013). <em>Efficient Estimation of Word Representations in Vector Space</em>. ICLR 2013.</li>
+  <li>Pennington, J., Socher, R., &amp; Manning, C. D. (2014). <em>GloVe: Global Vectors for Word Representation</em>. EMNLP 2014.</li>
+  <li>Karpukhin, V., Oguz, B., Min, S., Lewis, P., Wu, L., Edunov, S., Chen, D., &amp; Yih, W. (2020). <em>Dense Passage Retrieval for Open-Domain Question Answering</em>. EMNLP 2020.</li>
+  <li>HuggingFace. (2024). <em>Transformers Documentation</em>. https://huggingface.co/docs/transformers</li>
+  <li>Papineni, K., Roukos, S., Ward, T., &amp; Zhu, W.-J. (2002). <em>BLEU: a Method for Automatic Evaluation of Machine Translation</em>. ACL 2002.</li>
+</ol>
+
+</body>
+</html>

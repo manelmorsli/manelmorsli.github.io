@@ -12,6 +12,8 @@ interface Project {
   details: { en: string[]; fr: string[] };
   stack: string[];
   type: "professional" | "academic" | "personal";
+  report?: string;
+  github?: string;
 }
 
 const projects: Project[] = [
@@ -123,6 +125,7 @@ const projects: Project[] = [
       "HuggingFace",
     ],
     type: "professional",
+    github: "https://github.com/manelmorsli/research_ai",
   },
   {
     id: "breast-cancer",
@@ -209,6 +212,8 @@ const projects: Project[] = [
       "NLP",
     ],
     type: "academic",
+    report: "repports/rapport_nlp.html",
+    github: "https://github.com/manelmorsli/University-Chatbot-Student-FAQ-System",
   },
   {
     id: "ontology-fashion",
@@ -244,6 +249,8 @@ const projects: Project[] = [
     },
     stack: ["Protégé", "OWL", "RDF", "RDFS", "SPARQL"],
     type: "academic",
+    report: "repports/rapport_web_semantique.html",
+    github: "https://github.com/manelmorsli/Stylist_Semantic_Web",
   },
   {
     id: "data-mining",
@@ -551,6 +558,8 @@ const t = {
     close: { en: "Close", fr: "Fermer" },
     techStack: { en: "Tech Stack", fr: "Stack Technique" },
     keyPoints: { en: "Key Highlights", fr: "Points Clés" },
+    viewReport: { en: "View Report", fr: "Voir le Rapport" },
+    viewGithub: { en: "GitHub", fr: "GitHub" },
   },
   skills: {
     section: { en: "Skills", fr: "Compétences" },
@@ -1388,13 +1397,33 @@ export default function App() {
               </div>
             </div>
 
-            <div className="px-8 pb-8">
+            <div className="px-8 pb-8 flex flex-wrap items-center gap-3">
               <button
                 onClick={() => setSelectedProject(null)}
                 className="text-sm opacity-50 hover:opacity-100 transition-opacity border border-border px-4 py-2"
               >
                 ← {get(t.projects.close, lang)}
               </button>
+              {selectedProject.report && (
+                <a
+                  href={selectedProject.report}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm border border-border px-4 py-2 transition-colors duration-150 hover:bg-foreground hover:text-background"
+                >
+                  ↗ {get(t.projects.viewReport, lang)}
+                </a>
+              )}
+              {selectedProject.github && (
+                <a
+                  href={selectedProject.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm border border-border px-4 py-2 transition-colors duration-150 hover:bg-foreground hover:text-background font-mono"
+                >
+                  ↗ {get(t.projects.viewGithub, lang)}
+                </a>
+              )}
             </div>
           </div>
         </div>
