@@ -295,6 +295,8 @@ const projects: Project[] = [
       "NumPy",
     ],
     type: "academic",
+    report: "https://htmlpreview.github.io/?https://raw.githubusercontent.com/manelmorsli/Data_Maining/main/rapport.html",
+    github: "https://github.com/manelmorsli/Data_Maining",
   },
   {
     id: "smart-greenhouse",

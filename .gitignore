@@ -27,3 +27,10 @@ pnpm-debug.log*
 
 # Latex folder 
 resume-latex/ 
+
+#folder for generated resume pdfs
+resumes/
+
+# folder for repos 
+university_repos/
+!\university_repos\Data_Maining\rapport.html
