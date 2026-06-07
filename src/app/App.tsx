@@ -141,8 +141,8 @@ const projects: Project[] = [
       fr: "Mémoire de master — pipeline de diagnostic IA combinant MTC et vision par ordinateur",
     },
     description: {
-      en: "This thesis presents the development of an intelligent system for early breast cancer diagnosis based on tongue analysis according to Traditional Chinese Medicine (TCM) principles. Facing the increasing incidence of breast cancer, affecting one in eight women worldwide, and the limitations of conventional screening methods, this work explores a non-invasive approach combining ancestral knowledge with modern technologies. The proposed architecture, named YOLO_BCTCM, integrates several innovative components: YOLOv8 for automatic tongue detection (100% mAP accuracy), YOLOv11 for identifying 16 specific pathological characteristics (71.53% mAP50), and machine learning algorithms (particularly XGBoost with 82.69% cross-validation score) for classification into three clinical stages (healthy, early, advanced). Given the absence of public datasets, we developed an innovative approach for AI-guided synthetic data generation, creating the **Tongue_MTCBC_Hope** dataset. Experimental results demonstrate remarkable performance: advanced stage diagnosis with 99.38% confidence, early-stage identification at 95.5%, and healthy state classification at 97.4%. The system is integrated into an interactive web platform **MTC Hybrid Pro**, making it accessible to practitioners. This research paves the way for intelligent preventive medicine, particularly relevant for regions with limited access to conventional screening technologies.",
-      fr: "Ce mémoire présente le développement d'un système intelligent d'aide au diagnostic précoce du cancer du sein basé sur l'analyse de la langue selon les principes de la Médecine Traditionnelle Chinoise (MTC). Face à l'incidence croissante du cancer du sein, touchant une femme sur huit dans le monde, et aux limitations des méthodes de dépistage conventionnelles, ce travail explore une approche non invasive combinant savoirs ancestraux et technologies modernes. L'architecture proposée, nommée YOLO_BCTCM, intègre plusieurs composantes innovantes : YOLOv8 pour la détection automatique de la langue (100 % de précision mAP50), YOLOv11 pour l'identification de 16 caractéristiques pathologiques spécifiques (71,53 % de précision mAP50), et des algorithmes de machine learning (notamment XGBoost avec 82,69 % de score en validation croisée) pour la classification en trois stades cliniques (sain, précoce, avancé). Face à l'absence de jeux de données publics, nous avons développé une approche novatrice de génération de données synthétiques guidée par l'IA, créant le dataset **Tongue_MTCBC_Hope**. Les résultats expérimentaux démontrent des performances remarquables : diagnostic du stade avancé avec 99,38 % de confiance, identification du stade précoce à 95,5 %, et classification de l'état sain à 97,4 %. L'ensemble est intégré dans une plateforme web interactive **MTC Hybrid Pro**, rendant le système accessible aux praticiens. Cette recherche ouvre la voie à une médecine préventive intelligente, particulièrement pertinente pour les régions à accès limité aux technologies de dépistage conventionnel.",
+      en: "Developed an intelligent system for early breast cancer diagnosis through tongue analysis based on Traditional Chinese Medicine (TCM) principles — a non-invasive alternative to conventional screening. The proposed architecture, YOLO_BCTCM, combines YOLOv8 for tongue detection (100% mAP50), YOLOv11 for identifying 16 pathological characteristics (71.53% mAP50), and XGBoost for classification into three clinical stages (healthy, early, advanced). Facing the absence of public datasets, a novel AI-guided synthetic data generation approach was developed, producing the Tongue_MTCBC_Hope dataset. Results: advanced-stage diagnosis at 99.38% confidence, early-stage at 95.5%, healthy state at 97.4%. Integrated into the MTC Hybrid Pro web platform for practitioner use.",
+      fr: "Développement d'un système intelligent d'aide au diagnostic précoce du cancer du sein basé sur l'analyse de la langue selon les principes de la Médecine Traditionnelle Chinoise (MTC) — une alternative non invasive au dépistage conventionnel. L'architecture YOLO_BCTCM combine YOLOv8 pour la détection de la langue (100 % mAP50), YOLOv11 pour l'identification de 16 caractéristiques pathologiques (71,53 % mAP50) et XGBoost pour la classification en trois stades cliniques (sain, précoce, avancé). Face à l'absence de datasets publics, une approche novatrice de génération de données synthétiques guidée par IA a produit le dataset Tongue_MTCBC_Hope. Résultats : stade avancé à 99,38 %, stade précoce à 95,5 %, état sain à 97,4 %. Intégré dans la plateforme web MTC Hybrid Pro à destination des praticiens.",
     },
     details: {
       en: [
@@ -283,6 +283,51 @@ const projects: Project[] = [
     github: "https://github.com/manelmorsli/Stylist_Semantic_Web",
   },
   {
+    id: "computer-vision",
+    year: "2024",
+    category: "Computer Vision",
+    title: {
+      en: "Image Processing & Computer Vision Lab",
+      fr: "Traitement d'Images & Vision Artificielle",
+    },
+    tagline: {
+      en: "Academic labs: 2D image filtering and region segmentation for handwritten character recognition",
+      fr: "Travaux pratiques : filtrage d'images 2D et segmentation pour la reconnaissance de caractères manuscrits",
+    },
+    description: {
+      en: "Two-part academic lab covering core computer vision techniques. TP1 implements 2D convolution filters from scratch (blur, Laplacian, sharpening, median) with boundary strategy analysis. TP2 builds a region-based segmentation pipeline for handwritten character recognition using classical image processing.",
+      fr: "Travaux pratiques en deux parties couvrant les techniques fondamentales de vision artificielle. TP1 implémente des filtres de convolution 2D from scratch (flou, Laplacien, sharpening, médian) avec analyse des stratégies de bords. TP2 construit un pipeline de segmentation par région pour la reconnaissance de caractères manuscrits.",
+    },
+    details: {
+      en: [
+        "TP1 — Image Filtering: 2D convolution from scratch with blur, Laplacian, sharpening, and median kernels",
+        "Zero-padding vs. reflected-padding boundary strategies — comparison of edge detection accuracy",
+        "Computational cost analysis: vectorized NumPy median vs. explicit Python loops benchmarked on real hardware",
+        "TP2 — Region Segmentation: grayscale preprocessing, thresholding, and morphological operations pipeline",
+        "Handwritten character extraction and classification via region-based segmentation",
+        "Full academic report covering mathematical principles, code implementation, and quantitative results analysis",
+      ],
+      fr: [
+        "TP1 — Filtrage d'Images : convolution 2D from scratch avec noyaux flou, Laplacien, sharpening et médian",
+        "Stratégies de gestion des bords zero-padding vs. reflected-padding — comparaison de la précision de détection de contours",
+        "Analyse du coût computationnel : médian NumPy vectorisé vs. boucles Python explicites sur matériel réel",
+        "TP2 — Segmentation par Région : pipeline prétraitement niveaux de gris, seuillage et opérations morphologiques",
+        "Extraction et classification de caractères manuscrits par segmentation par région",
+        "Rapport académique complet couvrant principes mathématiques, implémentation et analyse des résultats",
+      ],
+    },
+    stack: ["Python", "NumPy", "OpenCV", "Matplotlib", "Scikit-image"],
+    type: "academic",
+    report: "repports/rapport_vision_artificielle.html",
+    github: "https://github.com/manelmorsli/Computer_Vision",
+    links: [
+      {
+        label: { en: "Academic Reports (OneDrive)", fr: "Rapports Académiques (OneDrive)" },
+        url: "https://1drv.ms/f/c/21da4b91de50ee13/IgBHFMHWhf__R7hIB7TBH1KqAR8ZLrmmH7wfDJlpSg9ZsYg?e=Skz1L6",
+      },
+    ],
+  },
+  {
     id: "data-mining",
     year: "2023",
     category: "Machine Learning",
@@ -382,49 +427,10 @@ const projects: Project[] = [
     type: "academic",
     report: "repports/iot-project-report.html",
     github: "https://github.com/manelmorsli/Internet_Of_Things",
-  },
-  {
-    id: "computer-vision",
-    year: "2024",
-    category: "Computer Vision",
-    title: {
-      en: "Image Processing & Computer Vision Lab",
-      fr: "Traitement d'Images & Vision Artificielle",
-    },
-    tagline: {
-      en: "Academic labs: 2D image filtering and region segmentation for handwritten character recognition",
-      fr: "Travaux pratiques : filtrage d'images 2D et segmentation pour la reconnaissance de caractères manuscrits",
-    },
-    description: {
-      en: "Two-part academic lab covering core computer vision techniques. TP1 implements 2D convolution filters from scratch (blur, Laplacian, sharpening, median) with boundary strategy analysis. TP2 builds a region-based segmentation pipeline for handwritten character recognition using classical image processing.",
-      fr: "Travaux pratiques en deux parties couvrant les techniques fondamentales de vision artificielle. TP1 implémente des filtres de convolution 2D from scratch (flou, Laplacien, sharpening, médian) avec analyse des stratégies de bords. TP2 construit un pipeline de segmentation par région pour la reconnaissance de caractères manuscrits.",
-    },
-    details: {
-      en: [
-        "TP1 — Image Filtering: 2D convolution from scratch with blur, Laplacian, sharpening, and median kernels",
-        "Zero-padding vs. reflected-padding boundary strategies — comparison of edge detection accuracy",
-        "Computational cost analysis: vectorized NumPy median vs. explicit Python loops benchmarked on real hardware",
-        "TP2 — Region Segmentation: grayscale preprocessing, thresholding, and morphological operations pipeline",
-        "Handwritten character extraction and classification via region-based segmentation",
-        "Full academic report covering mathematical principles, code implementation, and quantitative results analysis",
-      ],
-      fr: [
-        "TP1 — Filtrage d'Images : convolution 2D from scratch avec noyaux flou, Laplacien, sharpening et médian",
-        "Stratégies de gestion des bords zero-padding vs. reflected-padding — comparaison de la précision de détection de contours",
-        "Analyse du coût computationnel : médian NumPy vectorisé vs. boucles Python explicites sur matériel réel",
-        "TP2 — Segmentation par Région : pipeline prétraitement niveaux de gris, seuillage et opérations morphologiques",
-        "Extraction et classification de caractères manuscrits par segmentation par région",
-        "Rapport académique complet couvrant principes mathématiques, implémentation et analyse des résultats",
-      ],
-    },
-    stack: ["Python", "NumPy", "OpenCV", "Matplotlib", "Scikit-image"],
-    type: "academic",
-    report: "repports/rapport_vision_artificielle.html",
-    github: "https://github.com/manelmorsli/Computer_Vision",
     links: [
       {
-        label: { en: "Academic Reports (OneDrive)", fr: "Rapports Académiques (OneDrive)" },
-        url: "https://1drv.ms/f/c/21da4b91de50ee13/IgBHFMHWhf__R7hIB7TBH1KqAR8ZLrmmH7wfDJlpSg9ZsYg?e=Skz1L6",
+        label: { en: "Project Report (OneDrive)", fr: "Rapport du Projet (OneDrive)" },
+        url: "https://1drv.ms/b/c/21da4b91de50ee13/IQDTx6yHrrr0S6CBEvysXUA_AbSDxAGkZYbuhsXsPlY5Nbg?e=CajH8J",
       },
     ],
   },
@@ -464,6 +470,7 @@ const projects: Project[] = [
     },
     stack: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
     type: "academic",
+    report: "repports/PFE_licence.html",
     github: "https://github.com/manelmorsli/DentalPlan-Project.git",
     links: [
       {
@@ -989,20 +996,20 @@ export default function App() {
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     {[
-                      "Artificial Intelligence",
-                      "Quantum Computing",
-                      "Medical Technology",
-                      "Cybersecurity",
-                      "Mathematics",
-                      "Teaching",
-                      "Entrepreneurship",
-                      "Fashion Design",
+                      { en: "Artificial Intelligence", fr: "Intelligence Artificielle" },
+                      { en: "Quantum Computing", fr: "Informatique Quantique" },
+                      { en: "Medical Technology", fr: "Technologies Médicales" },
+                      { en: "Cybersecurity", fr: "Cybersécurité" },
+                      { en: "Mathematics", fr: "Mathématiques" },
+                      { en: "Teaching", fr: "Enseignement" },
+                      { en: "Entrepreneurship", fr: "Entrepreneuriat" },
+                      { en: "Fashion Design", fr: "Design de Mode" },
                     ].map((interest) => (
                       <span
-                        key={interest}
+                        key={interest.en}
                         className="text-xs opacity-50 border border-border rounded-full px-3 py-1"
                       >
-                        {interest}
+                        {get(interest, lang)}
                       </span>
                     ))}
                   </div>
@@ -1019,16 +1026,18 @@ export default function App() {
                       },
                       {
                         label: "GitHub",
-                        href: "https://github.com",
+                        href: "https://github.com/manelmorsli",
                       },
                       {
                         label: "LinkedIn",
-                        href: "https://linkedin.com",
+                        href: "https://www.linkedin.com/in/manel-morsli/",
                       },
                     ].map((link) => (
                       <a
                         key={link.label}
                         href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="block opacity-50 hover:opacity-100 transition-opacity"
                       >
                         {link.label} →
@@ -1413,12 +1422,12 @@ export default function App() {
                   },
                   {
                     label: "GitHub",
-                    href: "https://github.com",
+                    href: "https://github.com/manelmorsli",
                     detail: "Code",
                   },
                   {
                     label: "LinkedIn",
-                    href: "https://linkedin.com",
+                    href: "https://www.linkedin.com/in/manel-morsli/",
                     detail: "Professional",
                   },
                 ].map((link) => (
