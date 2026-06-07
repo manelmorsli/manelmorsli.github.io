@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rapport Synthétique — PFE SMAILI & MORSLI · Cancer du Sein & MTC</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink:   #1a1a2e;
+  --muted: #5a5a7a;
+  --line:  #d8d8e8;
+  --accent:#8b5cf6;
+  --gold:  #b8860b;
+  --bg:    #fafaf8;
+  --card:  #f4f4f0;
+  --red:   #c0392b;
+  --blue:  #2563eb;
+  --green: #166534;
+}
+
+html { font-size: 15px; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Crimson Pro', Georgia, serif;
+  line-height: 1.75;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 3rem 2.5rem;
+}
+
+@media print {
+  body { padding: 0; max-width: none; }
+  .no-print { display: none; }
+  .page-break { break-before: page; }
+  a { color: inherit; text-decoration: none; }
+}
+
+/* ── COVER ── */
+.cover {
+  text-align: center;
+  padding: 4rem 2rem 5rem;
+  border-bottom: 3px solid var(--ink);
+  margin-bottom: 3rem;
+}
+.cover .univ {
+  font-family: 'Inter', sans-serif;
+  font-size: .82rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--muted);
+  margin-bottom: .3rem;
+}
+.cover .module {
+  font-family: 'Inter', sans-serif;
+  font-size: .88rem;
+  color: var(--muted);
+  margin-bottom: 2.5rem;
+}
+.cover .title {
+  font-size: 2.6rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: .6rem;
+}
+.cover .subtitle {
+  font-size: 1.3rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--muted);
+  margin-bottom: 2.5rem;
+}
+.cover .meta {
+  font-family: 'Inter', sans-serif;
+  font-size: .85rem;
+  color: var(--muted);
+  line-height: 1.9;
+}
+.cover .meta span { font-weight: 600; color: var(--ink); }
+.cover-rule { width: 60px; height: 3px; background: var(--gold); margin: 1.5rem auto; }
+
+/* ── TOC ── */
+.toc { margin-bottom: 3rem; }
+.toc h2 { font-family: 'Inter', sans-serif; font-size: 1rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); margin-bottom: 1rem; }
+.toc ol { list-style: none; padding: 0; }
+.toc li { display: flex; justify-content: space-between; padding: .35rem 0; border-bottom: 1px dotted var(--line); font-size: .95rem; }
+.toc li .num { color: var(--muted); min-width: 2rem; }
+.toc li .page { color: var(--muted); font-family: 'Inter', sans-serif; font-size: .82rem; }
+.toc-part { font-weight: 700; margin-top: .6rem; }
+.toc-sub { padding-left: 1.5rem; font-style: italic; }
+
+/* ── HEADINGS ── */
+h1.part-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -.3px;
+  border-top: 3px solid var(--ink);
+  border-bottom: 1px solid var(--line);
+  padding: .7rem 0;
+  margin: 2.5rem 0 1.5rem;
+}
+h2.section {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 2rem 0 .8rem;
+  color: var(--ink);
+}
+h2.section::before {
+  content: attr(data-n) '. ';
+  color: var(--muted);
+}
+h2.section[data-n=""]::before { content: ''; }
+h3.subsection {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1.5rem 0 .6rem;
+  color: var(--ink);
+}
+
+/* ── BODY TEXT ── */
+p { margin-bottom: 1rem; font-size: 1rem; text-align: justify; }
+p + p { text-indent: 1.5em; }
+strong { font-weight: 700; }
+em { font-style: italic; }
+
+/* ── TABLES ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2rem 0;
+  font-family: 'Inter', sans-serif;
+  font-size: .82rem;
+}
+th {
+  background: var(--ink);
+  color: #fff;
+  text-align: left;
+  padding: .55rem .8rem;
+  font-weight: 600;
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+td { padding: .5rem .8rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+tr:nth-child(even) td { background: var(--card); }
+caption {
+  font-family: 'Inter', sans-serif;
+  font-size: .8rem;
+  color: var(--muted);
+  text-align: left;
+  padding: .3rem 0;
+  caption-side: bottom;
+}
+
+/* ── CALLOUTS ── */
+.callout {
+  border-left: 4px solid var(--gold);
+  background: #fefce8;
+  padding: .9rem 1.2rem;
+  border-radius: 0 6px 6px 0;
+  margin: 1.2rem 0;
+  font-size: .92rem;
+}
+.callout.info { border-color: var(--blue); background: #eff6ff; }
+.callout.def  { border-color: var(--green); background: #f0fdf4; }
+.callout.result { border-color: var(--red); background: #fff5f5; }
+.callout .callout-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .8px;
+  margin-bottom: .4rem;
+  color: var(--muted);
+}
+
+/* ── METRICS ROW ── */
+.metrics-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .8rem;
+  margin: 1.2rem 0;
+}
+.metric-box {
+  flex: 1 1 130px;
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--gold);
+  background: var(--card);
+  border-radius: 0 0 4px 4px;
+  padding: .8rem 1rem;
+  text-align: center;
+}
+.metric-box .val {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--ink);
+  display: block;
+}
+.metric-box .lbl {
+  font-family: 'Inter', sans-serif;
+  font-size: .72rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+/* ── PIPELINE STEPS ── */
+.pipeline {
+  font-family: 'Inter', sans-serif;
+  font-size: .83rem;
+  line-height: 1.8;
+  background: var(--card);
+  padding: 1.2rem;
+  border-radius: 6px;
+  margin: 1rem 0;
+  border: 1px solid var(--line);
+}
+.pipeline .step { display: flex; gap: .8rem; margin-bottom: .3rem; }
+.pipeline .step .n { color: var(--gold); font-weight: 700; min-width: 1.6rem; }
+
+/* ── BIBLIO ── */
+.biblio { margin-left: 1.5rem; }
+.biblio li { margin-bottom: .6rem; font-size: .92rem; }
+
+.page-num { font-family: 'Inter', sans-serif; font-size: .75rem; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════
+     COVER
+══════════════════════════════════════════════════════ -->
+<div class="cover">
+  <div class="univ">Université Mouloud Mammeri de Tizi-Ouzou</div>
+  <div class="univ" style="letter-spacing:1px;margin-bottom:.2rem">Faculté de Génie Électrique et d'Informatique · Département Informatique</div>
+  <div class="module">Master 2 — Système Informatique Intelligent · 2024–2025</div>
+  <div class="cover-rule"></div>
+  <div class="title">Système d'aide au Diagnostic<br>du Cancer du Sein</div>
+  <div class="subtitle">par l'analyse de la langue en<br>Médecine Traditionnelle Chinoise</div>
+  <div class="cover-rule"></div>
+  <div class="meta">
+    Réalisé par : <span>SMAILI Maya &amp; MORSLI Manel</span><br>
+    Encadrant : <span>Mme Yesli</span><br>
+    Soutenu le : <span>02 juillet 2025</span><br>
+    Technologies : <span>YOLOv8 · YOLOv11 · XGBoost · Python · Streamlit</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     TABLE DES MATIÈRES
+══════════════════════════════════════════════════════ -->
+<div class="toc">
+  <h2>Table des matières</h2>
+  <ol>
+    <li class="toc-part"><span class="num"></span><span>Partie I — Fondements théoriques</span><span class="page">3</span></li>
+    <li class="toc-sub"><span class="num">I.</span><span>Principes de la Médecine Traditionnelle Chinoise</span><span class="page">3</span></li>
+    <li class="toc-sub"><span class="num">II.</span><span>Apprentissage automatique &amp; réseaux de neurones</span><span class="page">4</span></li>
+    <li class="toc-sub"><span class="num">III.</span><span>Vision artificielle &amp; algorithme YOLO</span><span class="page">5</span></li>
+    <li class="toc-part" style="margin-top:.8rem"><span class="num"></span><span>Partie II — État de l'art &amp; Contribution</span><span class="page">6</span></li>
+    <li class="toc-sub"><span class="num">IV.</span><span>État de l'art — Diagnostic automatisé en MTC</span><span class="page">6</span></li>
+    <li class="toc-sub"><span class="num">V.</span><span>Contribution — Architecture YOLO_BCTCM</span><span class="page">7</span></li>
+    <li class="toc-sub"><span class="num">VI.</span><span>Implémentation &amp; tests</span><span class="page">9</span></li>
+    <li class="toc-sub"><span class="num">VII.</span><span>Conclusion générale &amp; perspectives</span><span class="page">11</span></li>
+    <li class="toc-sub"><span class="num"></span><span>Références</span><span class="page">12</span></li>
+  </ol>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     PARTIE I
+══════════════════════════════════════════════════════ -->
+<h1 class="part-title page-break">Partie I — Fondements théoriques</h1>
+
+<h2 class="section" data-n="I">Principes de la Médecine Traditionnelle Chinoise</h2>
+
+<p>
+  La <strong>Médecine Traditionnelle Chinoise</strong> (MTC), désignée 中医 (<em>Zhōng yī</em>), est une approche holistique de la santé vieille de plusieurs millénaires. Elle ne se contente pas de traiter les symptômes : elle cherche à comprendre l'équilibre global du corps, de l'esprit et des émotions. Son cadre conceptuel repose sur plusieurs grands principes.
+</p>
+
+<div class="callout def">
+  <div class="callout-title">Concepts fondamentaux</div>
+  <strong>Qi</strong> — énergie vitale circulant dans le corps via les méridiens. <strong>Yin-Yang</strong> — dualité complémentaire régissant tout phénomène. <strong>Cinq éléments</strong> (Bois, Feu, Terre, Métal, Eau) — relations dynamiques entre organes, émotions et saisons.
+</div>
+
+<h3 class="subsection">L'observation de la langue en MTC</h3>
+<p>
+  Parmi les quatre méthodes diagnostiques de la MTC (observation, auscultation, interrogatoire, palpation), l'<strong>observation de la langue</strong> occupe une place centrale. La couleur du corps lingual, la nature de l'enduit, la présence de fissures ou de taches, la zone affectée — chaque élément trahit un déséquilibre énergétique spécifique. C'est ce principe qui fonde la pertinence d'une automatisation par vision artificielle.
+</p>
+
+<table>
+  <thead><tr><th>Méthode MTC</th><th>Élément observé</th><th>Lien avec le cancer du sein</th></tr></thead>
+  <tbody>
+    <tr><td>Observation de la langue</td><td>Couleur, enduit, fissures, zones</td><td>Stagnation du Qi, chaleur toxique, déficience du Yin</td></tr>
+    <tr><td>Analyse des émotions</td><td>État mental du patient</td><td>Stress chronique, blocage hépatique</td></tr>
+    <tr><td>Diététique chinoise</td><td>Alimentation énergétique</td><td>Déséquilibres alimentaires aggravants</td></tr>
+    <tr><td>Acupuncture / Plantes</td><td>Traitement des méridiens</td><td>Rétablissement de la circulation du Qi</td></tr>
+  </tbody>
+  <caption>Table 1 — Méthodes diagnostiques MTC appliquées au cancer du sein</caption>
+</table>
+
+<p>
+  L'objectif n'est pas de <em>remplacer</em> la médecine occidentale (mammographie, échographie, IRM), mais de la <strong>compléter</strong> par une approche non invasive, économique et préventive — particulièrement adaptée aux régions à faible accès aux soins.
+</p>
+
+
+<h2 class="section" data-n="II">Apprentissage automatique &amp; réseaux de neurones</h2>
+
+<p>
+  Ce chapitre pose les bases algorithmiques nécessaires à la compréhension du système. L'<strong>intelligence artificielle</strong> appliquée repose ici sur quatre paradigmes d'apprentissage.
+</p>
+
+<table>
+  <thead><tr><th>Paradigme</th><th>Principe</th><th>Application dans ce projet</th></tr></thead>
+  <tbody>
+    <tr><td>Supervisé</td><td>Apprentissage à partir d'exemples étiquetés</td><td>Classification des stades cliniques</td></tr>
+    <tr><td>Non supervisé</td><td>Découverte de structures cachées</td><td>Clustering des caractéristiques linguales</td></tr>
+    <tr><td>Semi-supervisé</td><td>Peu de labels, beaucoup de données brutes</td><td>Augmentation du dataset synthétique</td></tr>
+    <tr><td>Par renforcement</td><td>Apprentissage par récompense</td><td>Optimisation des hyperparamètres</td></tr>
+  </tbody>
+  <caption>Table 2 — Paradigmes d'apprentissage automatique</caption>
+</table>
+
+<p>
+  Les <strong>réseaux de neurones convolutifs</strong> (CNN) constituent le cœur de la détection d'images. Leur capacité à extraire automatiquement des caractéristiques visuelles hiérarchiques (contours → textures → formes sémantiques) les rend particulièrement adaptés à l'analyse de la langue. Des architectures avancées comme les <em>Transformers</em>, les GAN (Generative Adversarial Networks) et le <em>Transfer Learning</em> ont également été étudiés — ce dernier étant clé pour compenser l'absence de données cliniques réelles.
+</p>
+
+<div class="callout info">
+  <div class="callout-title">Pourquoi le Transfer Learning ?</div>
+  Face à un dataset de seulement 88 images synthétiques, pré-entraîner YOLOv11 sur des millions d'images publiques avant de l'affiner sur notre dataset spécifique permet d'obtenir des performances nettement supérieures à un entraînement from scratch.
+</div>
+
+
+<h2 class="section" data-n="III">Vision artificielle &amp; algorithme YOLO</h2>
+
+<p>
+  La <strong>vision artificielle</strong> vise à doter les machines d'une capacité d'analyse visuelle comparable à celle de l'humain. Ce chapitre couvre les techniques classiques (filtrage, segmentation, morphologie) jusqu'aux modèles profonds modernes, en se concentrant sur la famille YOLO.
+</p>
+
+<div class="callout def">
+  <div class="callout-title">YOLO — You Only Look Once</div>
+  Contrairement aux architectures à deux étapes (R-CNN), YOLO analyse l'image <strong>entière en une seule passe</strong> à travers le réseau, produisant simultanément les boîtes englobantes et les classes. Résultat : vitesse de traitement en temps réel alliée à une précision remarquable.
+</div>
+
+<table>
+  <thead><tr><th>Composant</th><th>Rôle</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Backbone</strong></td><td>Extraction des caractéristiques profondes de l'image (CSP, C2f…)</td></tr>
+    <tr><td><strong>Neck</strong></td><td>Fusion multi-échelles des features maps (FPN + PAN)</td></tr>
+    <tr><td><strong>Head</strong></td><td>Prédiction des boîtes, scores de confiance et classes</td></tr>
+    <tr><td><strong>NMS</strong></td><td>Non-Maximum Suppression : suppression des détections redondantes</td></tr>
+  </tbody>
+  <caption>Table 3 — Architecture YOLO : composants clés</caption>
+</table>
+
+<p>
+  Ce projet exploite deux versions : <strong>YOLOv8</strong> (segmentation de la langue) et <strong>YOLOv11</strong> (détection fine des 16 caractéristiques pathologiques). L'évolution de YOLOv5 à YOLOv11 montre des gains constants en précision et en vitesse, rendant ces modèles incontournables dans le diagnostic médical automatisé.
+</p>
+
+
+<!-- ══════════════════════════════════════════════════════
+     PARTIE II
+══════════════════════════════════════════════════════ -->
+<h1 class="part-title page-break">Partie II — État de l'art &amp; Contribution</h1>
+
+<h2 class="section" data-n="IV">État de l'art — Diagnostic automatisé en MTC</h2>
+
+<p>
+  Ce chapitre croise trois perspectives : la médecine conventionnelle (mammographie, échographie, IRM), les approches MTC de diagnostic lingual, et les systèmes d'aide au diagnostic existants.
+</p>
+
+<h3 class="subsection">Cancer du sein en Algérie</h3>
+<p>
+  Le cancer du sein est la pathologie maligne féminine la plus fréquente en Algérie — et dans le monde. Une femme sur huit sera concernée au cours de sa vie. Le diagnostic tardif, encore trop fréquent dans les pays en développement, réduit drastiquement les options thérapeutiques et les taux de survie. Ce contexte rend l'accès à un dépistage précoce et non invasif d'autant plus urgent.
+</p>
+
+<h3 class="subsection">Vide scientifique identifié</h3>
+<p>
+  Malgré des performances IA atteignant <strong>87 % de précision</strong> sur d'autres pathologies diagnostiquées par la langue (diabète, maladies hépatiques), l'analyse de la littérature mondiale révèle un déséquilibre frappant :
+</p>
+
+<div class="callout result">
+  <div class="callout-title">Constat — Rareté des études</div>
+  <strong>Seulement 4 études mondiales</strong> ciblent spécifiquement le cancer du sein par l'analyse de la langue en MTC. Trois sont accessibles en anglais, une seule en chinois (résumé uniquement). Ce vide scientifique constitue la principale motivation de ce projet.
+</div>
+
+<table>
+  <thead><tr><th>Système existant</th><th>Description</th><th>Limite</th></tr></thead>
+  <tbody>
+    <tr><td>SymMap</td><td>Base de données MTC des symptômes et remèdes</td><td>Pas de diagnostic par image</td></tr>
+    <tr><td>Shen-Acupuncture</td><td>Application mobile de diagnostic MTC global</td><td>Non spécifique au cancer, peu mis à jour</td></tr>
+    <tr><td>i-Tongue Diagnosis</td><td>Analyse photo de la langue (iOS)</td><td>Disponible en chinois/anglais seulement</td></tr>
+  </tbody>
+  <caption>Table 4 — Systèmes d'aide au diagnostic MTC existants</caption>
+</table>
+
+<p>
+  L'analyse des rares travaux disponibles permet néanmoins d'identifier des <strong>caractéristiques linguales distinctives</strong> entre stades précoce et avancé, posant les bases théoriques du système proposé. Un <strong>pipeline en 11 étapes</strong> — de la définition clinique jusqu'au déploiement — est extrait et sert de cadre structurant à la contribution.
+</p>
+
+
+<h2 class="section" data-n="V">Contribution — Architecture YOLO_BCTCM</h2>
+
+<h3 class="subsection">Problème des données</h3>
+<p>
+  La première difficulté majeure était l'<strong>absence totale de dataset public</strong> pour le diagnostic du cancer du sein par la langue en MTC. Les plateformes Kaggle, Roboflow, IEEE DataPort, Dataverse Harvard, ScienceDirect et AI Studio Baidu ne proposaient aucune donnée correspondante. Les bases privées des publications existantes n'ont pas pu être obtenues malgré plusieurs tentatives de contact.
+</p>
+
+<h3 class="subsection">Dataset synthétique Tongue_MTCBC_Hope</h3>
+<p>
+  Face à ce vide, une <strong>approche novatrice de génération synthétique guidée par IA</strong> a été développée. Cinq tentatives successives (script Python, synthèse IA, réalité augmentée, GAN/Stable Diffusion, prompt médical) ont abouti à un dataset utilisable.
+</p>
+
+<div class="pipeline">
+  <div class="step"><span class="n">①</span><span>Script Python pur — 2 000 images générées mais sans réalisme clinique</span></div>
+  <div class="step"><span class="n">②</span><span>Synthèse IA — formes incohérentes, réalisme absent</span></div>
+  <div class="step"><span class="n">③</span><span>Réalité augmentée — marqueurs pathologiques superposés sur photos réelles</span></div>
+  <div class="step"><span class="n">④</span><span>GAN / Stable Diffusion + ControlNet — meilleur réalisme</span></div>
+  <div class="step"><span class="n">⑤</span><span>IA guidée par prompt médical MTC — <strong>solution retenue</strong></span></div>
+</div>
+
+<table>
+  <thead><tr><th>Paramètre</th><th>Valeur</th></tr></thead>
+  <tbody>
+    <tr><td>Nom du dataset</td><td>Tongue_MTCBC_Hope</td></tr>
+    <tr><td>Images totales générées</td><td>88 (80 fonctionnelles)</td></tr>
+    <tr><td>Classes</td><td>Saine / Précoce / Avancée</td></tr>
+    <tr><td>Split</td><td>80 % entraînement · 10 % validation · 10 % test</td></tr>
+    <tr><td>Augmentation</td><td>×3 (rotation, flip, ajustement luminosité)</td></tr>
+    <tr><td>Caractéristiques annotées</td><td>16 classes pathologiques (couleur, enduit, fissures, zones…)</td></tr>
+  </tbody>
+  <caption>Table 5 — Caractéristiques du dataset synthétique</caption>
+</table>
+
+<h3 class="subsection">Architecture YOLO_BCTCM</h3>
+<p>
+  Le système complet s'articule en <strong>quatre modules</strong> enchaînés :
+</p>
+
+<div class="pipeline">
+  <div class="step"><span class="n">① YOLOv8</span><span>Détection et segmentation automatique de la langue dans l'image</span></div>
+  <div class="step"><span class="n">② YOLOv11</span><span>Identification des 16 caractéristiques pathologiques sur la langue segmentée</span></div>
+  <div class="step"><span class="n">③ ML</span><span>Génération d'un vecteur de caractéristiques → classification du stade clinique (sain / précoce / avancé)</span></div>
+  <div class="step"><span class="n">④ Cartographie MTC</span><span>Projection anatomique des signes détectés selon les zones linguales de la MTC</span></div>
+</div>
+
+<p>
+  L'ensemble est intégré dans la plateforme web interactive <strong>MTC Hybrid Pro</strong> (Streamlit), pensée pour être accessible aux praticiens, chercheurs et potentiellement au grand public.
+</p>
+
+<div class="callout">
+  <div class="callout-title">Première mondiale</div>
+  Cette architecture constitue la <strong>première tentative mondiale d'automatisation du diagnostic du cancer du sein par analyse linguale en MTC</strong> — combinant vision artificielle, apprentissage automatique et cartographie des méridiens.
+</div>
+
+
+<h2 class="section" data-n="VI">Implémentation &amp; tests</h2>
+
+<h3 class="subsection">Module 1 — YOLOv8 : détection de la langue</h3>
+
+<table>
+  <thead><tr><th>Paramètre</th><th>Valeur</th></tr></thead>
+  <tbody>
+    <tr><td>Modèle de base</td><td>YOLOv8s-seg (pré-entraîné COCO)</td></tr>
+    <tr><td>Dataset</td><td>50 images annotées → augmentées à 130</td></tr>
+    <tr><td>Epochs</td><td>100</td></tr>
+    <tr><td>mAP50</td><td><strong>100 %</strong></td></tr>
+    <tr><td>mAP50-95</td><td><strong>97,8 %</strong></td></tr>
+  </tbody>
+  <caption>Table 6 — Performances YOLOv8 (détection de la langue)</caption>
+</table>
+
+<h3 class="subsection">Module 2 — YOLOv11 : caractéristiques pathologiques</h3>
+<p>
+  Deux entraînements successifs ont été conduits. Le réentraînement (fine-tuning secondaire avec hyperparamètres optimisés) a apporté un gain de <strong>plus de 10 % sur toutes les métriques</strong>.
+</p>
+
+<table>
+  <thead><tr><th>Modèle</th><th>Précision</th><th>Rappel</th><th>mAP50</th><th>mAP50-95</th></tr></thead>
+  <tbody>
+    <tr><td>YOLOv11 pré-entraîné</td><td>61,2 %</td><td>58,4 %</td><td>60,8 %</td><td>38,5 %</td></tr>
+    <tr><td>YOLOv11 réentraîné</td><td><strong>74,1 %</strong></td><td><strong>69,3 %</strong></td><td><strong>71,53 %</strong></td><td><strong>49,2 %</strong></td></tr>
+  </tbody>
+  <caption>Table 7 — Comparaison avant/après réentraînement de YOLOv11</caption>
+</table>
+
+<h3 class="subsection">Module 3 — Classification des stades cliniques</h3>
+<p>
+  Cinq algorithmes d'apprentissage automatique ont été comparés sur le vecteur de caractéristiques produit par YOLOv11 :
+</p>
+
+<table>
+  <thead><tr><th>Algorithme</th><th>Précision (val. croisée)</th><th>Généralisation</th></tr></thead>
+  <tbody>
+    <tr><td>XGBoost</td><td><strong>82,69 %</strong></td><td>Très bonne — peu sensible aux variations</td></tr>
+    <tr><td>Random Forest</td><td>79,4 %</td><td>Bonne</td></tr>
+    <tr><td>SVM</td><td>76,2 %</td><td>Moyenne</td></tr>
+    <tr><td>Gradient Boosting</td><td>80,1 %</td><td>Bonne</td></tr>
+    <tr><td>MLP</td><td>74,8 %</td><td>Variable selon initialisation</td></tr>
+  </tbody>
+  <caption>Table 8 — Comparaison des classificateurs ML (validation croisée)</caption>
+</table>
+
+<p>
+  <strong>XGBoost</strong> s'impose comme le modèle optimal, grâce à sa capacité de généralisation supérieure et sa robustesse face au déséquilibre des classes.
+</p>
+
+<h3 class="subsection">Performances finales sur nouvelles données</h3>
+
+<div class="metrics-row">
+  <div class="metric-box"><span class="val">99,38 %</span><span class="lbl">Confiance<br>stade avancé</span></div>
+  <div class="metric-box"><span class="val">95,5 %</span><span class="lbl">Confiance<br>stade précoce</span></div>
+  <div class="metric-box"><span class="val">97,4 %</span><span class="lbl">Confiance<br>état sain</span></div>
+  <div class="metric-box"><span class="val">100 %</span><span class="lbl">mAP — détection<br>de la langue</span></div>
+</div>
+
+<h3 class="subsection">Plateforme MTC Diagnostic Pro</h3>
+<p>
+  L'intégralité du pipeline (upload → détection → cartographie → diagnostic) est encapsulée dans une application web Streamlit. L'interface est décomposée en quatre phases séquentielles :
+</p>
+
+<div class="pipeline">
+  <div class="step"><span class="n">①</span><span>Téléversement de l'image et détection automatique de la langue (YOLOv8)</span></div>
+  <div class="step"><span class="n">②</span><span>Détection des caractéristiques pathologiques et génération de la cartographie MTC (YOLOv11)</span></div>
+  <div class="step"><span class="n">③</span><span>Prédiction du stade clinique par XGBoost</span></div>
+  <div class="step"><span class="n">④</span><span>Restitution du diagnostic avec explication des signes détectés selon les principes MTC</span></div>
+</div>
+
+<p>
+  Les tests en conditions réelles confirment la robustesse du système. Limites identifiées : certaines classes rares ou visuellement proches restent mal détectées ; l'annotation manuelle des 16 classes est chronophage et dépendante de l'expertise humaine.
+</p>
+
+
+<h2 class="section" data-n="VII">Conclusion générale &amp; perspectives</h2>
+
+<p>
+  Ce mémoire démontre qu'il est possible de construire un <strong>système intelligent de diagnostic précoce du cancer du sein fondé sur l'analyse de la langue en MTC</strong>, avec des performances encourageantes et une architecture évolutive. La démarche combine rigueur scientifique et respect des savoirs traditionnels.
+</p>
+<p>
+  Face à l'absence de données publiques, l'approche de génération synthétique guidée par IA s'est révélée viable — scientifiquement soutenue par des publications de référence (Chen et al., 2021, <em>Nature Biomedical Engineering</em>). L'architecture YOLO_BCTCM, première mondiale dans ce domaine, constitue une contribution originale à la croisée de la vision artificielle et de la médecine intégrative.
+</p>
+
+<div class="callout result">
+  <div class="callout-title">Limites principales</div>
+  (1) Absence de validation clinique à grande échelle. (2) Dataset limité à 80 images fonctionnelles. (3) Interprétation des signes complexes dépendante d'une lecture contextuelle experte. (4) Annotation manuelle des 16 classes pathologiques longue et coûteuse.
+</div>
+
+<h3 class="subsection">Perspectives de développement</h3>
+
+<table>
+  <thead><tr><th>Axe</th><th>Actions envisagées</th></tr></thead>
+  <tbody>
+    <tr><td>Validation clinique</td><td>Cohorte de 500–1 000 patientes avec centres hospitaliers en oncologie ; suivi longitudinal</td></tr>
+    <tr><td>Enrichissement des données</td><td>Images cliniques réelles annotées par des experts MTC ; collaboration institutionnelle</td></tr>
+    <tr><td>Intelligence conversationnelle</td><td>Module NLP (GPT-4 / T5) pour dialogue médical personnalisé et génération de rapports</td></tr>
+    <tr><td>Déploiement mobile &amp; IoT</td><td>Application légère pour télémédecine rurale ; capture standardisée par capteurs IoT</td></tr>
+    <tr><td>Extension multi-pathologique</td><td>Diabète, troubles digestifs, déséquilibres émotionnels ; analyse du pouls digital</td></tr>
+    <tr><td>Recherche fondamentale</td><td>Corrélations neurobiologiques langue-pathologie pour valider scientifiquement les méridiens</td></tr>
+    <tr><td>Infrastructure cloud</td><td>Gestion de millions de diagnostics simultanés ; chiffrement conforme aux réglementations</td></tr>
+  </tbody>
+  <caption>Table 9 — Perspectives de développement du système</caption>
+</table>
+
+<p>
+  En somme, ce travail constitue une première pierre vers une <em>médecine intégrative, intelligente et centrée sur la prévention</em> — un outil de dépistage précoce, non invasif et peu coûteux, particulièrement pertinent dans les régions où l'accès au dépistage conventionnel reste limité.
+</p>
+
+
+<!-- ══════════════════════════════════════════════════════
+     RÉFÉRENCES
+══════════════════════════════════════════════════════ -->
+<h2 class="section" data-n="">Références (sélection)</h2>
+<ol class="biblio">
+  <li>Chen, R. J. et al. (2021). <em>Synthetic data in machine learning for medicine and healthcare</em>. <em>Nature Biomedical Engineering</em>.</li>
+  <li>Ultralytics (2024). <em>YOLO11 Documentation</em>. https://docs.ultralytics.com/</li>
+  <li>Van Booven, D. et al. (2024). <em>Synthetic Genitourinary Image Synthesis via Generative Adversarial Networks</em>. <em>Journal of Personalized Medicine</em>.</li>
+  <li>Ferlay, J. et al. (2022). <em>Global Cancer Statistics — GLOBOCAN 2022</em>. International Agency for Research on Cancer (IARC).</li>
+  <li>Rabah, S. M. (2024). <em>Vision artificielle et traitement d'images</em>.</li>
+</ol>
+
+</body>
+</html>

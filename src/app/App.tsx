@@ -14,6 +14,7 @@ interface Project {
   type: "professional" | "academic" | "personal";
   report?: string;
   github?: string;
+  links?: { label: { en: string; fr: string }; url: string }[];
 }
 
 const projects: Project[] = [
@@ -171,6 +172,21 @@ const projects: Project[] = [
       "OpenCV",
     ],
     type: "academic",
+    report: "repports/PFE_synthetique.html",
+    links: [
+      {
+        label: { en: "Thesis Presentation (PDF)", fr: "Présentation du Mémoire (PDF)" },
+        url: "https://1drv.ms/b/c/21da4b91de50ee13/IQCyCeGO4HF7R5IoWAlhnZVvAVyi2V1N9nIjcxgpmXIH6hw?e=DZKaCP",
+      },
+      {
+        label: { en: "System Design (5 parts)", fr: "Design du Système (5 parties)" },
+        url: "https://canva.link/jkr9cutpp7y1w54",
+      },
+      {
+        label: { en: "Final Test Platform Design", fr: "Design Plateforme de Test Finale" },
+        url: "https://canva.link/hbwvs6r1apvulbj",
+      },
+    ],
   },
   {
     id: "university-chatbot",
@@ -214,6 +230,20 @@ const projects: Project[] = [
     type: "academic",
     report: "repports/rapport_nlp.html",
     github: "https://github.com/manelmorsli/University-Chatbot-Student-FAQ-System",
+    links: [
+      {
+        label: { en: "FAQ Chatbot Design", fr: "Design Chatbot FAQ" },
+        url: "https://canva.link/91m0caju5urwayb",
+      },
+      {
+        label: { en: "Initial Project Design", fr: "Design Initial du Projet" },
+        url: "https://canva.link/kpvcfa5ik5pwv2k",
+      },
+      {
+        label: { en: "Proposed Production Architecture", fr: "Architecture de Production Proposée" },
+        url: "https://canva.link/4cj3hpufxpptsce",
+      },
+    ],
   },
   {
     id: "ontology-fashion",
@@ -297,6 +327,16 @@ const projects: Project[] = [
     type: "academic",
     report: "https://htmlpreview.github.io/?https://raw.githubusercontent.com/manelmorsli/Data_Maining/main/rapport.html",
     github: "https://github.com/manelmorsli/Data_Maining",
+    links: [
+      {
+        label: { en: "Project Presentation", fr: "Présentation du Projet" },
+        url: "https://canva.link/b5qh1avg9dcjvfx",
+      },
+      {
+        label: { en: "Academic Reports (OneDrive)", fr: "Rapports Académiques (OneDrive)" },
+        url: "https://1drv.ms/f/c/21da4b91de50ee13/IgDr15HqK2b1S4yqkX0doMexAdzqSLIC6cC08fEngQs9yWM?e=u8wUEG",
+      },
+    ],
   },
   {
     id: "smart-greenhouse",
@@ -340,22 +380,69 @@ const projects: Project[] = [
       "OpenWeatherMap API",
     ],
     type: "academic",
+    report: "repports/iot-project-report.html",
+    github: "https://github.com/manelmorsli/Internet_Of_Things",
+  },
+  {
+    id: "computer-vision",
+    year: "2024",
+    category: "Computer Vision",
+    title: {
+      en: "Image Processing & Computer Vision Lab",
+      fr: "Traitement d'Images & Vision Artificielle",
+    },
+    tagline: {
+      en: "Academic labs: 2D image filtering and region segmentation for handwritten character recognition",
+      fr: "Travaux pratiques : filtrage d'images 2D et segmentation pour la reconnaissance de caractères manuscrits",
+    },
+    description: {
+      en: "Two-part academic lab covering core computer vision techniques. TP1 implements 2D convolution filters from scratch (blur, Laplacian, sharpening, median) with boundary strategy analysis. TP2 builds a region-based segmentation pipeline for handwritten character recognition using classical image processing.",
+      fr: "Travaux pratiques en deux parties couvrant les techniques fondamentales de vision artificielle. TP1 implémente des filtres de convolution 2D from scratch (flou, Laplacien, sharpening, médian) avec analyse des stratégies de bords. TP2 construit un pipeline de segmentation par région pour la reconnaissance de caractères manuscrits.",
+    },
+    details: {
+      en: [
+        "TP1 — Image Filtering: 2D convolution from scratch with blur, Laplacian, sharpening, and median kernels",
+        "Zero-padding vs. reflected-padding boundary strategies — comparison of edge detection accuracy",
+        "Computational cost analysis: vectorized NumPy median vs. explicit Python loops benchmarked on real hardware",
+        "TP2 — Region Segmentation: grayscale preprocessing, thresholding, and morphological operations pipeline",
+        "Handwritten character extraction and classification via region-based segmentation",
+        "Full academic report covering mathematical principles, code implementation, and quantitative results analysis",
+      ],
+      fr: [
+        "TP1 — Filtrage d'Images : convolution 2D from scratch avec noyaux flou, Laplacien, sharpening et médian",
+        "Stratégies de gestion des bords zero-padding vs. reflected-padding — comparaison de la précision de détection de contours",
+        "Analyse du coût computationnel : médian NumPy vectorisé vs. boucles Python explicites sur matériel réel",
+        "TP2 — Segmentation par Région : pipeline prétraitement niveaux de gris, seuillage et opérations morphologiques",
+        "Extraction et classification de caractères manuscrits par segmentation par région",
+        "Rapport académique complet couvrant principes mathématiques, implémentation et analyse des résultats",
+      ],
+    },
+    stack: ["Python", "NumPy", "OpenCV", "Matplotlib", "Scikit-image"],
+    type: "academic",
+    report: "repports/rapport_vision_artificielle.html",
+    github: "https://github.com/manelmorsli/Computer_Vision",
+    links: [
+      {
+        label: { en: "Academic Reports (OneDrive)", fr: "Rapports Académiques (OneDrive)" },
+        url: "https://1drv.ms/f/c/21da4b91de50ee13/IgBHFMHWhf__R7hIB7TBH1KqAR8ZLrmmH7wfDJlpSg9ZsYg?e=Skz1L6",
+      },
+    ],
   },
   {
     id: "dentalplan",
     year: "2021 – 2022",
-    category: "Full-Stack Web",
+    category: "Full-Stack Web · PFL",
     title: {
-      en: "DentalPlan — Appointment Booking Web Application",
-      fr: "DentalPlan — Application Web de Prise de Rendez-vous Dentaire",
+      en: "DentalPlan — Dental Appointment Booking Platform",
+      fr: "DentalPlan — Plateforme de Prise de Rendez-vous Dentaire",
     },
     tagline: {
-      en: "Bachelor's final project — team lead on full-stack dental booking platform",
-      fr: "Projet de fin de licence — chef d'équipe sur une plateforme de réservation dentaire full-stack",
+      en: "PFL — Bachelor's final year project | Team lead on a full-stack dental booking platform",
+      fr: "PFL — Projet de Fin de Licence | Chef d'équipe sur une plateforme de réservation dentaire full-stack",
     },
     description: {
-      en: "Led a team to deliver a dental appointment-booking web application from requirements to deployment as Bachelor's final project.",
-      fr: "Direction d'une équipe pour livrer une application web de prise de rendez-vous dentaire des exigences au déploiement, comme projet de fin de licence.",
+      en: "Led a team to design and deliver a full-stack dental appointment-booking web application from requirements to deployment as Bachelor's final year project (PFL).",
+      fr: "Direction d'une équipe pour concevoir et livrer une application web full-stack de prise de rendez-vous dentaire, des exigences au déploiement, dans le cadre du Projet de Fin de Licence (PFL).",
     },
     details: {
       en: [
@@ -377,6 +464,61 @@ const projects: Project[] = [
     },
     stack: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
     type: "academic",
+    github: "https://github.com/manelmorsli/DentalPlan-Project.git",
+    links: [
+      {
+        label: { en: "Project Report (PDF)", fr: "Rapport du Projet (PDF)" },
+        url: "https://1drv.ms/b/c/21da4b91de50ee13/IQAEUaiIqtSNQ6BXWXALsCafAc8x3v30bCCPXbeVuwp_0y0?e=VWnbc9",
+      },
+      {
+        label: { en: "Project Presentation (PDF)", fr: "Présentation du Projet (PDF)" },
+        url: "https://1drv.ms/b/c/21da4b91de50ee13/IQCM41p3urHISYB-fyWOcGyKAZpwea2oPC495nbQYuHZeBA?e=ZRgXq1",
+      },
+    ],
+  },
+  {
+    id: "home-services",
+    year: "2021 – 2022",
+    category: "Product Design · Startup",
+    title: {
+      en: "Home Services — Startup Design & Conception",
+      fr: "Home Services — Conception d'une Startup",
+    },
+    tagline: {
+      en: "Design-only project — geolocated platform connecting craftsmen with clients worldwide",
+      fr: "Projet de conception uniquement — plateforme géolocalisée mettant en relation artisans et clients",
+    },
+    description: {
+      en: "Designed (conception only, no implementation) a startup platform called Home Services, acting as an intermediary between professional craftsmen and clients worldwide. The project covers full functional requirements, non-functional quality attributes, and system architecture for a geolocated mobile platform with in-app messaging and online payment.",
+      fr: "Conception (sans réalisation) d'une plateforme startup baptisée Home Services, jouant le rôle d'intermédiaire entre des artisans professionnels et des clients du monde entier. Le projet couvre les besoins fonctionnels, les attributs qualité non-fonctionnels et l'architecture système d'une plateforme mobile géolocalisée avec messagerie et paiement en ligne.",
+    },
+    details: {
+      en: [
+        "Identified and modeled functional requirements for three actors: clients, craftsmen, and administrators",
+        "Defined non-functional quality attributes: reliability, security, performance, and scalability",
+        "Designed geolocated matching system connecting clients with nearby certified craftsmen",
+        "Planned in-app messaging, appointment scheduling, and online payment modules",
+        "Produced full conception report: use-case diagrams, system architecture, and data modeling",
+        "Conception-only project — design and study phase without software implementation",
+      ],
+      fr: [
+        "Identification et modélisation des besoins fonctionnels pour trois acteurs : clients, artisans et administrateurs",
+        "Définition des attributs qualité non-fonctionnels : fiabilité, sécurité, performance et scalabilité",
+        "Conception d'un système de mise en relation géolocalisée entre clients et artisans certifiés à proximité",
+        "Planification des modules de messagerie intégrée, prise de rendez-vous et paiement en ligne",
+        "Rapport de conception complet : diagrammes de cas d'utilisation, architecture système et modélisation des données",
+        "Projet de conception uniquement — phase d'étude et de design sans implémentation logicielle",
+      ],
+    },
+    stack: ["UML", "Use-Case Diagrams", "System Architecture", "Mobile App Design", "GPS", "Online Payment"],
+    type: "academic",
+    report: "repports/rapport_startup.html",
+    links: [
+      {
+        label: { en: "Startup Presentation", fr: "Présentation de la Startup" },
+        url: "https://1drv.ms/p/c/21da4b91de50ee13/IQCD4lDJzVq4RLCM7UBbZTCqAfnM9Df5tipvA2Yn5dcoHJw?e=WqaZe0",
+      },
+    ],
   },
 ];
 
@@ -562,6 +704,7 @@ const t = {
     keyPoints: { en: "Key Highlights", fr: "Points Clés" },
     viewReport: { en: "View Report", fr: "Voir le Rapport" },
     viewGithub: { en: "GitHub", fr: "GitHub" },
+    additionalLinks: { en: "Designs & Presentations", fr: "Designs & Présentations" },
   },
   skills: {
     section: { en: "Skills", fr: "Compétences" },
@@ -585,6 +728,14 @@ const t = {
     downloadFr: {
       en: "↓ Resume (French)",
       fr: "↓ CV (Français)",
+    },
+    downloadReports: {
+      en: "↓ Academic Reports",
+      fr: "↓ Rapports Académiques",
+    },
+    reportsNote: {
+      en: "Download all academic reports (OneDrive)",
+      fr: "Télécharger tous les rapports académiques (OneDrive)",
     },
   },
   footer: {
@@ -1243,6 +1394,14 @@ export default function App() {
                   >
                     {get(t.contact.downloadFr, lang)}
                   </a>
+                  <a
+                    href="https://1drv.ms/f/c/21da4b91de50ee13/IgCohlq-vBrpTa3q2l6ET-ZMAUmdcJWlplZUKHgYtpBWDeY?e=qyTcXh"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm border border-foreground/30 hover:border-foreground hover:bg-foreground hover:text-background transition-all px-5 py-2.5 w-fit"
+                  >
+                    {get(t.contact.downloadReports, lang)}
+                  </a>
                 </div>
               </div>
               <div className="space-y-4">
@@ -1399,32 +1558,54 @@ export default function App() {
               </div>
             </div>
 
-            <div className="px-8 pb-8 flex flex-wrap items-center gap-3">
-              <button
-                onClick={() => setSelectedProject(null)}
-                className="text-sm opacity-50 hover:opacity-100 transition-opacity border border-border px-4 py-2"
-              >
-                ← {get(t.projects.close, lang)}
-              </button>
-              {selectedProject.report && (
-                <a
-                  href={selectedProject.report}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm border border-border px-4 py-2 transition-colors duration-150 hover:bg-foreground hover:text-background"
+            <div className="px-8 pb-8 space-y-4">
+              <div className="flex flex-wrap items-center gap-3">
+                <button
+                  onClick={() => setSelectedProject(null)}
+                  className="text-sm opacity-50 hover:opacity-100 transition-opacity border border-border px-4 py-2"
                 >
-                  ↗ {get(t.projects.viewReport, lang)}
-                </a>
-              )}
-              {selectedProject.github && (
-                <a
-                  href={selectedProject.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm border border-border px-4 py-2 transition-colors duration-150 hover:bg-foreground hover:text-background font-mono"
-                >
-                  ↗ {get(t.projects.viewGithub, lang)}
-                </a>
+                  ← {get(t.projects.close, lang)}
+                </button>
+                {selectedProject.report && (
+                  <a
+                    href={selectedProject.report}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm border border-border px-4 py-2 transition-colors duration-150 hover:bg-foreground hover:text-background"
+                  >
+                    ↗ {get(t.projects.viewReport, lang)}
+                  </a>
+                )}
+                {selectedProject.github && (
+                  <a
+                    href={selectedProject.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm border border-border px-4 py-2 transition-colors duration-150 hover:bg-foreground hover:text-background font-mono"
+                  >
+                    ↗ {get(t.projects.viewGithub, lang)}
+                  </a>
+                )}
+              </div>
+              {selectedProject.links && selectedProject.links.length > 0 && (
+                <div className="space-y-2">
+                  <p className="text-xs opacity-30 tracking-widest uppercase font-mono">
+                    {get(t.projects.additionalLinks, lang)}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedProject.links.map((link, i) => (
+                      <a
+                        key={i}
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm border border-border px-4 py-2 transition-colors duration-150 hover:bg-foreground hover:text-background opacity-80 hover:opacity-100"
+                      >
+                        ↗ {get(link.label, lang)}
+                      </a>
+                    ))}
+                  </div>
+                </div>
               )}
             </div>
           </div>

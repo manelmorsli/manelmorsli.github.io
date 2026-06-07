@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rapport — Vision Artificielle · TP1 &amp; TP2 · MORSLI Manel</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink:    #1a1a2e;
+  --muted:  #5a5a7a;
+  --line:   #d8d8e8;
+  --accent: #0ea5e9;
+  --teal:   #0891b2;
+  --gold:   #b8860b;
+  --bg:     #fafaf8;
+  --card:   #f4f4f0;
+  --red:    #c0392b;
+  --blue:   #2563eb;
+  --green:  #166534;
+}
+
+html { font-size: 15px; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Crimson Pro', Georgia, serif;
+  line-height: 1.75;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 3rem 2.5rem;
+}
+
+@media print {
+  body { padding: 0; max-width: none; }
+  .no-print { display: none; }
+  .page-break { break-before: page; }
+  a { color: inherit; text-decoration: none; }
+}
+
+/* ── COVER ── */
+.cover {
+  text-align: center;
+  padding: 4rem 2rem 5rem;
+  border-bottom: 3px solid var(--ink);
+  margin-bottom: 3rem;
+}
+.cover .univ {
+  font-family: 'Inter', sans-serif;
+  font-size: .82rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--muted);
+  margin-bottom: .5rem;
+}
+.cover .module {
+  font-family: 'Inter', sans-serif;
+  font-size: .88rem;
+  color: var(--muted);
+  margin-bottom: 2.5rem;
+}
+.cover .title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: .6rem;
+}
+.cover .subtitle {
+  font-size: 1.35rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--muted);
+  margin-bottom: 2.5rem;
+}
+.cover .meta {
+  font-family: 'Inter', sans-serif;
+  font-size: .85rem;
+  color: var(--muted);
+}
+.cover .meta span { font-weight: 600; color: var(--ink); }
+.cover-rule { width: 60px; height: 3px; background: var(--accent); margin: 1.5rem auto; }
+
+/* ── TOC ── */
+.toc { margin-bottom: 3rem; }
+.toc h2 { font-family: 'Inter', sans-serif; font-size: 1rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); margin-bottom: 1rem; }
+.toc ol { list-style: none; padding: 0; }
+.toc li { display: flex; justify-content: space-between; padding: .35rem 0; border-bottom: 1px dotted var(--line); font-size: .95rem; }
+.toc li .num { color: var(--muted); min-width: 2rem; }
+.toc-part { font-weight: 700; margin-top: .6rem; }
+.toc-sub  { padding-left: 1.5rem; font-style: italic; }
+
+/* ── HEADINGS ── */
+h1.part-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -.3px;
+  border-top: 3px solid var(--ink);
+  border-bottom: 1px solid var(--line);
+  padding: .7rem 0;
+  margin: 2.5rem 0 1.5rem;
+}
+h2.section {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 2rem 0 .8rem;
+  color: var(--ink);
+}
+h2.section::before {
+  content: attr(data-n) '. ';
+  color: var(--muted);
+}
+h3.subsection {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1.5rem 0 .6rem;
+  color: var(--ink);
+}
+
+/* ── BODY ── */
+p { margin-bottom: 1rem; font-size: 1rem; text-align: justify; }
+p + p { text-indent: 1.5em; }
+strong { font-weight: 700; }
+em { font-style: italic; }
+ul, ol { margin-left: 1.5rem; margin-bottom: 1rem; font-size: .97rem; }
+li { margin-bottom: .4rem; }
+
+/* ── TABLES ── */
+table { width: 100%; border-collapse: collapse; margin: 1.2rem 0; font-family: 'Inter', sans-serif; font-size: .82rem; }
+th { background: var(--ink); color: #fff; text-align: left; padding: .55rem .8rem; font-weight: 600; font-size: .78rem; text-transform: uppercase; letter-spacing: .5px; }
+td { padding: .5rem .8rem; border-bottom: 1px solid var(--line); }
+tr:nth-child(even) td { background: var(--card); }
+caption { font-family: 'Inter', sans-serif; font-size: .8rem; color: var(--muted); text-align: left; padding: .3rem 0; caption-side: bottom; }
+
+/* ── CODE ── */
+code {
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-size: .88em;
+  background: #e0f2fe;
+  padding: 1px 5px;
+  border-radius: 3px;
+  color: var(--teal);
+}
+pre {
+  background: #0c1a2e;
+  color: #ccd6f6;
+  border-radius: 6px;
+  padding: 1.2rem;
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-size: .82rem;
+  line-height: 1.7;
+  overflow-x: auto;
+  margin: 1rem 0 1.5rem;
+  white-space: pre-wrap;
+}
+pre .kw  { color: #7dd3fc; }
+pre .cls { color: #38bdf8; }
+pre .str { color: #86efac; }
+pre .cmt { color: #4a6080; font-style: italic; }
+pre .num { color: #fbbf24; }
+pre .fn  { color: #c4b5fd; }
+
+/* ── CALLOUTS ── */
+.callout {
+  border-left: 4px solid var(--gold);
+  background: #fefce8;
+  padding: .9rem 1.2rem;
+  border-radius: 0 6px 6px 0;
+  margin: 1.2rem 0;
+  font-size: .92rem;
+}
+.callout.info { border-color: var(--accent); background: #f0f9ff; }
+.callout.def  { border-color: var(--green);  background: #f0fdf4; }
+.callout.warn { border-color: var(--red);    background: #fff5f5; }
+.callout .callout-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .8px;
+  margin-bottom: .4rem;
+  color: var(--muted);
+}
+
+/* ── PIPELINE ── */
+.pipeline {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .4rem;
+  margin: 1.2rem 0 1.5rem;
+}
+.pipe-step {
+  background: var(--ink);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: .75rem;
+  font-weight: 600;
+  padding: .5rem .9rem;
+  border-radius: 6px;
+  text-align: center;
+  line-height: 1.4;
+}
+.pipe-arrow { font-size: 1.1rem; color: var(--muted); }
+
+/* ── STEPS ── */
+.steps { counter-reset: step; margin: 1rem 0 1.5rem; }
+.step { counter-increment: step; display: flex; gap: 1rem; margin-bottom: .9rem; align-items: flex-start; }
+.step::before {
+  content: counter(step);
+  font-family: 'Inter', sans-serif;
+  font-size: .78rem;
+  font-weight: 700;
+  background: var(--accent);
+  color: #fff;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: .15rem;
+}
+.step-body { font-size: .97rem; }
+.step-body strong { display: block; margin-bottom: .2rem; }
+
+/* ── KERNELS ── */
+.kernels-row { display: flex; flex-wrap: wrap; gap: 2rem; margin: 1rem 0 1.5rem; align-items: flex-start; }
+.kernel-block { display: flex; flex-direction: column; align-items: center; }
+.kernel {
+  display: inline-grid;
+  gap: 2px;
+  border: 2px solid var(--line);
+  padding: 6px;
+  border-radius: 6px;
+  background: var(--card);
+  font-family: 'Consolas', monospace;
+  font-size: .8rem;
+}
+.kernel.k3 { grid-template-columns: repeat(3, 2.4rem); }
+.kernel span { text-align: center; padding: .25rem; background: #fff; border-radius: 3px; }
+.kernel span.center { background: #bfdbfe; font-weight: 700; }
+.kernel-label { font-family: 'Inter', sans-serif; font-size: .75rem; color: var(--muted); margin-top: .4rem; text-align: center; }
+
+/* ── FIG ── */
+.fig { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 1.5rem; margin: 1.5rem 0; text-align: center; }
+.fig-cap { font-family: 'Inter', sans-serif; font-size: .78rem; color: var(--muted); margin-top: .8rem; }
+
+/* ── FORMULA ── */
+.formula {
+  font-family: 'Consolas', monospace;
+  font-size: 1rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: .8rem 1.2rem;
+  margin: 1rem 0;
+  text-align: center;
+  letter-spacing: .04em;
+}
+
+/* ── BIBLIO ── */
+.biblio li { margin-bottom: .6rem; font-size: .92rem; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════
+     COVER
+══════════════════════════════════════════════════════ -->
+<div class="cover">
+  <div class="univ">Université Mouloud Mammeri de Tizi-Ouzou · Faculté Génie Électrique et Informatique</div>
+  <div class="module">Département d'Informatique · Master 2 SII · Module : Vision Artificielle · 2024–2025</div>
+  <div class="cover-rule"></div>
+  <div class="title">Vision Artificielle</div>
+  <div class="subtitle">
+    TP1 — Traitement d'Images par Filtrage<br>
+    TP2 — Segmentation par Région &amp; Reconnaissance de Caractères Manuscrits
+  </div>
+  <div class="cover-rule"></div>
+  <div class="meta">
+    Réalisé par : <span>Manel Morsli</span><br>
+    Université : <span>UMMTO — Tizi-Ouzou</span><br>
+    Année universitaire : <span>2024 – 2025</span><br>
+    Technologies : <span>Python · NumPy · Pillow · OpenCV · scikit-image · Matplotlib</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     TABLE OF CONTENTS
+══════════════════════════════════════════════════════ -->
+<div class="toc">
+  <h2>Table des matières</h2>
+  <ol>
+    <li class="toc-part"><span class="num"></span><span>Partie I — TP1 : Traitement d'Images par Filtrage</span></li>
+    <li class="toc-sub"><span class="num">1.</span><span>Introduction &amp; bibliothèques</span></li>
+    <li class="toc-sub"><span class="num">2.</span><span>Préparation des images</span></li>
+    <li class="toc-sub"><span class="num">3.</span><span>Convolution 2D et filtres linéaires</span></li>
+    <li class="toc-sub"><span class="num">4.</span><span>Filtrage non-linéaire : filtre médian</span></li>
+    <li class="toc-sub"><span class="num">5.</span><span>Analyse comparative des filtres</span></li>
+    <li class="toc-sub"><span class="num">6.</span><span>Conclusion TP1</span></li>
+    <li class="toc-part" style="margin-top:.7rem"><span class="num"></span><span>Partie II — TP2 : Segmentation par Région</span></li>
+    <li class="toc-sub"><span class="num">7.</span><span>Introduction &amp; objectifs</span></li>
+    <li class="toc-sub"><span class="num">8.</span><span>Prétraitement de l'image</span></li>
+    <li class="toc-sub"><span class="num">9.</span><span>Algorithme de croissance de régions</span></li>
+    <li class="toc-sub"><span class="num">10.</span><span>Post-traitement et extraction</span></li>
+    <li class="toc-sub"><span class="num">11.</span><span>Discussion des résultats &amp; perspectives</span></li>
+    <li class="toc-sub"><span class="num">12.</span><span>Conclusion TP2</span></li>
+    <li class="toc-sub"><span class="num"></span><span>Références &amp; code source</span></li>
+  </ol>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     PARTIE I — TP1
+══════════════════════════════════════════════════════ -->
+<h1 class="part-title page-break">Partie I — TP1 : Traitement d'Images par Filtrage</h1>
+
+<h2 class="section" data-n="1">Introduction &amp; bibliothèques</h2>
+
+<p>
+  Ce TP explore les techniques fondamentales de <strong>traitement d'images</strong> : conversion en niveaux de gris, <strong>convolution 2D</strong> avec différents noyaux (flou, laplacien, sharpening), gestion des effets de bord par padding, et <strong>filtrage non-linéaire</strong> par la médiane. Deux images test sont utilisées tout au long du TP : une image en couleurs (<em>bubu1.jpg</em>, illustration anime 600×600 px) et une image affectée par du <strong>bruit poivre et sel</strong> (<em>imgg.jpg</em>, photographie d'un téléphone 299×300 px).
+</p>
+
+<table>
+  <thead><tr><th>Bibliothèque</th><th>Rôle dans le TP</th></tr></thead>
+  <tbody>
+    <tr><td><code>PIL / Pillow</code></td><td>Chargement d'images, conversion RGB → niveaux de gris (<code>convert('L')</code>), sauvegarde</td></tr>
+    <tr><td><code>NumPy</code></td><td>Représentation matricielle, opérations vectorisées (min, max, médiane, convolution)</td></tr>
+    <tr><td><code>Matplotlib</code></td><td>Affichage comparatif des images avant/après filtrage avec <code>imshow</code></td></tr>
+    <tr><td><code>OpenCV (cv2)</code></td><td>Filtres avancés (Canny), référence pour comparaison</td></tr>
+  </tbody>
+  <caption>Table 1 — Bibliothèques Python utilisées dans le TP1</caption>
+</table>
+
+
+<h2 class="section" data-n="2">Préparation des images</h2>
+
+<h3 class="subsection">Chargement et conversion en niveaux de gris</h3>
+<p>
+  Pillow charge l'image originale, puis <code>convert('L')</code> la transforme en niveaux de gris en supprimant les trois canaux RGB pour ne conserver qu'un seul canal d'intensité luminance. L'image originale et sa version grise sont affichées côte à côte avec Matplotlib pour vérification visuelle.
+</p>
+
+<pre><span class="kw">from</span> PIL <span class="kw">import</span> Image
+<span class="kw">import</span> numpy <span class="kw">as</span> np
+
+img_color = <span class="fn">Image.open</span>(<span class="str">'bubu1.jpg'</span>)
+img_gray  = img_color.<span class="fn">convert</span>(<span class="str">'L'</span>)           <span class="cmt"># L = luminance, 1 canal</span>
+img_array = np.<span class="fn">array</span>(img_gray)               <span class="cmt"># matrice NumPy (H, W), uint8</span>
+
+<span class="fn">print</span>(<span class="str">f"Dimensions : hauteur={img_array.shape[0]}, largeur={img_array.shape[1]}"</span>)
+<span class="fn">print</span>(<span class="str">f"Pixel min={img_array.min()} · max={img_array.max()}"</span>)</pre>
+
+<h3 class="subsection">Représentation matricielle et statistiques</h3>
+
+<div class="callout def">
+  <div class="callout-title">Représentation matricielle d'une image</div>
+  Une image en niveaux de gris est une matrice <strong>H × W</strong> où chaque entrée est un entier [0–255]. La valeur 0 correspond au noir pur, 255 au blanc pur. NumPy permet d'appliquer des opérations mathématiques sur toute la matrice de façon vectorisée et efficace.
+</div>
+
+<p>
+  Pour <em>bubu1.jpg</em> (600×600 px) : valeurs de pixels entre <strong>27</strong> et <strong>255</strong>, reflétant une image claire avec un fond blanc. Pour <em>imgg.jpg</em> (299×300 px) : valeurs entre <strong>0</strong> et <strong>255</strong>, les pixels extrêmes trahissant la présence du bruit poivre et sel.
+</p>
+
+
+<h2 class="section" data-n="3">Convolution 2D et filtres linéaires</h2>
+
+<h3 class="subsection">Principe mathématique</h3>
+<p>
+  La <strong>convolution 2D</strong> est l'opération centrale du filtrage linéaire. Pour chaque pixel <em>(i, j)</em>, on calcule la somme pondérée de ses voisins, les poids étant définis par le noyau (kernel) <em>K</em> de taille <em>k×k</em> :
+</p>
+
+<div class="formula">
+  O(i, j) = &sum;<sub>m=0..k&minus;1</sub> &sum;<sub>n=0..k&minus;1</sub> I(i+m&minus;p, j+n&minus;p) &times; K(m, n) &nbsp;&nbsp; avec p = k // 2
+</div>
+
+<pre><span class="kw">def</span> <span class="cls">convolve2d</span>(image, kernel, padding=<span class="str">'zero'</span>):
+    h, w = image.shape
+    k = kernel.shape[<span class="num">0</span>]
+    pad = k // <span class="num">2</span>
+
+    <span class="kw">if</span> padding == <span class="str">'zero'</span>:
+        padded = np.<span class="fn">pad</span>(image, pad, mode=<span class="str">'constant'</span>, constant_values=<span class="num">0</span>)
+    <span class="kw">else</span>:
+        padded = np.<span class="fn">pad</span>(image, pad, mode=<span class="str">'reflect'</span>)   <span class="cmt"># miroir</span>
+
+    output = np.<span class="fn">zeros_like</span>(image, dtype=np.float64)
+    <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(h):
+        <span class="kw">for</span> j <span class="kw">in</span> <span class="fn">range</span>(w):
+            output[i, j] = np.<span class="fn">sum</span>(padded[i:i+k, j:j+k] * kernel)
+
+    <span class="kw">return</span> np.<span class="fn">clip</span>(output, <span class="num">0</span>, <span class="num">255</span>).<span class="fn">astype</span>(np.uint8)</pre>
+
+<div class="callout info">
+  <div class="callout-title">Note d'implémentation</div>
+  La méthode <code>np.convolve</code> prédéfinie de NumPy a été testée mais s'est révélée moins efficace que la formule mathématique directe présentée en cours. Le filtre 5×5 nécessite <strong>pad = 2</strong> (double bordure) — une condition spécifique est ajoutée dans le code pour ce cas.
+</div>
+
+<h3 class="subsection">Gestion des bords : zero-padding vs reflected-padding</h3>
+<p>
+  Les effets de bord surviennent car les pixels en périphérie de l'image n'ont pas assez de voisins pour y appliquer le noyau. Deux stratégies ont été implémentées et comparées :
+</p>
+
+<table>
+  <thead><tr><th>Technique</th><th>Principe</th><th>Effet aux bords</th><th>Recommandation</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Zero-padding</strong></td><td>Bordures ajoutées avec des pixels à valeur 0 (noir)</td><td>Bordures artificiellement sombres, contours altérés</td><td>Détection de contours différenciés</td></tr>
+    <tr><td><strong>Reflected-padding</strong></td><td>Bordures construites par réflexion symétrique des pixels existants (padding miroir)</td><td>Continuité naturelle, artefacts minimaux</td><td>Préservation maximale du contenu original</td></tr>
+  </tbody>
+  <caption>Table 2 — Comparaison des deux stratégies de padding</caption>
+</table>
+
+<p>
+  Les différences entre les deux techniques sont <strong>légèrement visibles à l'œil humain</strong>, uniquement dans la zone de bordures. Le reflected-padding est préférable pour des applications nécessitant une fidélité à l'image originale.
+</p>
+
+<h3 class="subsection">Noyaux appliqués</h3>
+
+<div class="kernels-row">
+  <div class="kernel-block">
+    <div class="kernel k3">
+      <span>1/9</span><span>1/9</span><span>1/9</span>
+      <span>1/9</span><span class="center">1/9</span><span>1/9</span>
+      <span>1/9</span><span>1/9</span><span>1/9</span>
+    </div>
+    <div class="kernel-label">Flou (blur) 3×3</div>
+  </div>
+  <div class="kernel-block">
+    <div class="kernel k3">
+      <span>0</span><span>1</span><span>0</span>
+      <span>1</span><span class="center">-4</span><span>1</span>
+      <span>0</span><span>1</span><span>0</span>
+    </div>
+    <div class="kernel-label">Laplacien 3×3</div>
+  </div>
+  <div class="kernel-block">
+    <div class="kernel k3">
+      <span>0</span><span>-1</span><span>0</span>
+      <span>-1</span><span class="center">5</span><span>-1</span>
+      <span>0</span><span>-1</span><span>0</span>
+    </div>
+    <div class="kernel-label">Sharpening 3×3</div>
+  </div>
+</div>
+
+<h3 class="subsection">a) Filtre flou (blur) — 3×3 et 5×5</h3>
+<p>
+  Le noyau de moyenne remplace chaque pixel par la <strong>moyenne non-pondérée</strong> de son voisinage. Résultats observés : le filtre 5×5 produit un flou plus prononcé que le 3×3 et réduit davantage le bruit poivre et sel. Sur l'image claire <em>bubu1.jpg</em>, le filtre 5×5 assombrit légèrement l'image en intégrant les pixels noirs environnants. Les deux filtres préservent la structure globale mais perdent des détails fins.
+</p>
+
+<h3 class="subsection">b) Filtre Laplacien — détection de contours</h3>
+<p>
+  Le noyau laplacien calcule la <strong>dérivée seconde de l'intensité</strong>, mettant en évidence les zones de transitions rapides (bords et contours). Sur <em>bubu1.jpg</em> (propre), il produit des contours nets sur fond noir. Sur <em>imgg.jpg</em> (bruitée), il <strong>amplifie catastrophiquement le bruit</strong> : l'image devient un chaos de points et les contours réels sont masqués. Une préfiltration médiane permet d'obtenir un résultat bien meilleur.
+</p>
+
+<h3 class="subsection">c) Filtre Sharpening — accentuation des détails</h3>
+<p>
+  Le noyau de sharpening accentue les frontières des objets en augmentant le contraste local. Il améliore la netteté perçue sur des images propres. Comme le laplacien, il <strong>amplifie le bruit</strong> sur les images bruitées — les deux filtres sont donc à réserver aux images préalablement débruitées.
+</p>
+
+
+<h2 class="section" data-n="4">Filtrage non-linéaire : filtre médian</h2>
+
+<p>
+  Le <strong>filtre médian</strong> est la réponse non-linéaire au bruit impulsionnel. Contrairement aux filtres moyenneurs qui diluent les valeurs extrêmes dans la somme pondérée, le filtre médian remplace chaque pixel par la <strong>valeur médiane</strong> de son voisinage k×k — une statistique d'ordre robuste qui élimine les outliers (0 et 255 du bruit) sans les propager.
+</p>
+
+<pre><span class="kw">def</span> <span class="cls">median_filter</span>(image, k=<span class="num">3</span>):
+    h, w = image.shape
+    pad = k // <span class="num">2</span>
+    padded = np.<span class="fn">pad</span>(image, pad, mode=<span class="str">'reflect'</span>)
+    output = np.<span class="fn">zeros_like</span>(image)
+
+    <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(h):
+        <span class="kw">for</span> j <span class="kw">in</span> <span class="fn">range</span>(w):
+            patch = padded[i:i+k, j:j+k].<span class="fn">flatten</span>()
+            output[i, j] = np.<span class="fn">median</span>(patch)
+
+    <span class="kw">return</span> output</pre>
+
+<div class="callout def">
+  <div class="callout-title">Résultat clé — Débruitage</div>
+  Le filtre médian 3×3 appliqué à <em>imgg.jpg</em> élimine quasi-totalement le bruit poivre et sel tout en <strong>préservant les contours</strong> de l'objet. C'est une performance impossible avec les filtres linéaires de même taille. C'est le filtre le plus efficace du TP pour le débruitage impulsionnel.
+</div>
+
+<p>
+  Deux implémentations ont été testées : boucles Python explicites et <code>np.median</code> vectorisé. Les deux produisent des résultats identiques. Le coût computationnel reste significatif — sur le matériel utilisé (DELL Latitude 7390, Intel Core i7 8th Gen, 16 Go RAM), un filtre sur une seule image prend <strong>30 secondes à 1 minute</strong>, ce qui rend le traitement batch très coûteux.
+</p>
+
+
+<h2 class="section" data-n="5">Analyse comparative des filtres</h2>
+
+<table>
+  <thead>
+    <tr><th>Filtre</th><th>Effet sur l'image</th><th>Avantages</th><th>Inconvénients</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Flou 3×3</strong></td>
+      <td>Légère réduction du bruit, image légèrement floue</td>
+      <td>Simple, réduit partiellement le bruit</td>
+      <td>Perte de netteté et de détails</td>
+    </tr>
+    <tr>
+      <td><strong>Flou 5×5</strong></td>
+      <td>Réduction plus forte du bruit, image plus floue et plus sombre</td>
+      <td>Meilleure réduction du bruit que 3×3</td>
+      <td>Perte accrue de netteté, assombrissement</td>
+    </tr>
+    <tr>
+      <td><strong>Laplacien</strong></td>
+      <td>Contours nets (images propres) · chaos (images bruitées)</td>
+      <td>Excellente détection de contours sur images propres</td>
+      <td>Amplifie le bruit — inutilisable sur images bruitées</td>
+    </tr>
+    <tr>
+      <td><strong>Sharpening</strong></td>
+      <td>Accentuation des détails et frontières d'objets</td>
+      <td>Améliore la netteté perçue</td>
+      <td>Amplifie également le bruit</td>
+    </tr>
+    <tr>
+      <td><strong>Médian 3×3</strong></td>
+      <td>Suppression quasi-totale du bruit, contours préservés</td>
+      <td>Très efficace pour le bruit impulsionnel, préserve les bords</td>
+      <td>Lent à calculer, moins adapté à d'autres types de bruit</td>
+    </tr>
+    <tr>
+      <td><strong>Zero-padding</strong></td>
+      <td>Bordures noires artificielles</td>
+      <td>Facile à implémenter</td>
+      <td>Artefacts aux bordures</td>
+    </tr>
+    <tr>
+      <td><strong>Reflected-padding</strong></td>
+      <td>Bordures miroir naturelles</td>
+      <td>Préserve les caractéristiques de l'image aux bords</td>
+      <td>Légèrement plus complexe à implémenter</td>
+    </tr>
+  </tbody>
+  <caption>Table 3 — Comparaison synthétique des filtres et techniques de padding (TP1)</caption>
+</table>
+
+
+<h2 class="section" data-n="6">Conclusion TP1</h2>
+
+<p>
+  Ce TP a permis d'implémenter et de comparer sept techniques de filtrage. Le principal enseignement est que <strong>le choix du filtre dépend du type de bruit et de l'objectif visé</strong> : le filtre médian excelle pour le bruit impulsionnel, le laplacien et le sharpening pour la détection de contours sur images propres uniquement, et le reflected-padding pour une meilleure fidélité aux bords.
+</p>
+<p>
+  La limite principale identifiée est l'absence d'une <strong>métrique de fiabilité automatique</strong> pour choisir le filtre le plus adapté à chaque image. Des métriques comme le PSNR ou le SSIM permettraient de quantifier objectivement la qualité du filtrage et d'automatiser la sélection du filtre optimal.
+</p>
+
+
+<!-- ══════════════════════════════════════════════════════
+     PARTIE II — TP2
+══════════════════════════════════════════════════════ -->
+<h1 class="part-title page-break">Partie II — TP2 : Segmentation par Région &amp; Reconnaissance de Caractères Manuscrits</h1>
+
+<h2 class="section" data-n="7">Introduction &amp; objectifs</h2>
+
+<p>
+  La <strong>segmentation d'images</strong> est une étape fondamentale dans tout pipeline de reconnaissance de caractères manuscrits (OCR). Elle consiste à diviser l'image en régions homogènes correspondant à des entités sémantiques — ici, des caractères individuels. L'algorithme de <strong>croissance de régions</strong> (Region Growing) est une approche bottom-up : elle part de pixels germes et les étend progressivement vers les pixels voisins présentant des propriétés similaires.
+</p>
+
+<p>
+  Deux images ont été utilisées pour comparer les performances de la méthode sur des données de difficulté variable :
+</p>
+
+<table>
+  <thead><tr><th>Fichier</th><th>Contenu</th><th>Source</th><th>Caractéristiques</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><code>tta.jpg</code></td>
+      <td>Alphabet français manuscrit calligraphique (a → z)</td>
+      <td>Téléchargée du web</td>
+      <td>Caractères bien espacés, style uniforme, avec artefacts/icônes</td>
+    </tr>
+    <tr>
+      <td><code>imaggee.jpg</code></td>
+      <td>Texte manuscrit : « Segmentation d'images par Région… »</td>
+      <td>Écrite à la main par l'étudiante</td>
+      <td>Mots en cursive, espaces variables, accents et points</td>
+    </tr>
+  </tbody>
+  <caption>Table 4 — Images utilisées dans le TP2</caption>
+</table>
+
+<div class="callout info">
+  <div class="callout-title">Bibliothèques clés — scikit-image</div>
+  <code>skimage.measure.label</code> — étiquette chaque composante connexe de l'image binaire avec un entier unique.<br>
+  <code>skimage.measure.regionprops</code> — extrait les propriétés de chaque région : aire, bounding box <code>(minr, minc, maxr, maxc)</code>, centroïde, etc.
+</div>
+
+
+<h2 class="section" data-n="8">Prétraitement de l'image</h2>
+
+<p>Un pipeline de prétraitement en quatre étapes conditionne l'image brute pour la segmentation :</p>
+
+<div class="pipeline">
+  <div class="pipe-step">Chargement<br><small>OpenCV</small></div>
+  <div class="pipe-arrow">→</div>
+  <div class="pipe-step">Niveaux<br>de gris</div>
+  <div class="pipe-arrow">→</div>
+  <div class="pipe-step">Filtrage<br>médian</div>
+  <div class="pipe-arrow">→</div>
+  <div class="pipe-step">Binarisation<br>(seuillage)</div>
+  <div class="pipe-arrow">→</div>
+  <div class="pipe-step">Image<br>binaire</div>
+</div>
+
+<div class="steps">
+  <div class="step">
+    <div class="step-body">
+      <strong>Chargement (OpenCV)</strong>
+      <code>cv2.imread</code> charge l'image en format BGR. Les dimensions sont extraites pour adapter les paramètres de traitement à chaque image.
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-body">
+      <strong>Conversion en niveaux de gris</strong>
+      <code>cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)</code> réduit l'image à un seul canal, simplifiant le seuillage.
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-body">
+      <strong>Filtrage médian</strong>
+      <code>cv2.medianBlur(gray, 3)</code> élimine les artefacts et icônes parasites de <em>tta.jpg</em> tout en préservant les contours des lettres. Inutile pour <em>imaggee.jpg</em> qui est propre.
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-body">
+      <strong>Binarisation par seuillage</strong>
+      Chaque pixel passe à 0 (fond) ou 1 (caractère) selon un seuil adapté à chaque image (typiquement 100). <code>THRESH_BINARY_INV</code> inverse la logique : les caractères sombres → 1, fond clair → 0.
+    </div>
+  </div>
+</div>
+
+<pre><span class="kw">import</span> cv2
+<span class="kw">from</span> skimage.measure <span class="kw">import</span> label, regionprops
+
+img      = cv2.<span class="fn">imread</span>(<span class="str">'tta.jpg'</span>)
+gray     = cv2.<span class="fn">cvtColor</span>(img, cv2.COLOR_BGR2GRAY)
+denoised = cv2.<span class="fn">medianBlur</span>(gray, <span class="num">3</span>)
+_, binary = cv2.<span class="fn">threshold</span>(denoised, <span class="num">100</span>, <span class="num">1</span>, cv2.THRESH_BINARY_INV)
+<span class="cmt"># binary : matrice booléenne — 1 = caractère, 0 = fond</span>
+<span class="fn">print</span>(<span class="str">f"Dimensions : hauteur={binary.shape[0]}, largeur={binary.shape[1]}"</span>)
+<span class="fn">print</span>(<span class="str">f"Pixels min={binary.min()} · max={binary.max()}"</span>)    <span class="cmt"># → 0 et 1</span></pre>
+
+
+<h2 class="section" data-n="9">Algorithme de croissance de régions</h2>
+
+<h3 class="subsection">Principe et implémentation</h3>
+<p>
+  La croissance de régions identifie les <strong>composantes connexes</strong> de l'image binaire : deux pixels noirs (valeur 1) appartiennent à la même région si l'on peut passer de l'un à l'autre en ne traversant que des pixels noirs voisins. La bibliothèque <code>scikit-image</code> fournit une implémentation optimisée via <code>label</code>.
+</p>
+
+<div class="callout def">
+  <div class="callout-title">Définition — Composante connexe</div>
+  Ensemble maximal de pixels noirs tels que chacun est 4-connexe ou 8-connexe à au moins un autre. La 4-connexité considère les voisins haut/bas/gauche/droite ; la 8-connexité inclut aussi les diagonales.
+</div>
+
+<pre><span class="kw">from</span> skimage.measure <span class="kw">import</span> label, regionprops
+<span class="kw">import</span> numpy <span class="kw">as</span> np
+
+<span class="cmt"># Étiquetage : chaque composante connexe reçoit un entier unique</span>
+labeled = <span class="fn">label</span>(binary)
+regions = <span class="fn">regionprops</span>(labeled)
+<span class="fn">print</span>(<span class="str">f"{len(regions)} régions détectées"</span>)
+
+<span class="cmt"># Visualisation : colorier chaque région d'une couleur aléatoire</span>
+colored = np.<span class="fn">zeros</span>((*binary.shape, <span class="num">3</span>), dtype=np.uint8)
+<span class="kw">for</span> region <span class="kw">in</span> regions:
+    color = np.random.<span class="fn">randint</span>(<span class="num">80</span>, <span class="num">255</span>, size=<span class="num">3</span>)
+    colored[labeled == region.label] = color</pre>
+
+<h3 class="subsection">Sélection des seeds et condition d'homogénéité</h3>
+<p>
+  Les <strong>seeds</strong> (pixels germes) sont sélectionnés automatiquement : tout pixel noir de l'image binaire peut être un point de départ. La <strong>condition d'homogénéité</strong> est binaire — un pixel voisin est inclus dans la région si et seulement s'il est à 1 (noir). Les collisions entre régions adjacentes sont gérées implicitement par le marquage des pixels visités : un pixel déjà étiqueté ne peut pas être ré-assigné.
+</p>
+
+<h3 class="subsection">Résultat visuel — Régions colorées</h3>
+<p>
+  La visualisation par couleurs distinctes par région valide visuellement la segmentation : sur <em>tta.jpg</em>, chaque lettre de l'alphabet apparaît dans une couleur différente sur fond noir. L'image colorée confirme que les caractères bien espacés sont correctement isolés.
+</p>
+
+
+<h2 class="section" data-n="10">Post-traitement et extraction</h2>
+
+<p>Trois étapes transforment les régions brutes en sous-images exploitables pour un modèle de reconnaissance :</p>
+
+<div class="steps">
+  <div class="step">
+    <div class="step-body">
+      <strong>Suppression des petites régions (bruit)</strong>
+      Un seuil <em>min_area</em> élimine les artefacts trop petits pour être des caractères. Seules les régions avec <code>region.area &gt; min_area</code> sont conservées — ce paramètre est ajusté selon l'image.
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-body">
+      <strong>Extraction des bounding boxes</strong>
+      Chaque région est extraite via ses coordonnées <code>(minr, minc, maxr, maxc)</code>. Deux modes : boîte englobante exacte (taille variable) ou boîte de taille fixe centrée sur la région.
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-body">
+      <strong>Ajout d'une marge (padding)</strong>
+      Une marge est ajoutée autour de chaque boîte pour centrer le caractère et éviter les coupures, préparant les sous-images pour l'entrée d'un réseau de neurones.
+    </div>
+  </div>
+</div>
+
+<pre><span class="kw">for</span> i, region <span class="kw">in</span> <span class="fn">enumerate</span>(regions):
+    <span class="kw">if</span> region.area &lt; min_area:
+        <span class="kw">continue</span>                              <span class="cmt"># ignorer le bruit</span>
+
+    minr, minc, maxr, maxc = region.bbox
+    margin = <span class="num">10</span>
+    h, w = binary.shape
+    sub = binary[
+        <span class="fn">max</span>(<span class="num">0</span>, minr - margin) : <span class="fn">min</span>(h, maxr + margin),
+        <span class="fn">max</span>(<span class="num">0</span>, minc - margin) : <span class="fn">min</span>(w, maxc + margin)
+    ]
+    <span class="cmt"># sous-image prête pour la reconnaissance</span></pre>
+
+
+<h2 class="section" data-n="11">Discussion des résultats &amp; perspectives</h2>
+
+<h3 class="subsection">Résultats obtenus</h3>
+
+<table>
+  <thead><tr><th>Image</th><th>Nb régions détectées</th><th>Qualité de segmentation</th><th>Limite principale</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><em>tta.jpg</em> (alphabets)</td>
+      <td>~26–30</td>
+      <td>Bonne — 1 région ≈ 1 lettre</td>
+      <td>Quelques lettres fusionnées (ligatures calligraphiques)</td>
+    </tr>
+    <tr>
+      <td><em>imaggee.jpg</em> (texte cursif)</td>
+      <td>~30 groupes</td>
+      <td>Partielle — 1 région ≈ partie de mot</td>
+      <td>Espacement variable, accents et points isolés</td>
+    </tr>
+  </tbody>
+  <caption>Table 5 — Résultats comparatifs de segmentation par image</caption>
+</table>
+
+<h3 class="subsection">Problème fondamental : caractère vs mot</h3>
+
+<div class="callout warn">
+  <div class="callout-title">Limitation — Segmentation mot ↔ caractère</div>
+  L'algorithme ne distingue pas automatiquement mots et caractères. Le mot <strong>« pour »</strong> peut être segmenté en « p » et « our » si les traits sont séparés, ou fusionné en un bloc si les lettres se touchent. Les <strong>points et accents</strong> (« é », « î »…) sont systématiquement segmentés séparément de leur lettre de base, produisant des régions parasites supplémentaires.
+</div>
+
+<p>
+  Un essai d'intégration de <strong>PyTorch</strong> pour la reconnaissance de caractères a produit des résultats insatisfaisants — le modèle n'étant pas entraîné sur des données représentatives du style d'écriture utilisé.
+</p>
+
+<h3 class="subsection">Perspectives futures</h3>
+<ul>
+  <li><strong>Fusion de régions proches</strong> : calculer la distance entre bounding boxes adjacentes. En dessous d'un seuil → fusionner les régions en un mot ; au-dessus → les traiter comme mots distincts.</li>
+  <li><strong>Modèle de reconnaissance dédié</strong> : entraîner un CNN (PyTorch) sur un jeu de données représentatif (EMNIST, IAM Handwriting) couvrant différents styles d'écriture cursive.</li>
+  <li><strong>Méthodes alternatives</strong> : MSER (Maximally Stable Extremal Regions), segmentation par projection horizontale/verticale pour isoler les lignes de texte, ou approches transformers (TrOCR).</li>
+  <li><strong>Pipeline end-to-end</strong> : prétraitement → segmentation → reconnaissance avec évaluation par WER (Word Error Rate) et CER (Character Error Rate).</li>
+</ul>
+
+
+<h2 class="section" data-n="12">Conclusion TP2</h2>
+
+<p>
+  Ce TP a démontré la faisabilité de la segmentation par croissance de régions pour la reconnaissance de caractères manuscrits. La méthode, simple à implémenter grâce à <code>skimage.measure</code>, donne de bons résultats pour des caractères bien isolés (<em>tta.jpg</em>) mais montre ses limites face au texte cursif continu (<em>imaggee.jpg</em>).
+</p>
+<p>
+  La comparaison des deux images illustre un point fondamental de la vision par ordinateur : <strong>la performance d'un algorithme dépend fortement des caractéristiques des données d'entrée</strong>. Aucune méthode universelle ne convient à tous les styles d'écriture — d'où l'intérêt des approches hybrides combinant segmentation classique et apprentissage profond.
+</p>
+
+
+<!-- ══════════════════════════════════════════════════════
+     RÉFÉRENCES
+══════════════════════════════════════════════════════ -->
+<h2 class="section" data-n="">Références &amp; code source</h2>
+
+<ol class="biblio">
+  <li>scikit-image — <em>Image processing in Python</em>. scikit-image.org</li>
+  <li>OpenCV — <em>Open Source Computer Vision Library</em>. opencv.org</li>
+  <li>NumPy — <em>Fundamental package for scientific computing with Python</em>. numpy.org</li>
+  <li>Matplotlib — <em>Visualization with Python</em>. matplotlib.org</li>
+  <li>Python Imaging Library (Pillow). python-pillow.org</li>
+  <li>Wikipedia — <em>Python Imaging Library</em>. en.wikipedia.org/wiki/Python_Imaging_Library</li>
+</ol>
+
+<h3 class="subsection" style="margin-top:1.5rem">Notebooks Google Colab</h3>
+<table>
+  <thead><tr><th>TP</th><th>Notebook</th><th>Image utilisée</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>TP1</strong></td>
+      <td><code>TP1_Vision_Artificiel_MORSLI_Manel.ipynb</code></td>
+      <td>bubu1.jpg · imgg.jpg</td>
+    </tr>
+    <tr>
+      <td><strong>TP2 — FR</strong></td>
+      <td><code>Tp2_FR_MORSLI_Manel.ipynb</code></td>
+      <td>tta.jpg (alphabets français manuscrits)</td>
+    </tr>
+    <tr>
+      <td><strong>TP2 — Img</strong></td>
+      <td><code>Tp2_ImgHand_MORSLI_Manel.ipynb</code></td>
+      <td>imaggee.jpg (texte manuscrit par l'étudiante)</td>
+    </tr>
+  </tbody>
+  <caption>Table 6 — Fichiers source disponibles dans le dépôt</caption>
+</table>
+
+</body>
+</html>

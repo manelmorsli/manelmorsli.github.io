@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rapport Synthétique — PFE L3 · DENTAL PLAN · MORSLI Manel</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink:   #1a1a2e;
+  --muted: #5a5a7a;
+  --line:  #d8d8e8;
+  --accent:#8b5cf6;
+  --gold:  #b8860b;
+  --bg:    #fafaf8;
+  --card:  #f4f4f0;
+  --red:   #c0392b;
+  --blue:  #2563eb;
+  --green: #166534;
+  --teal:  #0d7377;
+}
+
+html { font-size: 15px; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Crimson Pro', Georgia, serif;
+  line-height: 1.75;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 3rem 2.5rem;
+}
+
+@media print {
+  body { padding: 0; max-width: none; }
+  .no-print { display: none; }
+  .page-break { break-before: page; }
+  a { color: inherit; text-decoration: none; }
+}
+
+/* ── COVER ── */
+.cover {
+  text-align: center;
+  padding: 4rem 2rem 5rem;
+  border-bottom: 3px solid var(--ink);
+  margin-bottom: 3rem;
+}
+.cover .univ {
+  font-family: 'Inter', sans-serif;
+  font-size: .82rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--muted);
+  margin-bottom: .3rem;
+}
+.cover .module {
+  font-family: 'Inter', sans-serif;
+  font-size: .88rem;
+  color: var(--muted);
+  margin-bottom: 2.5rem;
+}
+.cover .title {
+  font-size: 2.6rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: .6rem;
+}
+.cover .subtitle {
+  font-size: 1.3rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--muted);
+  margin-bottom: 2.5rem;
+}
+.cover .meta {
+  font-family: 'Inter', sans-serif;
+  font-size: .85rem;
+  color: var(--muted);
+  line-height: 1.9;
+}
+.cover .meta span { font-weight: 600; color: var(--ink); }
+.cover-rule { width: 60px; height: 3px; background: var(--teal); margin: 1.5rem auto; }
+
+/* ── TOC ── */
+.toc { margin-bottom: 3rem; }
+.toc h2 { font-family: 'Inter', sans-serif; font-size: 1rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); margin-bottom: 1rem; }
+.toc ol { list-style: none; padding: 0; }
+.toc li { display: flex; justify-content: space-between; padding: .35rem 0; border-bottom: 1px dotted var(--line); font-size: .95rem; }
+.toc li .num { color: var(--muted); min-width: 2rem; }
+.toc li .page { color: var(--muted); font-family: 'Inter', sans-serif; font-size: .82rem; }
+.toc-part { font-weight: 700; margin-top: .6rem; }
+.toc-sub { padding-left: 1.5rem; font-style: italic; }
+
+/* ── HEADINGS ── */
+h1.part-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -.3px;
+  border-top: 3px solid var(--ink);
+  border-bottom: 1px solid var(--line);
+  padding: .7rem 0;
+  margin: 2.5rem 0 1.5rem;
+}
+h2.section {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 2rem 0 .8rem;
+  color: var(--ink);
+}
+h2.section::before {
+  content: attr(data-n) '. ';
+  color: var(--muted);
+}
+h2.section[data-n=""]::before { content: ''; }
+h3.subsection {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1.5rem 0 .6rem;
+  color: var(--ink);
+}
+
+/* ── BODY TEXT ── */
+p { margin-bottom: 1rem; font-size: 1rem; text-align: justify; }
+p + p { text-indent: 1.5em; }
+strong { font-weight: 700; }
+em { font-style: italic; }
+
+/* ── TABLES ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2rem 0;
+  font-family: 'Inter', sans-serif;
+  font-size: .82rem;
+}
+th {
+  background: var(--ink);
+  color: #fff;
+  text-align: left;
+  padding: .55rem .8rem;
+  font-weight: 600;
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+td { padding: .5rem .8rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+tr:nth-child(even) td { background: var(--card); }
+caption {
+  font-family: 'Inter', sans-serif;
+  font-size: .8rem;
+  color: var(--muted);
+  text-align: left;
+  padding: .3rem 0;
+  caption-side: bottom;
+}
+
+/* ── CALLOUTS ── */
+.callout {
+  border-left: 4px solid var(--gold);
+  background: #fefce8;
+  padding: .9rem 1.2rem;
+  border-radius: 0 6px 6px 0;
+  margin: 1.2rem 0;
+  font-size: .92rem;
+}
+.callout.info  { border-color: var(--blue);  background: #eff6ff; }
+.callout.def   { border-color: var(--teal);  background: #f0fdfa; }
+.callout.result{ border-color: var(--red);   background: #fff5f5; }
+.callout .callout-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .8px;
+  margin-bottom: .4rem;
+  color: var(--muted);
+}
+
+/* ── METRICS ROW ── */
+.metrics-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .8rem;
+  margin: 1.2rem 0;
+}
+.metric-box {
+  flex: 1 1 130px;
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--teal);
+  background: var(--card);
+  border-radius: 0 0 4px 4px;
+  padding: .8rem 1rem;
+  text-align: center;
+}
+.metric-box .val {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--teal);
+  display: block;
+}
+.metric-box .lbl {
+  font-family: 'Inter', sans-serif;
+  font-size: .72rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+/* ── PIPELINE / STEPS ── */
+.pipeline {
+  font-family: 'Inter', sans-serif;
+  font-size: .83rem;
+  line-height: 1.8;
+  background: var(--card);
+  padding: 1.2rem;
+  border-radius: 6px;
+  margin: 1rem 0;
+  border: 1px solid var(--line);
+}
+.pipeline .step { display: flex; gap: .8rem; margin-bottom: .3rem; }
+.pipeline .step .n { color: var(--teal); font-weight: 700; min-width: 1.6rem; }
+
+/* ── BIBLIO ── */
+.biblio { margin-left: 1.5rem; }
+.biblio li { margin-bottom: .6rem; font-size: .92rem; }
+
+.page-num { font-family: 'Inter', sans-serif; font-size: .75rem; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════
+     COVER
+══════════════════════════════════════════════════════ -->
+<div class="cover">
+  <div class="univ">Université Mouloud Mammeri de Tizi-Ouzou</div>
+  <div class="univ" style="letter-spacing:1px;margin-bottom:.2rem">Faculté de Génie Électrique et d'Informatique · Département Informatique</div>
+  <div class="module">Licence 3 — Informatique · 2024–2025</div>
+  <div class="cover-rule"></div>
+  <div class="title">DENTAL PLAN</div>
+  <div class="subtitle">Site Web d'un Cabinet Dentaire —<br>Conception et Réalisation</div>
+  <div class="cover-rule"></div>
+  <div class="meta">
+    Réalisé par : <span>MORSLI Manel</span><br>
+    Type de projet : <span>Projet de Fin d'Études — Licence</span><br>
+    Année universitaire : <span>2024–2025</span><br>
+    Technologies : <span>HTML5 · CSS3 · JavaScript</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     TABLE DES MATIÈRES
+══════════════════════════════════════════════════════ -->
+<div class="toc">
+  <h2>Table des matières</h2>
+  <ol>
+    <li class="toc-part"><span class="num"></span><span>Partie I — Contexte &amp; Fondements</span><span class="page">3</span></li>
+    <li class="toc-sub"><span class="num">I.</span><span>Présentation du projet</span><span class="page">3</span></li>
+    <li class="toc-sub"><span class="num">II.</span><span>Technologies utilisées</span><span class="page">3</span></li>
+    <li class="toc-part" style="margin-top:.8rem"><span class="num"></span><span>Partie II — Analyse &amp; Conception</span><span class="page">5</span></li>
+    <li class="toc-sub"><span class="num">III.</span><span>Besoins fonctionnels</span><span class="page">5</span></li>
+    <li class="toc-sub"><span class="num">IV.</span><span>Architecture du site</span><span class="page">5</span></li>
+    <li class="toc-part" style="margin-top:.8rem"><span class="num"></span><span>Partie III — Réalisation</span><span class="page">7</span></li>
+    <li class="toc-sub"><span class="num">V.</span><span>Pages et fonctionnalités</span><span class="page">7</span></li>
+    <li class="toc-sub"><span class="num">VI.</span><span>Conclusion &amp; perspectives</span><span class="page">9</span></li>
+    <li class="toc-sub"><span class="num"></span><span>Références</span><span class="page">10</span></li>
+  </ol>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     PARTIE I
+══════════════════════════════════════════════════════ -->
+<h1 class="part-title page-break">Partie I — Contexte &amp; Fondements</h1>
+
+<h2 class="section" data-n="I">Présentation du projet</h2>
+
+<p>
+  Le présent projet de fin d'études de Licence a pour objectif la conception et le développement d'un <strong>site web vitrine et fonctionnel</strong> pour le cabinet dentaire <em>DENTAL PLAN</em> du Dr. Medani. Ce site constitue une interface numérique complète permettant au cabinet de présenter ses services, de gérer les demandes de rendez-vous et d'assurer un premier point de contact avec les patients.
+</p>
+
+<div class="callout def">
+  <div class="callout-title">Objectif principal</div>
+  Offrir au cabinet dentaire <strong>DENTAL PLAN</strong> une présence web professionnelle, accessible et ergonomique, permettant aux patients de découvrir les soins proposés, de prendre rendez-vous en ligne, et de créer un compte personnel pour un suivi facilité.
+</div>
+
+<p>
+  La problématique centrale porte sur la digitalisation d'un cabinet de santé à travers une interface web responsive et intuitive. En Algérie, la présence numérique des professionnels de santé reste encore limitée ; ce projet s'inscrit donc dans une démarche de modernisation des services médicaux locaux.
+</p>
+
+<h2 class="section" data-n="II">Technologies utilisées</h2>
+
+<p>
+  Le choix technologique repose sur une stack <strong>front-end pure</strong>, sans serveur ni base de données, permettant un déploiement simple et une maintenance accessible. Trois technologies standard du web ont été utilisées.
+</p>
+
+<table>
+  <thead><tr><th>Technologie</th><th>Version</th><th>Rôle dans le projet</th></tr></thead>
+  <tbody>
+    <tr><td><strong>HTML5</strong></td><td>HTML5</td><td>Structure sémantique de toutes les pages (sections, formulaires, navigation)</td></tr>
+    <tr><td><strong>CSS3</strong></td><td>CSS3</td><td>Mise en forme, responsive design, animations, variables CSS</td></tr>
+    <tr><td><strong>JavaScript</strong></td><td>ES6</td><td>Interactivité : navigation mobile, onglets connexion/inscription</td></tr>
+    <tr><td>Font Awesome 5</td><td>5.15.4</td><td>Bibliothèque d'icônes pour les éléments visuels de l'interface</td></tr>
+    <tr><td>Google Fonts</td><td>—</td><td>Police Roboto pour une typographie moderne et lisible</td></tr>
+  </tbody>
+  <caption>Table 1 — Stack technologique du projet</caption>
+</table>
+
+<div class="callout info">
+  <div class="callout-title">Pourquoi une stack front-end pure ?</div>
+  Dans le cadre d'un projet de Licence, l'absence de back-end permet de se concentrer sur la maîtrise des langages fondamentaux du web. Le site est entièrement statique et peut être hébergé sans infrastructure serveur. L'intégration d'une base de données constitue une perspective d'évolution naturelle.
+</div>
+
+<h3 class="subsection">Couleur et charte graphique</h3>
+<p>
+  L'identité visuelle du cabinet repose sur le <strong>vert turquoise</strong> (<code>#31a896</code>) comme couleur principale, évoquant la fraîcheur, la confiance et la santé — valeurs essentielles dans le domaine médical. Le fond blanc assure une lisibilité optimale, et la police Roboto confère une modernité sans artifice.
+</p>
+
+
+<!-- ══════════════════════════════════════════════════════
+     PARTIE II
+══════════════════════════════════════════════════════ -->
+<h1 class="part-title page-break">Partie II — Analyse &amp; Conception</h1>
+
+<h2 class="section" data-n="III">Besoins fonctionnels</h2>
+
+<p>
+  L'analyse des besoins a permis d'identifier deux catégories d'utilisateurs : les <strong>visiteurs non connectés</strong> (patients potentiels découvrant le cabinet) et les <strong>patients enregistrés</strong> (disposant d'un compte pour le suivi). Le tableau ci-dessous synthétise les exigences fonctionnelles recueillies.
+</p>
+
+<table>
+  <thead><tr><th>Catégorie</th><th>Besoin fonctionnel</th><th>Page concernée</th></tr></thead>
+  <tbody>
+    <tr><td>Présentation</td><td>Découvrir l'identité du cabinet et son équipe</td><td>Accueil / Notre cabinet</td></tr>
+    <tr><td>Services</td><td>Consulter les traitements proposés avec description</td><td>Nos traitements</td></tr>
+    <tr><td>Rendez-vous</td><td>Soumettre une demande de rendez-vous en ligne</td><td>Formulaire RDV</td></tr>
+    <tr><td>Contact</td><td>Localiser le cabinet et envoyer un message</td><td>Contact</td></tr>
+    <tr><td>Compte</td><td>Créer un compte patient et se connecter</td><td>Connexion / Inscription</td></tr>
+    <tr><td>Accessibilité</td><td>Navigation fluide sur mobile et bureau</td><td>Toutes les pages</td></tr>
+  </tbody>
+  <caption>Table 2 — Besoins fonctionnels par catégorie</caption>
+</table>
+
+<h2 class="section" data-n="IV">Architecture du site</h2>
+
+<p>
+  Le site est structuré en <strong>trois modules distincts</strong>, organisés en pages HTML indépendantes reliées entre elles par des liens internes.
+</p>
+
+<div class="pipeline">
+  <div class="step"><span class="n">①</span><span><strong>index.html</strong> — Page principale : accueil, présentation, traitements, contact, pied de page</span></div>
+  <div class="step"><span class="n">②</span><span><strong>Formulaire RDV / form.html</strong> — Formulaire de prise de rendez-vous avec sélection horaire</span></div>
+  <div class="step"><span class="n">③</span><span><strong>connexion inscription / index inscription.html</strong> — Interface d'authentification (connexion et création de compte)</span></div>
+</div>
+
+<table>
+  <thead><tr><th>Fichier</th><th>Type</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td>index.html</td><td>Page HTML</td><td>Point d'entrée principal du site, page unique multi-sections</td></tr>
+    <tr><td>css/style.css</td><td>Feuille de style</td><td>Styles globaux, responsive, animations</td></tr>
+    <tr><td>js/script.js</td><td>Script JavaScript</td><td>Menu mobile, comportements interactifs</td></tr>
+    <tr><td>Formulaire RDV/form.html</td><td>Page HTML</td><td>Formulaire de rendez-vous</td></tr>
+    <tr><td>Formulaire RDV/styles.css</td><td>Feuille de style</td><td>Styles spécifiques au formulaire</td></tr>
+    <tr><td>connexion inscription/index inscription.html</td><td>Page HTML</td><td>Onglets connexion et inscription</td></tr>
+    <tr><td>connexion inscription/style inscription.css</td><td>Feuille de style</td><td>Styles de l'interface d'authentification</td></tr>
+    <tr><td>connexion inscription/js inscription.js</td><td>Script JavaScript</td><td>Logique de bascule entre onglets</td></tr>
+    <tr><td>images/</td><td>Dossier</td><td>Assets graphiques (icônes, photos, logo)</td></tr>
+  </tbody>
+  <caption>Table 3 — Structure des fichiers du projet</caption>
+</table>
+
+<div class="metrics-row">
+  <div class="metric-box"><span class="val">3</span><span class="lbl">Pages<br>HTML</span></div>
+  <div class="metric-box"><span class="val">3</span><span class="lbl">Feuilles<br>CSS</span></div>
+  <div class="metric-box"><span class="val">2</span><span class="lbl">Scripts<br>JavaScript</span></div>
+  <div class="metric-box"><span class="val">8</span><span class="lbl">Traitements<br>présentés</span></div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     PARTIE III
+══════════════════════════════════════════════════════ -->
+<h1 class="part-title page-break">Partie III — Réalisation</h1>
+
+<h2 class="section" data-n="V">Pages et fonctionnalités</h2>
+
+<h3 class="subsection">Page principale — index.html</h3>
+<p>
+  La page principale est construite selon le principe de <strong>single-page application</strong> : toutes les sections sont accessibles via une barre de navigation fixe en haut de page. Elle se compose de cinq sections successives.
+</p>
+
+<table>
+  <thead><tr><th>Section</th><th>Identifiant</th><th>Contenu</th></tr></thead>
+  <tbody>
+    <tr><td>Accueil</td><td><code>#acceuil</code></td><td>Slogan du Dr. Medani, appel à l'action vers le formulaire RDV</td></tr>
+    <tr><td>Notre cabinet</td><td><code>#about</code></td><td>Photo du cabinet, description de l'approche et des valeurs</td></tr>
+    <tr><td>Nos traitements</td><td><code>#menu</code></td><td>Grille de 8 soins avec icône, description et lien RDV</td></tr>
+    <tr><td>Contact</td><td><code>#contact</code></td><td>Carte Google Maps intégrée et formulaire de message</td></tr>
+    <tr><td>Pied de page</td><td>—</td><td>Liens réseaux sociaux, horaires, adresse, coordonnées</td></tr>
+  </tbody>
+  <caption>Table 4 — Sections de la page principale</caption>
+</table>
+
+<h3 class="subsection">Catalogue des traitements</h3>
+<p>
+  Huit traitements dentaires sont présentés sous forme de cartes homogènes, chacune comportant une icône vectorielle, un titre, une description clinique concise et un bouton de prise de rendez-vous direct.
+</p>
+
+<table>
+  <thead><tr><th>#</th><th>Traitement</th><th>Description synthétique</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>Implants dentaires</td><td>Remplacement de dents manquantes par technologie de pointe</td></tr>
+    <tr><td>2</td><td>Blanchiment dentaire</td><td>Élimination des colorations et obtention d'un sourire lumineux</td></tr>
+    <tr><td>3</td><td>Prothèse fixe</td><td>Remplacement permanent de dents abîmées ou manquantes</td></tr>
+    <tr><td>4</td><td>Facette dentaire</td><td>Correction esthétique indolore de la forme et de la teinte</td></tr>
+    <tr><td>5</td><td>Soins dentaires</td><td>Traitement des caries, détartrages et soins courants</td></tr>
+    <tr><td>6</td><td>ODF (Orthodontie)</td><td>Correction des malpositions dentaires et anomalies occlusales</td></tr>
+    <tr><td>7</td><td>Chirurgie de la gencive</td><td>Traitement des pathologies parodontales et inflammatoires</td></tr>
+    <tr><td>8</td><td>Prothèse amovible</td><td>Remplacement des dents naturelles par un dispositif amovible esthétique</td></tr>
+  </tbody>
+  <caption>Table 5 — Catalogue des traitements proposés par DENTAL PLAN</caption>
+</table>
+
+<h3 class="subsection">Formulaire de rendez-vous</h3>
+<p>
+  Le module de prise de rendez-vous collecte les informations nécessaires à la préparation de la consultation. Il intègre une sélection de créneau horaire (matin ou soir) via des boutons radio stylisés.
+</p>
+
+<div class="pipeline">
+  <div class="step"><span class="n">①</span><span>Saisie des informations personnelles : nom complet, prénom, téléphone, e-mail</span></div>
+  <div class="step"><span class="n">②</span><span>Sélection de la date de disponibilité (champ <code>date</code> natif HTML5)</span></div>
+  <div class="step"><span class="n">③</span><span>Déclaration d'éventuelles maladies ou contre-indications médicales</span></div>
+  <div class="step"><span class="n">④</span><span>Choix du créneau préféré : la matinée ou le soir</span></div>
+  <div class="step"><span class="n">⑤</span><span>Validation et soumission du formulaire</span></div>
+</div>
+
+<h3 class="subsection">Espace Connexion / Inscription</h3>
+<p>
+  La page d'authentification propose une interface à <strong>deux onglets</strong> commutables par JavaScript : connexion (e-mail + mot de passe) et inscription (e-mail + mot de passe + confirmation). Cette page constitue la base d'un futur espace patient sécurisé.
+</p>
+
+<div class="callout">
+  <div class="callout-title">Limite actuelle</div>
+  La gestion des comptes est actuellement <strong>côté client uniquement</strong> — aucune donnée n'est persistée. L'intégration d'un back-end (PHP/Node.js) et d'une base de données (MySQL/MongoDB) constitue la principale piste d'évolution pour une mise en production réelle.
+</div>
+
+
+<h2 class="section" data-n="VI">Conclusion &amp; perspectives</h2>
+
+<p>
+  Ce projet de fin d'études de Licence démontre la faisabilité et la pertinence d'une solution web complète pour la digitalisation d'un cabinet médical. Le site <strong>DENTAL PLAN</strong> offre une interface professionnelle, cohérente et responsive, répondant aux besoins d'information, de contact et de prise de rendez-vous des patients du Dr. Medani.
+</p>
+<p>
+  Sur le plan technique, la maîtrise du trio <strong>HTML5 / CSS3 / JavaScript</strong> a permis de construire une architecture propre, modulaire et maintenable. L'accent mis sur le design — charte graphique médicale, typographie lisible, palette cohérente — renforce la crédibilité et la confiance que doit inspirer tout site de santé.
+</p>
+
+<div class="callout result">
+  <div class="callout-title">Limites du projet</div>
+  (1) Absence de back-end : les formulaires ne sont pas traités côté serveur. (2) Pas de base de données : comptes et rendez-vous non persistés. (3) Carte Google Maps pointant sur une adresse de démonstration, à personnaliser. (4) Contenus du pied de page (horaires, adresse, téléphone) à compléter.
+</div>
+
+<h3 class="subsection">Perspectives d'évolution</h3>
+
+<table>
+  <thead><tr><th>Axe</th><th>Actions envisagées</th></tr></thead>
+  <tbody>
+    <tr><td>Back-end</td><td>Développement d'une API REST (PHP / Node.js / Laravel) pour traiter les formulaires et gérer les comptes patients</td></tr>
+    <tr><td>Base de données</td><td>Intégration de MySQL ou MongoDB pour stocker les rendez-vous, les dossiers patients et les messages</td></tr>
+    <tr><td>Espace patient</td><td>Tableau de bord personnel : historique des rendez-vous, ordonnances numérisées, messagerie avec le cabinet</td></tr>
+    <tr><td>Système de notifications</td><td>Rappels automatiques par e-mail ou SMS avant chaque rendez-vous</td></tr>
+    <tr><td>Application mobile</td><td>Version React Native ou PWA pour une expérience native sur iOS et Android</td></tr>
+    <tr><td>Sécurité</td><td>Authentification JWT, chiffrement HTTPS, conformité RGPD pour les données de santé</td></tr>
+  </tbody>
+  <caption>Table 6 — Perspectives de développement</caption>
+</table>
+
+<p>
+  En définitive, ce projet constitue une <em>première brique solide</em> vers un système de gestion de cabinet dentaire complet. Il met en évidence l'importance croissante de la présence numérique dans le domaine médical, et illustre concrètement les compétences acquises au cours de la formation Licence en Informatique.
+</p>
+
+
+<!-- ══════════════════════════════════════════════════════
+     RÉFÉRENCES
+══════════════════════════════════════════════════════ -->
+<h2 class="section" data-n="">Références</h2>
+<ol class="biblio">
+  <li>MDN Web Docs (2024). <em>HTML5 — Guide de référence</em>. Mozilla Developer Network. https://developer.mozilla.org/fr/docs/Web/HTML</li>
+  <li>MDN Web Docs (2024). <em>CSS3 — Référence complète</em>. Mozilla Developer Network. https://developer.mozilla.org/fr/docs/Web/CSS</li>
+  <li>W3Schools (2024). <em>JavaScript Tutorial &amp; Reference</em>. https://www.w3schools.com/js/</li>
+  <li>Font Awesome (2021). <em>Font Awesome 5 — Icon Library</em>. https://fontawesome.com/v5/</li>
+  <li>Google Fonts (2024). <em>Roboto — Google Fonts</em>. https://fonts.google.com/specimen/Roboto</li>
+</ol>
+
+</body>
+</html>
